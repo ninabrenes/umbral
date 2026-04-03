@@ -1,10 +1,11 @@
 import { setRequestLocale } from 'next-intl/server'
-import Image from 'next/image'
 import { Section } from '@/components/ui/Section'
 import { SectionHeader } from '@/components/ui/SectionHeader'
 import { Callout } from '@/components/ui/Callout'
 import { Button } from '@/components/ui/Button'
-import { pageImages } from '@/content/framework/images'
+import { ScrollReveal } from '@/components/ui/ScrollReveal'
+import { ParallaxImage } from '@/components/ui/ParallaxImage'
+import { pageImages, artImages } from '@/content/framework/images'
 import type { Locale } from '@/types'
 
 const content = {
@@ -229,193 +230,215 @@ export default async function AboutPage({
 
       {/* ── MYCELIAL NETWORK ── */}
       <Section spacing="lg" className="bg-sand">
-        <div className="relative aspect-[16/9] md:aspect-[21/9] overflow-hidden rounded-[var(--radius-card)] mb-16">
-          <Image
+        <ScrollReveal variant="scale">
+          <ParallaxImage
             src={pageImages.about.src}
             alt={pageImages.about.alt[locale as Locale]}
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, 80vw"
+            className="aspect-[16/9] md:aspect-[21/9] rounded-[var(--radius-card)] mb-16"
+            speed={0.12}
+            overlay="bg-sand/30"
           />
-          <div className="absolute inset-0 bg-sand/20" />
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
-          <div className="md:col-span-5">
-            <p className="text-xs tracking-[0.2em] uppercase text-ink-muted mb-4 font-sans">
-              {t.mycelial.label}
-            </p>
-            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light leading-[1.1] tracking-[-0.02em]">
-              {t.mycelial.heading}
-            </h2>
+        </ScrollReveal>
+        <ScrollReveal variant="fade-up">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
+            <div className="md:col-span-5">
+              <p className="text-xs tracking-[0.2em] uppercase text-ink-muted mb-4 font-sans">
+                {t.mycelial.label}
+              </p>
+              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light leading-[1.1] tracking-[-0.02em]">
+                {t.mycelial.heading}
+              </h2>
+            </div>
+            <div className="md:col-span-6 md:col-start-7">
+              <p className="text-lg text-ink-muted font-light leading-relaxed mb-6">
+                {t.mycelial.body}
+              </p>
+              <p className="text-lg text-ink/80 font-light leading-relaxed">
+                {t.mycelial.body2}
+              </p>
+            </div>
           </div>
-          <div className="md:col-span-6 md:col-start-7">
-            <p className="text-lg text-ink-muted font-light leading-relaxed mb-6">
-              {t.mycelial.body}
-            </p>
-            <p className="text-lg text-ink/80 font-light leading-relaxed">
-              {t.mycelial.body2}
-            </p>
-          </div>
-        </div>
+        </ScrollReveal>
       </Section>
 
       {/* ── CALLOUT ── */}
       <section className="bg-cream">
-        <Callout quote={t.callout.quote} />
+        <ScrollReveal variant="scale">
+          <Callout quote={t.callout.quote} />
+        </ScrollReveal>
       </section>
 
       {/* ── OPEN SOURCE ── */}
       <Section spacing="lg">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
-          <div className="md:col-span-5">
-            <SectionHeader
-              label={t.openSource.label}
-              heading={t.openSource.heading}
-            />
+        <ScrollReveal variant="slide-left">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
+            <div className="md:col-span-5">
+              <SectionHeader
+                label={t.openSource.label}
+                heading={t.openSource.heading}
+              />
+            </div>
+            <div className="md:col-span-6 md:col-start-7">
+              <p className="text-lg text-ink-muted font-light leading-relaxed mb-6">
+                {t.openSource.body}
+              </p>
+              <p className="text-lg text-ink/80 font-light leading-relaxed mb-10">
+                {t.openSource.body2}
+              </p>
+              <Button
+                variant="secondary"
+                href="https://github.com/ninabrenes/umbral"
+              >
+                {t.openSource.cta}
+              </Button>
+            </div>
           </div>
-          <div className="md:col-span-6 md:col-start-7">
-            <p className="text-lg text-ink-muted font-light leading-relaxed mb-6">
-              {t.openSource.body}
-            </p>
-            <p className="text-lg text-ink/80 font-light leading-relaxed mb-10">
-              {t.openSource.body2}
-            </p>
-            <Button
-              variant="secondary"
-              href="https://github.com/ninabrenes/umbral"
-            >
-              {t.openSource.cta}
-            </Button>
-          </div>
-        </div>
+        </ScrollReveal>
       </Section>
 
       {/* ── INDIGENOUS RECIPROCITY ── */}
       <Section spacing="lg" className="bg-forest-deep text-ivory">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
-          {/* Left column: heading and intro */}
-          <div className="md:col-span-5">
-            <p className="text-xs tracking-[0.2em] uppercase text-gold/80 mb-4 font-sans">
-              {t.reciprocity.label}
-            </p>
-            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light leading-[1.1] tracking-[-0.02em] text-ivory">
-              {t.reciprocity.heading}
-            </h2>
-            <p className="mt-8 text-lg text-ivory/70 font-light leading-relaxed">
-              {t.reciprocity.intro}
-            </p>
-          </div>
-
-          {/* Right column: body, principles, closing */}
-          <div className="md:col-span-6 md:col-start-7">
-            <p className="text-lg text-ivory/70 font-light leading-relaxed mb-16">
-              {t.reciprocity.body}
-            </p>
-
-            {/* The 8 Principles */}
-            <div className="mb-16">
-              <h3 className="font-serif text-2xl md:text-3xl font-light leading-[1.2] tracking-[-0.01em] text-ivory mb-3">
-                {t.reciprocity.principles.heading}
-              </h3>
-              <p className="text-sm text-ivory/50 font-light leading-relaxed mb-10">
-                {t.reciprocity.principles.intro}
+        <ScrollReveal variant="fade-in">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
+            {/* Left column: heading and intro */}
+            <div className="md:col-span-5">
+              <p className="text-xs tracking-[0.2em] uppercase text-gold/80 mb-4 font-sans">
+                {t.reciprocity.label}
               </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-8">
-                {t.reciprocity.principles.items.map((principle) => (
-                  <div key={principle.name}>
-                    <p className="text-sm tracking-[0.15em] uppercase text-gold font-sans mb-2">
-                      {principle.name}
-                    </p>
-                    <p className="text-sm text-ivory/60 font-light leading-relaxed">
-                      {principle.desc}
-                    </p>
-                  </div>
-                ))}
-              </div>
+              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light leading-[1.1] tracking-[-0.02em] text-ivory">
+                {t.reciprocity.heading}
+              </h2>
+              <p className="mt-8 text-lg text-ivory/70 font-light leading-relaxed">
+                {t.reciprocity.intro}
+              </p>
             </div>
 
-            <p className="text-lg text-ivory/70 font-light leading-relaxed mb-10">
-              {t.reciprocity.closing}
-            </p>
+            {/* Right column: body, principles, closing */}
+            <div className="md:col-span-6 md:col-start-7">
+              <p className="text-lg text-ivory/70 font-light leading-relaxed mb-16">
+                {t.reciprocity.body}
+              </p>
 
-            <a
-              href="https://chacruna.net/indigenous-reciprocity-initiative/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm tracking-[0.08em] uppercase font-sans text-gold hover:text-gold-muted transition-colors duration-200"
-            >
-              {t.reciprocity.cta}
-              <span aria-hidden="true" className="text-gold/60">
-                &rarr;
-              </span>
-            </a>
+              {/* The 8 Principles */}
+              <div className="mb-16">
+                <h3 className="font-serif text-2xl md:text-3xl font-light leading-[1.2] tracking-[-0.01em] text-ivory mb-3">
+                  {t.reciprocity.principles.heading}
+                </h3>
+                <p className="text-sm text-ivory/50 font-light leading-relaxed mb-10">
+                  {t.reciprocity.principles.intro}
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-8">
+                  {t.reciprocity.principles.items.map((principle, i) => (
+                    <ScrollReveal key={principle.name} variant="fade-up" delay={i * 0.05}>
+                      <div>
+                        <p className="text-sm tracking-[0.15em] uppercase text-gold font-sans mb-2">
+                          {principle.name}
+                        </p>
+                        <p className="text-sm text-ivory/60 font-light leading-relaxed">
+                          {principle.desc}
+                        </p>
+                      </div>
+                    </ScrollReveal>
+                  ))}
+                </div>
+              </div>
+
+              <p className="text-lg text-ivory/70 font-light leading-relaxed mb-10">
+                {t.reciprocity.closing}
+              </p>
+
+              <a
+                href="https://chacruna.net/indigenous-reciprocity-initiative/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm tracking-[0.08em] uppercase font-sans text-gold hover:text-gold-muted transition-colors duration-200"
+              >
+                {t.reciprocity.cta}
+                <span aria-hidden="true" className="text-gold/60">
+                  &rarr;
+                </span>
+              </a>
+            </div>
           </div>
-        </div>
+        </ScrollReveal>
       </Section>
 
       {/* ── PRIVACY ── */}
       <Section spacing="lg">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
-          <div className="md:col-span-5">
-            <SectionHeader
-              label={t.privacy.label}
-              heading={t.privacy.heading}
-            />
-            <p className="text-lg text-ink-muted font-light leading-relaxed max-w-[45ch]">
-              {t.privacy.body}
-            </p>
+        <ScrollReveal variant="slide-right">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
+            <div className="md:col-span-5">
+              <SectionHeader
+                label={t.privacy.label}
+                heading={t.privacy.heading}
+              />
+              <p className="text-lg text-ink-muted font-light leading-relaxed max-w-[45ch]">
+                {t.privacy.body}
+              </p>
+            </div>
+            <div className="md:col-span-6 md:col-start-7">
+              <ul className="space-y-10">
+                {t.privacy.points.map((point) => (
+                  <li key={point.title}>
+                    <h3 className="font-serif text-xl md:text-2xl font-light leading-[1.2] tracking-[-0.01em] mb-2">
+                      {point.title}
+                    </h3>
+                    <p className="text-base text-ink-muted font-light leading-relaxed max-w-[50ch]">
+                      {point.desc}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-          <div className="md:col-span-6 md:col-start-7">
-            <ul className="space-y-10">
-              {t.privacy.points.map((point) => (
-                <li key={point.title}>
-                  <h3 className="font-serif text-xl md:text-2xl font-light leading-[1.2] tracking-[-0.01em] mb-2">
-                    {point.title}
-                  </h3>
-                  <p className="text-base text-ink-muted font-light leading-relaxed max-w-[50ch]">
-                    {point.desc}
-                  </p>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+        </ScrollReveal>
       </Section>
+
+      {/* ── ART BREAK ── */}
+      <ParallaxImage
+        src={artImages.handsReaching.src}
+        alt={artImages.handsReaching.alt[locale as Locale]}
+        className="h-[40vh]"
+        speed={0.1}
+        overlay="bg-forest-deep/50"
+      />
 
       {/* ── CONTRIBUTE ── */}
       <Section spacing="lg" className="bg-forest-deep text-ivory">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 items-center">
-          <div className="md:col-span-7 lg:col-span-6">
-            <p className="text-xs tracking-[0.2em] uppercase text-gold/80 mb-4 font-sans">
-              {t.contribute.label}
-            </p>
-            <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light leading-[1.05] tracking-[-0.03em] text-ivory">
-              {t.contribute.heading}
-            </h2>
-            <p className="mt-8 text-lg text-ivory/60 font-light leading-relaxed max-w-[50ch]">
-              {t.contribute.body}
-            </p>
-          </div>
-          <div className="md:col-span-4 md:col-start-9">
-            <div className="flex flex-col gap-6">
-              <Button
-                variant="primary"
-                href="https://github.com/ninabrenes/umbral"
-              >
-                {t.contribute.github}
-              </Button>
-              <p className="text-sm text-ivory/40 font-light">
-                {t.contribute.contact}{' '}
-                <a
-                  href="mailto:hello@umbral.earth"
-                  className="text-gold underline underline-offset-4 decoration-gold/30 hover:decoration-gold/60 transition-colors duration-200"
-                >
-                  {t.contribute.email}
-                </a>
+        <ScrollReveal variant="fade-up">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 items-center">
+            <div className="md:col-span-7 lg:col-span-6">
+              <p className="text-xs tracking-[0.2em] uppercase text-gold/80 mb-4 font-sans">
+                {t.contribute.label}
+              </p>
+              <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light leading-[1.05] tracking-[-0.03em] text-ivory">
+                {t.contribute.heading}
+              </h2>
+              <p className="mt-8 text-lg text-ivory/60 font-light leading-relaxed max-w-[50ch]">
+                {t.contribute.body}
               </p>
             </div>
+            <div className="md:col-span-4 md:col-start-9">
+              <div className="flex flex-col gap-6">
+                <Button
+                  variant="primary"
+                  href="https://github.com/ninabrenes/umbral"
+                >
+                  {t.contribute.github}
+                </Button>
+                <p className="text-sm text-ivory/40 font-light">
+                  {t.contribute.contact}{' '}
+                  <a
+                    href="mailto:hello@umbral.earth"
+                    className="text-gold underline underline-offset-4 decoration-gold/30 hover:decoration-gold/60 transition-colors duration-200"
+                  >
+                    {t.contribute.email}
+                  </a>
+                </p>
+              </div>
+            </div>
           </div>
-        </div>
+        </ScrollReveal>
       </Section>
     </>
   )

@@ -1,10 +1,11 @@
 import { notFound } from 'next/navigation'
 import { setRequestLocale } from 'next-intl/server'
 import Link from 'next/link'
-import Image from 'next/image'
 import { Section } from '@/components/ui/Section'
 import { Button } from '@/components/ui/Button'
 import { NodeIcon } from '@/components/framework/NodeIcon'
+import { ScrollReveal } from '@/components/ui/ScrollReveal'
+import { ParallaxImage } from '@/components/ui/ParallaxImage'
 import { nodes } from '@/content/framework/nodes'
 import { nodePrompts } from '@/content/framework/prompts'
 import { nodeImages } from '@/content/framework/images'
@@ -100,116 +101,129 @@ export default async function NodePage({
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-end">
             <div className="md:col-span-7 lg:col-span-6">
               {/* node number + icon */}
-              <div className="flex items-center gap-4 mb-8">
-                <span className="text-xs text-ink-muted/40 font-sans tabular-nums">
-                  {String(currentIndex + 1).padStart(2, '0')}/06
-                </span>
-                <div className="text-moss">
-                  <NodeIcon nodeId={nodeId} size={28} />
+              <ScrollReveal variant="fade-in">
+                <div className="flex items-center gap-4 mb-8">
+                  <span className="text-xs text-ink-muted/40 font-sans tabular-nums">
+                    {String(currentIndex + 1).padStart(2, '0')}/06
+                  </span>
+                  <div className="text-moss">
+                    <NodeIcon nodeId={nodeId} size={28} />
+                  </div>
                 </div>
-              </div>
+              </ScrollReveal>
 
-              <h1 className="font-serif text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-light leading-[1.0] tracking-[-0.03em]">
-                {node.name[loc]}
-              </h1>
-              <p className="mt-6 text-xl md:text-2xl text-ink-muted font-light">
-                {node.tagline[loc]}
-              </p>
+              <ScrollReveal variant="fade-up" delay={0.1}>
+                <h1 className="font-serif text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-light leading-[1.0] tracking-[-0.03em]">
+                  {node.name[loc]}
+                </h1>
+              </ScrollReveal>
+              <ScrollReveal variant="fade-up" delay={0.2}>
+                <p className="mt-6 text-xl md:text-2xl text-ink-muted font-light">
+                  {node.tagline[loc]}
+                </p>
+              </ScrollReveal>
             </div>
 
             <div className="md:col-span-4 md:col-start-9">
               {/* metadata */}
-              <div className="space-y-6">
-                <div>
-                  <p className="text-xs tracking-[0.2em] uppercase text-ink-muted/50 font-sans mb-1">
-                    {t.polarityLabel}
-                  </p>
-                  <p className="text-sm text-ink-muted font-light">
-                    {t.polarity[node.polarity]}
-                  </p>
-                </div>
-                {node.chakra && (
+              <ScrollReveal variant="fade-up" delay={0.3}>
+                <div className="space-y-6">
                   <div>
                     <p className="text-xs tracking-[0.2em] uppercase text-ink-muted/50 font-sans mb-1">
-                      {t.chakraLabel}
+                      {t.polarityLabel}
                     </p>
                     <p className="text-sm text-ink-muted font-light">
-                      {node.chakra.name} ({node.chakra.sanskrit})
+                      {t.polarity[node.polarity]}
                     </p>
                   </div>
-                )}
-              </div>
+                  {node.chakra && (
+                    <div>
+                      <p className="text-xs tracking-[0.2em] uppercase text-ink-muted/50 font-sans mb-1">
+                        {t.chakraLabel}
+                      </p>
+                      <p className="text-sm text-ink-muted font-light">
+                        {node.chakra.name} ({node.chakra.sanskrit})
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </ScrollReveal>
             </div>
           </div>
         </div>
       </Section>
 
-      {/* ── NODE IMAGE ── */}
-      <div className="relative w-full h-[240px] md:h-[360px] overflow-hidden">
-        <Image
-          src={image.src}
-          alt={image.alt[locale as Locale]}
-          fill
-          className="object-cover"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-cream/20" />
-      </div>
+      {/* ── NODE IMAGE (parallax) ── */}
+      <ParallaxImage
+        src={image.src}
+        alt={image.alt[locale as Locale]}
+        className="h-[240px] md:h-[360px]"
+        speed={0.1}
+        overlay="bg-cream/30"
+      />
 
       {/* ── DESCRIPTION ── */}
       <Section spacing="default" className="bg-sand">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
-          <div className="md:col-span-7 md:col-start-1">
-            <p className="text-xl md:text-2xl text-ink/80 font-light leading-relaxed max-w-[55ch]">
-              {node.description[loc]}
-            </p>
+        <ScrollReveal variant="fade-up">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
+            <div className="md:col-span-7 md:col-start-1">
+              <p className="text-xl md:text-2xl text-ink/80 font-light leading-relaxed max-w-[55ch]">
+                {node.description[loc]}
+              </p>
+            </div>
           </div>
-        </div>
+        </ScrollReveal>
       </Section>
 
       {/* ── QUOTE ── */}
       <Section spacing="lg">
-        <div className="max-w-3xl mx-auto text-center">
-          {quotes.map((quote, i) => (
-            <blockquote key={i} className={i > 0 ? 'mt-16' : ''}>
-              <p className="font-serif text-2xl md:text-3xl lg:text-4xl font-light leading-[1.3] tracking-[-0.01em] italic text-ink/80">
-                &ldquo;{quote.text}&rdquo;
-              </p>
-              <footer className="mt-6">
-                <p className="text-sm text-ink-muted font-sans tracking-[0.05em]">
-                  {quote.author}
+        <ScrollReveal variant="scale">
+          <div className="max-w-3xl mx-auto text-center">
+            {quotes.map((quote, i) => (
+              <blockquote key={i} className={i > 0 ? 'mt-16' : ''}>
+                <p className="font-serif text-2xl md:text-3xl lg:text-4xl font-light leading-[1.3] tracking-[-0.01em] italic text-ink/80">
+                  &ldquo;{quote.text}&rdquo;
                 </p>
-              </footer>
-            </blockquote>
-          ))}
-        </div>
+                <footer className="mt-6">
+                  <p className="text-sm text-ink-muted font-sans tracking-[0.05em]">
+                    {quote.author}
+                  </p>
+                </footer>
+              </blockquote>
+            ))}
+          </div>
+        </ScrollReveal>
       </Section>
 
       {/* ── JOURNAL PROMPTS ── */}
       <Section spacing="lg" className="bg-sand">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
           <div className="md:col-span-4">
-            <p className="text-xs tracking-[0.2em] uppercase text-ink-muted mb-4 font-sans">
-              {t.journalLabel}
-            </p>
-            <h2 className="font-serif text-4xl md:text-5xl font-light leading-[1.1] tracking-[-0.02em]">
-              {t.journalHeading}
-            </h2>
-            <p className="mt-5 text-lg text-ink-muted font-light leading-relaxed max-w-[35ch]">
-              {t.journalSubtitle}
-            </p>
+            <ScrollReveal variant="fade-up">
+              <p className="text-xs tracking-[0.2em] uppercase text-ink-muted mb-4 font-sans">
+                {t.journalLabel}
+              </p>
+              <h2 className="font-serif text-4xl md:text-5xl font-light leading-[1.1] tracking-[-0.02em]">
+                {t.journalHeading}
+              </h2>
+              <p className="mt-5 text-lg text-ink-muted font-light leading-relaxed max-w-[35ch]">
+                {t.journalSubtitle}
+              </p>
+            </ScrollReveal>
           </div>
           <div className="md:col-span-7 md:col-start-6">
             <ol className="space-y-8">
               {journalPrompts.map((prompt, i) => (
-                <li key={i} className="flex items-start gap-5">
-                  <span className="shrink-0 text-xs text-ink-muted/30 font-sans tabular-nums mt-1.5">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <p className="text-lg md:text-xl text-ink/80 font-light leading-relaxed">
-                    {prompt}
-                  </p>
-                </li>
+                <ScrollReveal key={i} variant="slide-left" delay={i * 0.06}>
+                  <li className="flex items-start gap-5">
+                    <span className="shrink-0 text-xs text-ink-muted/30 font-sans tabular-nums mt-1.5">
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <p className="text-lg md:text-xl text-ink/80 font-light leading-relaxed">
+                      {prompt}
+                    </p>
+                  </li>
+                </ScrollReveal>
               ))}
             </ol>
           </div>
@@ -219,29 +233,31 @@ export default async function NodePage({
       {/* ── NEXT NODE NAV ── */}
       {nextNode && (
         <Section spacing="lg">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-xs tracking-[0.2em] uppercase text-ink-muted mb-4 font-sans">
-                {t.nextLabel}
-              </p>
-              <h3 className="font-serif text-3xl md:text-4xl lg:text-5xl font-light tracking-[-0.02em]">
-                {nextNode.name[loc]}
-              </h3>
-              <p className="mt-3 text-lg text-ink-muted font-light">
-                {nextNode.tagline[loc]}
-              </p>
+          <ScrollReveal variant="fade-in">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-xs tracking-[0.2em] uppercase text-ink-muted mb-4 font-sans">
+                  {t.nextLabel}
+                </p>
+                <h3 className="font-serif text-3xl md:text-4xl lg:text-5xl font-light tracking-[-0.02em]">
+                  {nextNode.name[loc]}
+                </h3>
+                <p className="mt-3 text-lg text-ink-muted font-light">
+                  {nextNode.tagline[loc]}
+                </p>
+              </div>
+              <div className="hidden md:block">
+                <Button href={`/${locale}/framework/${nextNodeId}`} variant="secondary">
+                  {nextNode.name[loc]} &rarr;
+                </Button>
+              </div>
             </div>
-            <div className="hidden md:block">
+            <div className="mt-8 md:hidden">
               <Button href={`/${locale}/framework/${nextNodeId}`} variant="secondary">
                 {nextNode.name[loc]} &rarr;
               </Button>
             </div>
-          </div>
-          <div className="mt-8 md:hidden">
-            <Button href={`/${locale}/framework/${nextNodeId}`} variant="secondary">
-              {nextNode.name[loc]} &rarr;
-            </Button>
-          </div>
+          </ScrollReveal>
         </Section>
       )}
     </>

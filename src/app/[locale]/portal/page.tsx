@@ -1,7 +1,9 @@
 import { setRequestLocale } from 'next-intl/server'
 import Image from 'next/image'
 import { Button } from '@/components/ui/Button'
-import { pageImages } from '@/content/framework/images'
+import { ScrollReveal } from '@/components/ui/ScrollReveal'
+import { ParallaxImage } from '@/components/ui/ParallaxImage'
+import { pageImages, artImages } from '@/content/framework/images'
 import type { Locale } from '@/types'
 
 const content = {
@@ -125,12 +127,12 @@ export default async function PortalPage({
       {/* ── HERO: dark portal aesthetic ── */}
       <section className="relative bg-forest-deep text-ivory min-h-[80dvh] flex items-center overflow-hidden">
         <div className="absolute inset-0">
-          <Image
+          <ParallaxImage
             src={pageImages.portal.src}
             alt=""
-            fill
-            className="object-cover opacity-20"
-            sizes="100vw"
+            className="h-full w-full"
+            speed={0.08}
+            overlay="bg-forest-deep/80"
           />
         </div>
         <div className="relative z-10 mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 py-32 md:py-40 w-full">
@@ -159,50 +161,63 @@ export default async function PortalPage({
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-16 md:gap-y-24">
             {t.features.map((feature, i) => (
-              <div key={i} className="group">
-                <div className="flex items-baseline gap-4 mb-4">
-                  <span className="text-xs text-ivory/20 font-sans tabular-nums">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <h3 className="font-serif text-2xl md:text-3xl font-light tracking-[-0.01em] text-ivory/90">
-                    {feature.title}
-                  </h3>
+              <ScrollReveal key={i} variant="fade-up" delay={i * 0.1}>
+                <div className="group">
+                  <div className="flex items-baseline gap-4 mb-4">
+                    <span className="text-xs text-ivory/20 font-sans tabular-nums">
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <h3 className="font-serif text-2xl md:text-3xl font-light tracking-[-0.01em] text-ivory/90">
+                      {feature.title}
+                    </h3>
+                  </div>
+                  <p className="text-ivory/40 font-light leading-relaxed pl-10 max-w-[45ch]">
+                    {feature.description}
+                  </p>
                 </div>
-                <p className="text-ivory/40 font-light leading-relaxed pl-10 max-w-[45ch]">
-                  {feature.description}
-                </p>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
       </section>
 
+      {/* ── ART BREAK ── */}
+      <ParallaxImage
+        src={artImages.ascendingFigures.src}
+        alt={artImages.ascendingFigures.alt[locale as Locale]}
+        className="h-[35vh]"
+        speed={0.08}
+        overlay="bg-forest-deep/40"
+      />
+
       {/* ── WAITLIST CTA ── */}
       <section className="bg-forest-deep text-ivory border-t border-ivory/[0.06]">
         <div className="mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 py-[var(--space-section-lg)]">
-          <div className="max-w-xl">
-            <h2 className="font-serif text-4xl md:text-5xl font-light leading-[1.1] tracking-[-0.02em] text-ivory mb-6">
-              {t.cta.heading}
-            </h2>
-            <p className="text-lg text-ivory/40 font-light leading-relaxed mb-12">
-              {t.cta.body}
-            </p>
-            <form action="#" className="flex flex-col sm:flex-row gap-3">
-              <input
-                type="email"
-                name="email"
-                required
-                placeholder={t.cta.placeholder}
-                className="flex-1 bg-ivory/[0.05] border border-ivory/[0.08] rounded-full px-6 py-3 text-sm text-ivory placeholder:text-ivory/25 font-light focus:outline-none focus:border-gold/40 transition-colors"
-              />
-              <button
-                type="submit"
-                className="inline-flex items-center justify-center px-7 py-3 text-sm tracking-[0.08em] uppercase font-sans font-normal rounded-full bg-gold text-forest-deep hover:bg-gold/90 transition-colors active:scale-[0.98] transition-transform duration-150"
-              >
-                {t.cta.button}
-              </button>
-            </form>
-          </div>
+          <ScrollReveal variant="scale">
+            <div className="max-w-xl">
+              <h2 className="font-serif text-4xl md:text-5xl font-light leading-[1.1] tracking-[-0.02em] text-ivory mb-6">
+                {t.cta.heading}
+              </h2>
+              <p className="text-lg text-ivory/40 font-light leading-relaxed mb-12">
+                {t.cta.body}
+              </p>
+              <form action="#" className="flex flex-col sm:flex-row gap-3">
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  placeholder={t.cta.placeholder}
+                  className="flex-1 bg-ivory/[0.05] border border-ivory/[0.08] rounded-full px-6 py-3 text-sm text-ivory placeholder:text-ivory/25 font-light focus:outline-none focus:border-gold/40 transition-colors"
+                />
+                <button
+                  type="submit"
+                  className="inline-flex items-center justify-center px-7 py-3 text-sm tracking-[0.08em] uppercase font-sans font-normal rounded-full bg-gold text-forest-deep hover:bg-gold/90 transition-colors active:scale-[0.98] transition-transform duration-150"
+                >
+                  {t.cta.button}
+                </button>
+              </form>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
     </>

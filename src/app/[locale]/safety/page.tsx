@@ -1,8 +1,11 @@
 import { setRequestLocale } from 'next-intl/server'
 import { Section } from '@/components/ui/Section'
 import { SectionHeader } from '@/components/ui/SectionHeader'
+import { ScrollReveal } from '@/components/ui/ScrollReveal'
+import { ParallaxImage } from '@/components/ui/ParallaxImage'
 import { crisisResources } from '@/content/safety/crisis-resources'
 import { contraindications } from '@/content/safety/contraindications'
+import { artImages } from '@/content/framework/images'
 import type { Locale } from '@/types'
 import type { Severity } from '@/content/safety/contraindications'
 
@@ -197,7 +200,7 @@ export default async function SafetyPage({
         </div>
       </Section>
 
-      {/* ── CRISIS RESOURCES ── */}
+      {/* ── CRISIS RESOURCES — NO ANIMATION (instant render) ── */}
       <Section spacing="lg" className="bg-crisis-bg">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
           <div className="md:col-span-4">
@@ -246,6 +249,15 @@ export default async function SafetyPage({
         </div>
       </Section>
 
+      {/* ── ART IMAGE BREAK ── */}
+      <ParallaxImage
+        src={artImages.cosmicNebula.src}
+        alt={artImages.cosmicNebula.alt[locale as Locale]}
+        className="h-[35vh]"
+        speed={0.08}
+        overlay="bg-forest-deep/60"
+      />
+
       {/* ── CONTRAINDICATIONS ── */}
       <Section spacing="lg">
         <SectionHeader
@@ -254,79 +266,84 @@ export default async function SafetyPage({
           subtitle={t.contraindications.subtitle}
         />
         <div className="space-y-4">
-          {contraindications.map((item) => {
+          {contraindications.map((item, index) => {
             const style = severityConfig[item.severity]
             return (
-              <div
-                key={item.id}
-                className={`rounded-lg border ${style.border} ${style.bg} p-6 md:p-8`}
-              >
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-                  <div className="md:col-span-4">
-                    <div className="flex items-center gap-3 mb-2">
-                      <span
-                        className={`inline-block text-[10px] tracking-[0.15em] uppercase px-2.5 py-1 rounded ${style.badge} ${style.badgeText}`}
-                      >
-                        {t.contraindications.severityLabels[item.severity]}
-                      </span>
+              <ScrollReveal key={item.id} variant="fade-up" delay={index * 0.05}>
+                <div
+                  className={`rounded-lg border ${style.border} ${style.bg} p-6 md:p-8`}
+                >
+                  <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+                    <div className="md:col-span-4">
+                      <div className="flex items-center gap-3 mb-2">
+                        <span
+                          className={`inline-block text-[10px] tracking-[0.15em] uppercase px-2.5 py-1 rounded ${style.badge} ${style.badgeText}`}
+                        >
+                          {t.contraindications.severityLabels[item.severity]}
+                        </span>
+                      </div>
+                      <h3 className="font-serif text-xl md:text-2xl font-light leading-tight">
+                        {item.name[locale as Locale]}
+                      </h3>
                     </div>
-                    <h3 className="font-serif text-xl md:text-2xl font-light leading-tight">
-                      {item.name[locale as Locale]}
-                    </h3>
-                  </div>
-                  <div className="md:col-span-4">
-                    <p className="text-xs tracking-[0.15em] uppercase text-ink-muted mb-1.5">
-                      {t.contraindications.riskLabel}
-                    </p>
-                    <p className="text-base font-light text-ink/80 leading-relaxed">
-                      {item.risk[locale as Locale]}
-                    </p>
-                  </div>
-                  <div className="md:col-span-4">
-                    <p className="text-xs tracking-[0.15em] uppercase text-ink-muted mb-1.5">
-                      {t.contraindications.actionLabel}
-                    </p>
-                    <p className="text-base font-light text-ink/80 leading-relaxed">
-                      {item.action[locale as Locale]}
-                    </p>
+                    <div className="md:col-span-4">
+                      <p className="text-xs tracking-[0.15em] uppercase text-ink-muted mb-1.5">
+                        {t.contraindications.riskLabel}
+                      </p>
+                      <p className="text-base font-light text-ink/80 leading-relaxed">
+                        {item.risk[locale as Locale]}
+                      </p>
+                    </div>
+                    <div className="md:col-span-4">
+                      <p className="text-xs tracking-[0.15em] uppercase text-ink-muted mb-1.5">
+                        {t.contraindications.actionLabel}
+                      </p>
+                      <p className="text-base font-light text-ink/80 leading-relaxed">
+                        {item.action[locale as Locale]}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </ScrollReveal>
             )
           })}
         </div>
       </Section>
 
       {/* ── HARM REDUCTION PRINCIPLES ── */}
-      <Section spacing="lg" className="bg-sand">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
-          <div className="md:col-span-4">
-            <p className="text-xs tracking-[0.2em] uppercase text-ink-muted mb-4 font-sans">
-              {t.harmReduction.label}
-            </p>
-            <h2 className="font-serif text-4xl md:text-5xl font-light leading-[1.1] tracking-[-0.02em]">
-              {t.harmReduction.heading}
-            </h2>
-            <p className="mt-5 text-lg text-ink-muted font-light leading-relaxed">
-              {t.harmReduction.subtitle}
-            </p>
-          </div>
-          <div className="md:col-span-7 md:col-start-6">
-            <div className="space-y-10">
-              {t.harmReduction.principles.map((principle) => (
-                <div key={principle.title}>
-                  <h3 className="font-serif text-2xl font-light leading-tight mb-3">
-                    {principle.title}
-                  </h3>
-                  <p className="text-base text-ink-muted font-light leading-relaxed max-w-[50ch]">
-                    {principle.body}
-                  </p>
-                </div>
-              ))}
+      <ScrollReveal variant="fade-in">
+        <Section spacing="lg" className="bg-sand">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
+            <div className="md:col-span-4">
+              <p className="text-xs tracking-[0.2em] uppercase text-ink-muted mb-4 font-sans">
+                {t.harmReduction.label}
+              </p>
+              <h2 className="font-serif text-4xl md:text-5xl font-light leading-[1.1] tracking-[-0.02em]">
+                {t.harmReduction.heading}
+              </h2>
+              <p className="mt-5 text-lg text-ink-muted font-light leading-relaxed">
+                {t.harmReduction.subtitle}
+              </p>
+            </div>
+            <div className="md:col-span-7 md:col-start-6">
+              <div className="space-y-10">
+                {t.harmReduction.principles.map((principle, index) => (
+                  <ScrollReveal key={principle.title} variant="slide-left" delay={index * 0.08}>
+                    <div>
+                      <h3 className="font-serif text-2xl font-light leading-tight mb-3">
+                        {principle.title}
+                      </h3>
+                      <p className="text-base text-ink-muted font-light leading-relaxed max-w-[50ch]">
+                        {principle.body}
+                      </p>
+                    </div>
+                  </ScrollReveal>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      </Section>
+        </Section>
+      </ScrollReveal>
 
       {/* ── DISCLAIMERS ── */}
       <Section spacing="lg">

@@ -2,7 +2,11 @@ import { setRequestLocale } from 'next-intl/server'
 import { Section } from '@/components/ui/Section'
 import { SectionHeader } from '@/components/ui/SectionHeader'
 import { Callout } from '@/components/ui/Callout'
+import { ScrollReveal } from '@/components/ui/ScrollReveal'
+import { ParallaxImage } from '@/components/ui/ParallaxImage'
+import { CountUp } from '@/components/ui/CountUp'
 import { papers, organizations, books } from '@/content/framework/sources'
+import { artImages } from '@/content/framework/images'
 import type { Locale, Source } from '@/types'
 
 const content = {
@@ -33,6 +37,11 @@ const content = {
           body: 'Across studies at Johns Hopkins and Imperial College London, the depth of mystical experience during a session is the strongest predictor of long-term positive outcomes. Carhart-Harris and Friston (2019) proposed the REBUS model to explain why: psychedelics relax the brain\'s top-down predictions, allowing new patterns to emerge.',
         },
       ],
+    },
+    stats: {
+      papers: 'published papers',
+      orgs: 'organizations',
+      frameworks: 'therapeutic frameworks synthesized',
     },
     research: {
       label: 'Published research',
@@ -88,6 +97,11 @@ const content = {
         },
       ],
     },
+    stats: {
+      papers: 'estudios publicados',
+      orgs: 'organizaciones',
+      frameworks: 'marcos terapeuticos sintetizados',
+    },
     research: {
       label: 'Investigacion publicada',
       heading: 'Los estudios detras del marco',
@@ -116,23 +130,25 @@ const content = {
   },
 }
 
-function PaperEntry({ source }: { source: Source }) {
+function PaperEntry({ source, index }: { source: Source; index: number }) {
   return (
-    <li className="group py-6 border-b border-ink/[0.06] last:border-b-0">
-      <a
-        href={source.url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="block transition-opacity duration-200 hover:opacity-70"
-      >
-        <p className="font-serif text-xl md:text-2xl font-light leading-[1.3] tracking-[-0.01em]">
-          {source.title}
-        </p>
-        <p className="mt-2 text-sm text-ink-muted font-sans font-light">
-          {source.authors} ({source.year})
-        </p>
-      </a>
-    </li>
+    <ScrollReveal variant="fade-up" delay={index * 0.04}>
+      <li className="group py-6 border-b border-ink/[0.06] last:border-b-0">
+        <a
+          href={source.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block transition-opacity duration-200 hover:opacity-70"
+        >
+          <p className="font-serif text-xl md:text-2xl font-light leading-[1.3] tracking-[-0.01em]">
+            {source.title}
+          </p>
+          <p className="mt-2 text-sm text-ink-muted font-sans font-light">
+            {source.authors} ({source.year})
+          </p>
+        </a>
+      </li>
+    </ScrollReveal>
   )
 }
 
@@ -212,86 +228,132 @@ export default async function SciencePage({
       </Section>
 
       {/* ── KEY FINDINGS ── */}
-      <Section spacing="lg" className="bg-sand">
-        <p className="text-xs tracking-[0.2em] uppercase text-ink-muted mb-16 md:mb-24 font-sans">
-          {t.findings.label}
-        </p>
-        <div className="space-y-24 md:space-y-32">
-          {t.findings.items.map((item, i) => (
-            <div
-              key={i}
-              className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-baseline"
-            >
-              <div className="md:col-span-1">
-                <span className="font-sans text-5xl md:text-6xl font-light text-ink/10 tabular-nums leading-none">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-              </div>
-              <div className="md:col-span-7 lg:col-span-6">
-                <h3 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light leading-[1.1] tracking-[-0.02em] italic">
-                  {item.heading}
-                </h3>
-              </div>
-              <div className="md:col-span-4 md:col-start-9 lg:col-span-4 lg:col-start-9">
-                <p className="text-base text-ink-muted font-sans font-light leading-relaxed">
-                  {item.body}
-                </p>
-              </div>
+      <ScrollReveal variant="slide-right">
+        <Section spacing="lg" className="bg-sand">
+          <p className="text-xs tracking-[0.2em] uppercase text-ink-muted mb-16 md:mb-24 font-sans">
+            {t.findings.label}
+          </p>
+
+          {/* ── STATS BAR ── */}
+          <div className="grid grid-cols-3 gap-8 mb-20 md:mb-28 border-b border-ink/[0.06] pb-16">
+            <div className="text-center">
+              <p className="font-serif text-5xl md:text-6xl font-light leading-none tracking-[-0.02em]">
+                <CountUp value={18} suffix="+" />
+              </p>
+              <p className="mt-3 text-xs tracking-[0.15em] uppercase text-ink-muted font-sans">
+                {t.stats.papers}
+              </p>
             </div>
-          ))}
-        </div>
-      </Section>
-
-      {/* ── PUBLISHED RESEARCH ── */}
-      <Section spacing="lg">
-        <SectionHeader
-          label={t.research.label}
-          heading={t.research.heading}
-          subtitle={t.research.subtitle}
-        />
-        <div className="grid grid-cols-1 md:grid-cols-12">
-          <div className="md:col-span-9 lg:col-span-8">
-            <ul>
-              {papers.map((paper) => (
-                <PaperEntry key={paper.id} source={paper} />
-              ))}
-            </ul>
+            <div className="text-center">
+              <p className="font-serif text-5xl md:text-6xl font-light leading-none tracking-[-0.02em]">
+                <CountUp value={13} />
+              </p>
+              <p className="mt-3 text-xs tracking-[0.15em] uppercase text-ink-muted font-sans">
+                {t.stats.orgs}
+              </p>
+            </div>
+            <div className="text-center">
+              <p className="font-serif text-5xl md:text-6xl font-light leading-none tracking-[-0.02em]">
+                <CountUp value={6} />
+              </p>
+              <p className="mt-3 text-xs tracking-[0.15em] uppercase text-ink-muted font-sans">
+                {t.stats.frameworks}
+              </p>
+            </div>
           </div>
-        </div>
-      </Section>
 
-      {/* ── ORGANIZATIONS ── */}
-      <Section spacing="lg" className="bg-sand">
-        <SectionHeader
-          label={t.orgs.label}
-          heading={t.orgs.heading}
-        />
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-4">
-          {organizations.map((org) => (
-            <OrgEntry
-              key={org.id}
-              source={org}
-              description={t.orgs.items[org.id] ?? ''}
-            />
-          ))}
-        </div>
-      </Section>
-
-      {/* ── BOOKS ── */}
-      <Section spacing="lg">
-        <SectionHeader
-          label={t.books.label}
-          heading={t.books.heading}
-          subtitle={t.books.subtitle}
-        />
-        <div className="grid grid-cols-1 md:grid-cols-12">
-          <div className="md:col-span-9 lg:col-span-8">
-            {books.map((book) => (
-              <BookEntry key={book.id} source={book} />
+          <div className="space-y-24 md:space-y-32">
+            {t.findings.items.map((item, i) => (
+              <div
+                key={i}
+                className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-baseline"
+              >
+                <div className="md:col-span-1">
+                  <span className="font-sans text-5xl md:text-6xl font-light text-ink/10 tabular-nums leading-none">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                </div>
+                <div className="md:col-span-7 lg:col-span-6">
+                  <h3 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light leading-[1.1] tracking-[-0.02em] italic">
+                    {item.heading}
+                  </h3>
+                </div>
+                <div className="md:col-span-4 md:col-start-9 lg:col-span-4 lg:col-start-9">
+                  <p className="text-base text-ink-muted font-sans font-light leading-relaxed">
+                    {item.body}
+                  </p>
+                </div>
+              </div>
             ))}
           </div>
-        </div>
-      </Section>
+        </Section>
+      </ScrollReveal>
+
+      {/* ── ART IMAGE BREAK ── */}
+      <ParallaxImage
+        src={artImages.radiantSilhouette.src}
+        alt={artImages.radiantSilhouette.alt[locale as Locale]}
+        className="h-[40vh]"
+        speed={0.1}
+        overlay="bg-cream/40"
+      />
+
+      {/* ── PUBLISHED RESEARCH ── */}
+      <ScrollReveal variant="fade-up">
+        <Section spacing="lg">
+          <SectionHeader
+            label={t.research.label}
+            heading={t.research.heading}
+            subtitle={t.research.subtitle}
+          />
+          <div className="grid grid-cols-1 md:grid-cols-12">
+            <div className="md:col-span-9 lg:col-span-8">
+              <ul>
+                {papers.map((paper, index) => (
+                  <PaperEntry key={paper.id} source={paper} index={index} />
+                ))}
+              </ul>
+            </div>
+          </div>
+        </Section>
+      </ScrollReveal>
+
+      {/* ── ORGANIZATIONS ── */}
+      <ScrollReveal variant="slide-left">
+        <Section spacing="lg" className="bg-sand">
+          <SectionHeader
+            label={t.orgs.label}
+            heading={t.orgs.heading}
+          />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-4">
+            {organizations.map((org) => (
+              <OrgEntry
+                key={org.id}
+                source={org}
+                description={t.orgs.items[org.id] ?? ''}
+              />
+            ))}
+          </div>
+        </Section>
+      </ScrollReveal>
+
+      {/* ── BOOKS ── */}
+      <ScrollReveal variant="fade-in">
+        <Section spacing="lg">
+          <SectionHeader
+            label={t.books.label}
+            heading={t.books.heading}
+            subtitle={t.books.subtitle}
+          />
+          <div className="grid grid-cols-1 md:grid-cols-12">
+            <div className="md:col-span-9 lg:col-span-8">
+              {books.map((book) => (
+                <BookEntry key={book.id} source={book} />
+              ))}
+            </div>
+          </div>
+        </Section>
+      </ScrollReveal>
     </>
   )
 }
