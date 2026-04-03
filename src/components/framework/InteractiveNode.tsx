@@ -115,10 +115,10 @@ export function InteractiveNode({ node, locale, index, href }: InteractiveNodePr
               }
         }
         transition={{ duration: 0.2 }}
-        className={`relative rounded-2xl border border-ink/[0.06] ${nodeBorderColors[node.id]} p-6 sm:p-8 transition-colors duration-200 group-hover:bg-forest-deep/[0.03] group-hover:backdrop-blur-sm`}
+        className={`relative bg-white/[0.04] backdrop-blur-xl border border-white/[0.08] rounded-2xl ${nodeBorderColors[node.id]} p-6 sm:p-8 transition-colors duration-200`}
       >
         {/* index number */}
-        <span className="absolute top-4 right-5 text-[11px] text-ink-muted/30 font-sans tabular-nums">
+        <span className="absolute top-4 right-5 text-[11px] text-cloud/20 font-sans tabular-nums">
           {String(index + 1).padStart(2, '0')}
         </span>
 
@@ -128,12 +128,12 @@ export function InteractiveNode({ node, locale, index, href }: InteractiveNodePr
         </div>
 
         {/* name */}
-        <h3 className="font-serif text-2xl sm:text-3xl font-light tracking-[-0.01em] mb-2 group-hover:text-moss transition-colors duration-200">
+        <h3 className="font-serif text-2xl sm:text-3xl font-light tracking-[-0.01em] mb-2 text-white group-hover:text-mint transition-colors duration-200">
           {node.name[locale]}
         </h3>
 
         {/* tagline */}
-        <p className="text-sm text-ink-muted/70 font-light leading-relaxed">
+        <p className="text-sm text-cloud/60 font-light leading-relaxed">
           {node.tagline[locale]}
         </p>
 

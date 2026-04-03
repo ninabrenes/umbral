@@ -39,13 +39,13 @@ const content = {
       label: 'Safety first, always',
       title: 'your safety matters most',
       subtitle:
-        'Harm reduction is not about permission or prohibition. It is about ensuring that anyone who chooses this path has the information they need to do so with care.',
+        'Harm reduction ensures anyone who chooses this path has the information to do so with care.',
     },
     crisis: {
       label: 'Crisis support',
       heading: 'If you need help right now',
       subtitle:
-        'These lines are staffed by trained professionals. Free, confidential, available now.',
+        'Trained professionals. Free, confidential, available now.',
       callLabel: 'Call',
       textLabel: 'Text',
     },
@@ -53,7 +53,7 @@ const content = {
       label: 'What the research shows',
       heading: 'Known contraindications',
       subtitle:
-        'This is not a comprehensive medical assessment. It is a starting point for informed conversation with your healthcare provider.',
+        'A starting point for informed conversation with your healthcare provider.',
       severityLabels: {
         critical: 'Critical risk',
         high: 'High caution',
@@ -67,23 +67,23 @@ const content = {
       label: 'Harm reduction',
       heading: 'Principles that guide this work',
       subtitle:
-        'Drawn from the Zendo Project and decades of psychedelic peer support practice.',
+        'From the Zendo Project and decades of psychedelic peer support.',
       principles: [
         {
           title: 'Difficult is not the same as bad',
-          body: 'Challenging experiences can be among the most meaningful. The goal is not to eliminate difficulty but to provide the support needed to move through it.',
+          body: 'Challenging experiences can be the most meaningful. The goal is support, not elimination of difficulty.',
         },
         {
           title: 'Sitting, not guiding',
-          body: 'The role of support is presence, not direction. We do not interpret, diagnose, or steer. We create a safe container and trust the process.',
+          body: 'Presence, not direction. We create a safe container and trust the process.',
         },
         {
           title: 'Set and setting matter',
-          body: 'The internal landscape (mindset) and external environment (setting) shape the experience more than any substance. Preparation is not optional.',
+          body: 'Mindset and environment shape the experience more than any substance. Preparation is not optional.',
         },
         {
           title: 'Integration is where the value lives',
-          body: 'The experience opens a door. Integration is the ongoing work of making sense of what was revealed and weaving it into daily life.',
+          body: 'The experience opens a door. Integration weaves what was revealed into daily life.',
         },
       ],
     },
@@ -91,11 +91,11 @@ const content = {
       label: 'Legal notice',
       heading: 'Important disclaimers',
       items: [
-        'This tool does not encourage, condone, or facilitate illegal activities. It exists as an educational and harm reduction resource for adults making informed choices about their own health.',
-        'Umbral does not provide medical care, psychiatric diagnosis, or therapeutic treatment. Nothing on this platform substitutes for professional medical advice.',
-        'The information presented here is drawn from published research and established harm reduction practices. It is not exhaustive and may not reflect your specific medical situation.',
-        'You are solely responsible for your decisions and actions. Consult qualified healthcare professionals before making any changes to medications or treatment plans.',
-        'Laws regarding psychedelic substances vary by jurisdiction. It is your responsibility to understand and comply with the laws in your location.',
+        'This tool does not encourage, condone, or facilitate illegal activities. It exists as an educational and harm reduction resource.',
+        'Umbral does not provide medical care, psychiatric diagnosis, or therapeutic treatment.',
+        'Information drawn from published research and established harm reduction practices. Not exhaustive.',
+        'You are solely responsible for your decisions. Consult healthcare professionals before changing medications or treatment plans.',
+        'Laws vary by jurisdiction. It is your responsibility to understand and comply with local laws.',
       ],
     },
   },
@@ -104,13 +104,13 @@ const content = {
       label: 'La seguridad primero, siempre',
       title: 'tu seguridad importa más',
       subtitle:
-        'La reducción de daños no se trata de permisos ni prohibiciones. Se trata de asegurar que quien elija este camino tenga la información necesaria para hacerlo con cuidado.',
+        'La reducción de daños asegura que quien elija este camino tenga la información necesaria para hacerlo con cuidado.',
     },
     crisis: {
       label: 'Apoyo en crisis',
       heading: 'Si necesitas ayuda ahora',
       subtitle:
-        'Estas líneas son atendidas por profesionales capacitados. Gratuitas, confidenciales, disponibles ahora.',
+        'Profesionales capacitados. Gratuitas, confidenciales, disponibles ahora.',
       callLabel: 'Llamar',
       textLabel: 'Texto',
     },
@@ -118,7 +118,7 @@ const content = {
       label: 'Lo que muestra la investigación',
       heading: 'Contraindicaciones conocidas',
       subtitle:
-        'Esto no es una evaluación médica completa. Es un punto de partida para una conversación informada con tu profesional de salud.',
+        'Un punto de partida para una conversación informada con tu profesional de salud.',
       severityLabels: {
         critical: 'Riesgo crítico',
         high: 'Alta precaución',
@@ -132,23 +132,23 @@ const content = {
       label: 'Reducción de daños',
       heading: 'Principios que guían este trabajo',
       subtitle:
-        'Basados en el Zendo Project y décadas de práctica de apoyo entre pares psicodélico.',
+        'Del Zendo Project y décadas de apoyo entre pares psicodélico.',
       principles: [
         {
           title: 'Difícil no es lo mismo que malo',
-          body: 'Las experiencias desafiantes pueden ser de las más significativas. El objetivo no es eliminar la dificultad sino proporcionar el apoyo necesario para atravesarla.',
+          body: 'Las experiencias desafiantes pueden ser las más significativas. El objetivo es apoyo, no eliminación de la dificultad.',
         },
         {
           title: 'Acompañar, no guiar',
-          body: 'El rol del apoyo es la presencia, no la dirección. No interpretamos, diagnosticamos ni dirigimos. Creamos un espacio seguro y confiamos en el proceso.',
+          body: 'Presencia, no dirección. Creamos un espacio seguro y confiamos en el proceso.',
         },
         {
           title: 'El set y el setting importan',
-          body: 'El paisaje interno (mentalidad) y el entorno externo (setting) dan forma a la experiencia más que cualquier sustancia. La preparación no es opcional.',
+          body: 'Mentalidad y entorno moldean la experiencia más que cualquier sustancia. La preparación no es opcional.',
         },
         {
           title: 'La integración es donde vive el valor',
-          body: 'La experiencia abre una puerta. La integración es el trabajo continuo de dar sentido a lo revelado y tejerlo en la vida cotidiana.',
+          body: 'La experiencia abre una puerta. La integración teje lo revelado en la vida cotidiana.',
         },
       ],
     },
@@ -156,11 +156,11 @@ const content = {
       label: 'Aviso legal',
       heading: 'Descargos de responsabilidad',
       items: [
-        'Esta herramienta no fomenta, aprueba ni facilita actividades ilegales. Existe como recurso educativo y de reducción de daños para adultos que toman decisiones informadas sobre su propia salud.',
-        'Umbral no proporciona atención médica, diagnóstico psiquiátrico ni tratamiento terapéutico. Nada en esta plataforma sustituye el consejo médico profesional.',
-        'La información presentada aquí proviene de investigaciones publicadas y prácticas establecidas de reducción de daños. No es exhaustiva y puede no reflejar tu situación médica específica.',
-        'Eres el único responsable de tus decisiones y acciones. Consulta profesionales de salud calificados antes de hacer cambios en medicamentos o planes de tratamiento.',
-        'Las leyes sobre sustancias psicodélicas varían según la jurisdicción. Es tu responsabilidad conocer y cumplir las leyes de tu ubicación.',
+        'Esta herramienta no fomenta, aprueba ni facilita actividades ilegales. Existe como recurso educativo y de reducción de daños.',
+        'Umbral no proporciona atención médica, diagnóstico psiquiátrico ni tratamiento terapéutico.',
+        'Información de investigaciones publicadas y prácticas establecidas de reducción de daños. No exhaustiva.',
+        'Eres el único responsable de tus decisiones. Consulta profesionales antes de hacer cambios en medicamentos o tratamiento.',
+        'Las leyes varían según la jurisdicción. Es tu responsabilidad conocer y cumplir las leyes locales.',
       ],
     },
   },
@@ -189,10 +189,10 @@ const severityConfig: Record<
     badgeText: 'text-sky-300',
   },
   unknown: {
-    border: 'border-ink/10',
-    bg: 'bg-ink/[0.03]',
-    badge: 'bg-ink/10',
-    badgeText: 'text-ink-muted',
+    border: 'border-white/[0.08]',
+    bg: 'bg-white/[0.03]',
+    badge: 'bg-white/[0.08]',
+    badgeText: 'text-cloud/60',
   },
 }
 
@@ -211,13 +211,13 @@ export default async function SafetyPage({
       <Section spacing="lg">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pt-24 md:pt-32">
           <div className="md:col-span-8 lg:col-span-7">
-            <p className="text-xs tracking-[0.2em] uppercase text-ink-muted mb-8 font-sans">
+            <p className="text-xs tracking-[0.2em] uppercase text-cloud/60 mb-8 font-sans">
               {t.hero.label}
             </p>
-            <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl font-light leading-[1.05] tracking-[-0.03em]">
+            <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl font-light leading-[1.05] tracking-[-0.03em] text-white">
               {t.hero.title}
             </h1>
-            <p className="mt-8 text-lg md:text-xl text-ink-muted font-light leading-relaxed max-w-[55ch]">
+            <p className="mt-8 text-lg md:text-xl text-cloud/60 font-light leading-relaxed max-w-[55ch]">
               {t.hero.subtitle}
             </p>
           </div>
@@ -286,7 +286,7 @@ export default async function SafetyPage({
         alt={artImages.cosmicNebula.alt[locale as Locale]}
         className="h-[35vh]"
         speed={0.08}
-        overlay="bg-forest-deep/60"
+        overlay="bg-deep/60"
       />
 
       {/* ── CONTRAINDICATIONS ── */}
@@ -302,7 +302,7 @@ export default async function SafetyPage({
             return (
               <ScrollReveal key={item.id} variant="fade-up" delay={index * 0.05}>
                 <div
-                  className={`rounded-lg border ${style.border} ${style.bg} p-6 md:p-8`}
+                  className={`rounded-2xl border ${style.border} ${style.bg} backdrop-blur-xl p-6 md:p-8`}
                 >
                   <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
                     <div className="md:col-span-4">
@@ -317,23 +317,23 @@ export default async function SafetyPage({
                           {t.contraindications.severityLabels[item.severity]}
                         </span>
                       </div>
-                      <h3 className="font-serif text-xl md:text-2xl font-light leading-tight">
+                      <h3 className="font-serif text-xl md:text-2xl font-light leading-tight text-white">
                         {item.name[locale as Locale]}
                       </h3>
                     </div>
                     <div className="md:col-span-4">
-                      <p className="text-xs tracking-[0.15em] uppercase text-ink-muted mb-1.5">
+                      <p className="text-xs tracking-[0.15em] uppercase text-cloud/60 mb-1.5">
                         {t.contraindications.riskLabel}
                       </p>
-                      <p className="text-base font-light text-ink/80 leading-relaxed">
+                      <p className="text-base font-light text-cloud/80 leading-relaxed">
                         {item.risk[locale as Locale]}
                       </p>
                     </div>
                     <div className="md:col-span-4">
-                      <p className="text-xs tracking-[0.15em] uppercase text-ink-muted mb-1.5">
+                      <p className="text-xs tracking-[0.15em] uppercase text-cloud/60 mb-1.5">
                         {t.contraindications.actionLabel}
                       </p>
-                      <p className="text-base font-light text-ink/80 leading-relaxed">
+                      <p className="text-base font-light text-cloud/80 leading-relaxed">
                         {item.action[locale as Locale]}
                       </p>
                     </div>
@@ -347,16 +347,16 @@ export default async function SafetyPage({
 
       {/* ── HARM REDUCTION PRINCIPLES ── */}
       <ScrollReveal variant="fade-in">
-        <Section spacing="lg" className="bg-sand">
+        <Section spacing="lg" className="bg-forest">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
             <div className="md:col-span-4">
-              <p className="text-xs tracking-[0.2em] uppercase text-ink-muted mb-4 font-sans">
+              <p className="text-xs tracking-[0.2em] uppercase text-cloud/60 mb-4 font-sans">
                 {t.harmReduction.label}
               </p>
-              <h2 className="font-serif text-4xl md:text-5xl font-light leading-[1.1] tracking-[-0.02em]">
+              <h2 className="font-serif text-4xl md:text-5xl font-light leading-[1.1] tracking-[-0.02em] text-white">
                 {t.harmReduction.heading}
               </h2>
-              <p className="mt-5 text-lg text-ink-muted font-light leading-relaxed">
+              <p className="mt-5 text-lg text-cloud/60 font-light leading-relaxed">
                 {t.harmReduction.subtitle}
               </p>
             </div>
@@ -371,10 +371,10 @@ export default async function SafetyPage({
                           <PrincipleIcon size={28} weight="duotone" className="text-sage" />
                         </div>
                         <div>
-                          <h3 className="font-serif text-2xl font-light leading-tight mb-3">
+                          <h3 className="font-serif text-2xl font-light leading-tight mb-3 text-white">
                             {principle.title}
                           </h3>
-                          <p className="text-base text-ink-muted font-light leading-relaxed max-w-[50ch]">
+                          <p className="text-base text-cloud/60 font-light leading-relaxed max-w-[50ch]">
                             {principle.body}
                           </p>
                         </div>
@@ -389,14 +389,14 @@ export default async function SafetyPage({
       </ScrollReveal>
 
       {/* ── DISCLAIMERS ── */}
-      <Section spacing="lg" className="border-t border-ink/[0.06]">
+      <Section spacing="lg" className="border-t border-white/[0.06]">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
           <div className="md:col-span-4">
-            <Shield size={32} weight="duotone" className="text-ink-muted mb-5" />
-            <p className="text-xs tracking-[0.2em] uppercase text-ink-muted mb-4 font-sans">
+            <Shield size={32} weight="duotone" className="text-cloud/60 mb-5" />
+            <p className="text-xs tracking-[0.2em] uppercase text-cloud/60 mb-4 font-sans">
               {t.disclaimers.label}
             </p>
-            <h2 className="font-serif text-3xl md:text-4xl font-light leading-[1.1] tracking-[-0.02em]">
+            <h2 className="font-serif text-3xl md:text-4xl font-light leading-[1.1] tracking-[-0.02em] text-white">
               {t.disclaimers.heading}
             </h2>
           </div>
@@ -405,7 +405,7 @@ export default async function SafetyPage({
               {t.disclaimers.items.map((item, i) => (
                 <p
                   key={i}
-                  className="text-sm text-ink-muted font-light leading-relaxed"
+                  className="text-sm text-cloud/60 font-light leading-relaxed"
                 >
                   {item}
                 </p>

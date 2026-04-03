@@ -19,11 +19,11 @@ export function Nav({ locale }: NavProps) {
   const otherLabel = locale === 'en' ? 'ES' : 'EN'
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-forest-deep/70 backdrop-blur-xl border-b border-white/[0.08] shadow-[inset_0_-1px_0_rgba(255,255,255,0.05)] transition-all duration-300">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-deep/80 backdrop-blur-xl border-b border-glass-border shadow-[inset_0_-1px_0_rgba(255,255,255,0.05)] transition-all duration-300">
       <nav className="mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 h-16 flex items-center justify-between">
         <Link
           href={`/${locale}`}
-          className="font-serif text-xl font-light tracking-[-0.01em] text-ivory transition-all duration-300"
+          className="font-serif text-xl font-light tracking-[-0.01em] text-white transition-all duration-300"
         >
           umbral
         </Link>
@@ -33,7 +33,7 @@ export function Nav({ locale }: NavProps) {
             <Link
               key={link.key}
               href={`/${locale}${link.href}`}
-              className="text-sm text-ivory/80 hover:text-sage transition-colors duration-200 font-sans font-light"
+              className="text-sm text-cloud/70 hover:text-mint transition-colors duration-200 font-sans font-light"
             >
               {link[locale]}
             </Link>
@@ -43,13 +43,13 @@ export function Nav({ locale }: NavProps) {
         <div className="flex items-center gap-5">
           <Link
             href={`/${otherLocale}`}
-            className="hidden md:inline text-xs tracking-[0.15em] uppercase text-ivory/80 hover:text-sage transition-colors duration-200 font-sans"
+            className="hidden md:inline text-xs tracking-[0.15em] uppercase text-cloud/70 hover:text-mint transition-colors duration-200 font-sans"
           >
             {otherLabel}
           </Link>
           <Link
             href={`/${locale}/portal`}
-            className="hidden md:inline-flex items-center px-5 py-2 text-xs tracking-[0.1em] uppercase bg-sage text-forest-deep rounded-full hover:bg-sage-light transition-colors duration-200"
+            className="hidden md:inline-flex items-center px-5 py-2 text-xs tracking-[0.1em] uppercase bg-mint text-deep rounded-full hover:bg-mint/90 transition-colors duration-200"
           >
             Portal
           </Link>

@@ -25,7 +25,6 @@ export function MobileMenu({ locale, otherLocale, otherLabel, links }: MobileMen
 
   useEffect(() => {
     if (open) {
-      // mount then fade in
       requestAnimationFrame(() => setVisible(true))
     }
   }, [open])
@@ -47,14 +46,14 @@ export function MobileMenu({ locale, otherLocale, otherLabel, links }: MobileMen
         }}
         aria-label={open ? 'Close menu' : 'Open menu'}
         aria-expanded={open}
-        className="p-2 -mr-2 text-ivory hover:text-ivory/60 transition-colors duration-200"
+        className="p-2 -mr-2 text-cloud hover:text-cloud/60 transition-colors duration-200"
       >
         {open ? <X size={22} strokeWidth={1.5} /> : <Menu size={22} strokeWidth={1.5} />}
       </button>
 
       {open && (
         <div
-          className="fixed inset-0 top-16 z-40 bg-forest-deep/95 backdrop-blur-xl transition-opacity duration-200"
+          className="fixed inset-0 top-16 z-40 bg-deep/95 backdrop-blur-xl transition-opacity duration-200"
           style={{ opacity: visible ? 1 : 0 }}
         >
           <nav className="px-6 py-8 flex flex-col gap-1">
@@ -69,8 +68,8 @@ export function MobileMenu({ locale, otherLocale, otherLabel, links }: MobileMen
                   onClick={handleClose}
                   className={`py-3 text-lg font-serif border-b border-white/[0.08] transition-colors duration-200 ${
                     isActive
-                      ? 'text-sage font-normal'
-                      : 'font-light text-ivory/80 hover:text-sage'
+                      ? 'text-mint font-normal'
+                      : 'font-light text-cloud/80 hover:text-mint'
                   }`}
                 >
                   {link[locale]}
@@ -81,14 +80,14 @@ export function MobileMenu({ locale, otherLocale, otherLabel, links }: MobileMen
               <Link
                 href={`/${otherLocale}`}
                 onClick={handleClose}
-                className="text-xs tracking-[0.15em] uppercase text-ivory/80 hover:text-sage transition-colors duration-200"
+                className="text-xs tracking-[0.15em] uppercase text-cloud/60 hover:text-mint transition-colors duration-200"
               >
                 {otherLabel}
               </Link>
               <Link
                 href={`/${locale}/portal`}
                 onClick={handleClose}
-                className="inline-flex items-center px-5 py-2.5 text-xs tracking-[0.1em] uppercase bg-sage text-forest-deep rounded-full hover:bg-sage-light transition-colors duration-200"
+                className="inline-flex items-center px-5 py-2.5 text-xs tracking-[0.1em] uppercase bg-mint text-deep rounded-full hover:bg-mint/80 transition-colors duration-200"
               >
                 Portal
               </Link>

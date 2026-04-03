@@ -39,7 +39,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} className={`${serif.variable} ${sans.variable}`}>
-      <body className="bg-cream text-ink font-sans font-light antialiased">
+      <body className="bg-onyx text-cloud font-sans font-light antialiased">
         <NextIntlClientProvider messages={messages}>
           <LenisProvider>
             <Nav locale={locale as Locale} />

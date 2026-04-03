@@ -13,14 +13,14 @@ const content = {
     label: 'Writing',
     title: 'Blog',
     subtitle:
-      'Evidence-informed writing on psychedelic preparation, integration, and the science behind expanded states of consciousness.',
+      'Evidence-informed writing on psychedelic preparation, integration, and expanded states.',
     read: 'Read',
   },
   es: {
     label: 'Escritos',
     title: 'Blog',
     subtitle:
-      'Escritos informados por evidencia sobre preparación psicodélica, integración y la ciencia detrás de los estados expandidos de consciencia.',
+      'Escritos informados por evidencia sobre preparación, integración y estados expandidos.',
     read: 'Leer',
   },
 }
@@ -55,13 +55,13 @@ export default async function BlogIndex({
           {/* header */}
           <div className="md:col-span-8">
             <ScrollReveal variant="fade-in">
-              <p className="text-xs tracking-[0.2em] uppercase text-ink-muted mb-4 font-sans font-normal">
+              <p className="text-xs tracking-[0.2em] uppercase text-cloud/60 mb-4 font-sans font-normal">
                 {t.label}
               </p>
-              <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl font-light leading-[1.05] tracking-[-0.03em]">
+              <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl font-light leading-[1.05] tracking-[-0.03em] text-white">
                 {t.title}
               </h1>
-              <p className="mt-6 text-lg text-ink-muted font-light leading-relaxed max-w-[55ch]">
+              <p className="mt-6 text-lg text-cloud/60 font-light leading-relaxed max-w-[55ch]">
                 {t.subtitle}
               </p>
             </ScrollReveal>
@@ -73,7 +73,7 @@ export default async function BlogIndex({
               alt={artImages.psychedelicEye.alt[locale as Locale]}
               width={120}
               height={120}
-              className="aspect-square rounded-full opacity-80 object-cover"
+              className="aspect-square rounded-full opacity-60 object-cover"
             />
           </div>
         </div>
@@ -82,21 +82,21 @@ export default async function BlogIndex({
       <Section spacing="lg">
         <div className="grid grid-cols-1 md:grid-cols-12">
           <div className="md:col-span-8">
-            <div className="divide-y divide-ink/[0.06]">
+            <div className="divide-y divide-white/[0.06]">
               {posts.map((post, i) => (
                 <ScrollReveal key={post.slug} variant="fade-up" delay={i * 0.1}>
                   <article className="py-12 first:pt-0 last:pb-0">
                     <div className="flex items-center gap-4 mb-5">
                       <span className="inline-flex items-center gap-1.5">
-                        <Calendar size={14} weight="duotone" className="text-ink-muted/60" />
+                        <Calendar size={14} weight="duotone" className="text-cloud/40" />
                         <time
                           dateTime={post.date}
-                          className="text-sm text-ink-muted font-light tabular-nums"
+                          className="text-sm text-cloud/60 font-light tabular-nums"
                         >
                           {formatDate(post.date, locale as Locale)}
                         </time>
                       </span>
-                      <span className="w-1 h-1 rounded-full bg-ink/20" />
+                      <span className="w-1 h-1 rounded-full bg-white/20" />
                       <span className="inline-flex items-center gap-1.5">
                         <Tag size={14} weight="duotone" className="text-sage/60" />
                         <span className="bg-sage/10 text-sage text-[10px] tracking-[0.15em] uppercase px-3 py-1 rounded-full font-sans">
@@ -108,19 +108,19 @@ export default async function BlogIndex({
                     <h2 className="font-serif text-3xl md:text-4xl font-light leading-[1.15] tracking-[-0.02em] mb-4">
                       <Link
                         href={`/${locale}/blog/${post.slug}`}
-                        className="hover:text-moss transition-colors duration-200"
+                        className="text-white hover:text-mint transition-colors duration-200"
                       >
                         {post.title[locale as Locale]}
                       </Link>
                     </h2>
 
-                    <p className="text-ink-muted font-light leading-relaxed max-w-[60ch] mb-5">
+                    <p className="text-cloud/60 font-light leading-relaxed max-w-[60ch] mb-5">
                       {post.description[locale as Locale]}
                     </p>
 
                     <Link
                       href={`/${locale}/blog/${post.slug}`}
-                      className="group/read inline-flex items-center gap-2 font-serif text-base italic text-moss hover:text-ink transition-colors duration-200 tracking-wide"
+                      className="group/read inline-flex items-center gap-2 font-serif text-base italic text-sage hover:text-white transition-colors duration-200 tracking-wide"
                     >
                       {t.read}
                       <ArrowRight size={16} weight="bold" className="transition-transform duration-200 group-hover/read:translate-x-1" />

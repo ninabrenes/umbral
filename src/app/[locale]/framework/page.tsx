@@ -18,8 +18,8 @@ const content = {
       label: 'Integration Framework',
       title: 'The Mycelial\nNetwork',
       subtitle:
-        'In a forest, individual trees appear separate above ground. Below the surface, a vast mycelial network connects them all. Sharing nutrients, sending signals, supporting the weakest members.',
-      body: 'Psychedelic integration works the same way. Your body, your mind, your relationships, your values, your connection to nature, your sense of meaning. These are not separate containers to fill. They are nodes in a living network. When one shifts, all shift. The work of integration is not checking boxes in isolated domains. It is tending the network.',
+        'Below the surface, a vast mycelial network connects every tree in the forest. Sharing nutrients, sending signals, supporting the weakest members.',
+      body: 'Psychedelic integration works the same way. Body, mind, relationships, values, nature, meaning. Not separate containers. Nodes in a living network. When one shifts, all shift.',
     },
     nodes: {
       label: 'The Six Nodes',
@@ -34,34 +34,34 @@ const content = {
       label: 'The Process Layer',
       heading: 'Receive. Recognize. Return.',
       subtitle:
-        'Within each node, integration moves through three phases. You can be at different phases in different nodes simultaneously. The process spirals.',
+        'Within each node, integration moves through three phases. The process spirals.',
       phases: [
         {
           name: 'Receive',
           polarity: 'feminine',
           question: 'What is here?',
           description:
-            'Be with what arose. Don\u2019t analyze. Don\u2019t fix. Don\u2019t make meaning yet. Feel it in your body. Let it be present without needing to understand.',
+            'Be with what arose. Don\u2019t analyze or fix. Feel it in your body. Let it be present without needing to understand.',
           practices:
-            'Raw journaling, body scanning, somatic processing, nature immersion, music re-listening, sitting in silence.',
+            'Raw journaling, body scanning, somatic processing, nature immersion, sitting in silence.',
         },
         {
           name: 'Recognize',
           polarity: 'balance',
           question: 'What does this mean?',
           description:
-            'Name what you see. Connect to patterns. Begin to understand \u2014 not with the intellect alone, but with the whole self. This is where themes emerge and where you start to see how different nodes connect.',
+            'Name what you see. Connect to patterns. Understand with the whole self, not the intellect alone.',
           practices:
-            'Reflective journaling, IFS parts dialogue, pattern identification, integration therapy, track-by-track music journaling.',
+            'Reflective journaling, IFS parts dialogue, pattern identification, integration therapy.',
         },
         {
           name: 'Return',
           polarity: 'masculine',
           question: 'What will I do with this?',
           description:
-            'Bring it back. Commit. Act. Change something in your daily life. Share what you learned. Serve. Without return, the journey is incomplete. Insights that stay in the journal but never reach daily life are beautiful but inert.',
+            'Bring it back. Commit. Act. Change something in your daily life. Without return, insights remain beautiful but inert.',
           practices:
-            'Behavioral commitments, values alignment, lifestyle changes, relational repair, service, community sharing, accountability.',
+            'Behavioral commitments, values alignment, lifestyle changes, relational repair, service.',
         },
       ],
     },
@@ -69,34 +69,34 @@ const content = {
       label: 'The Four Cornerstones',
       heading: 'The soil it grows in.',
       subtitle:
-        'These are not separate from the framework. They are the principles that hold every piece of content, every prompt, every practice.',
+        'The principles that hold every piece of content, every prompt, every practice.',
       items: [
         {
           name: 'Trauma-informed',
           description:
-            'All content is written with awareness that the reader may be processing trauma. Prompts invite, never push. Grounding resources are always accessible. Difficult experiences are normalized, not pathologized.',
+            'Prompts invite, never push. Grounding resources always accessible. Difficult experiences normalized, not pathologized.',
         },
         {
           name: 'Culturally grounded',
           description:
-            'The practices in this framework have roots. We name those roots. We never present extracted techniques as standalone innovations. Cultural context is inseparable from practical content.',
+            'These practices have roots. We name those roots. Cultural context is inseparable from practical content.',
         },
         {
           name: 'Ethically rooted',
           description:
-            'The tool is a companion, never an authority. No guru dynamic. No gamification. No dependency creation. Crisis resources visible always. Open source means transparent, auditable, trustworthy.',
+            'A companion, never an authority. No guru dynamic. No gamification. Open source means transparent and auditable.',
         },
         {
           name: 'Collectively held',
           description:
-            'Integration is not solo work. The most ancient psychedelic traditions are communal. Content points toward community. The tool itself is open source. Collectively built, collectively improved.',
+            'The most ancient psychedelic traditions are communal. The tool itself is open source. Collectively built, collectively improved.',
         },
       ],
     },
     cta: {
       heading: 'Explore each node.',
       subtitle:
-        'Dive deeper into the six domains of integration. Each node has its own journal prompts, practices, and resources.',
+        'Dive deeper into the six domains of integration.',
       button: 'Begin with Ground',
     },
   },
@@ -105,8 +105,8 @@ const content = {
       label: 'Marco de Integracion',
       title: 'La Red\nMicelial',
       subtitle:
-        'En un bosque, los arboles individuales parecen separados sobre la superficie. Debajo, una vasta red micelial los conecta a todos. Compartiendo nutrientes, enviando senales, apoyando a los miembros mas debiles.',
-      body: 'La integracion psicodelica funciona de la misma manera. Tu cuerpo, tu mente, tus relaciones, tus valores, tu conexion con la naturaleza, tu sentido de significado. No son contenedores separados para llenar. Son nodos en una red viviente. Cuando uno cambia, todos cambian. El trabajo de integracion no es marcar casillas en dominios aislados. Es cuidar la red.',
+        'Debajo de la superficie, una vasta red micelial conecta cada arbol del bosque. Compartiendo nutrientes, enviando senales, apoyando a los mas debiles.',
+      body: 'La integracion psicodelica funciona igual. Cuerpo, mente, relaciones, valores, naturaleza, significado. No contenedores separados. Nodos en una red viviente. Cuando uno cambia, todos cambian.',
     },
     nodes: {
       label: 'Los Seis Nodos',
@@ -121,34 +121,34 @@ const content = {
       label: 'La Capa de Proceso',
       heading: 'Recibir. Reconocer. Retornar.',
       subtitle:
-        'Dentro de cada nodo, la integracion se mueve a traves de tres fases. Puedes estar en diferentes fases en diferentes nodos simultaneamente. El proceso es espiral.',
+        'Dentro de cada nodo, la integracion se mueve a traves de tres fases. El proceso es espiral.',
       phases: [
         {
           name: 'Recibir',
           polarity: 'femenino',
           question: 'Que hay aqui?',
           description:
-            'Estar con lo que surgio. No analizar. No arreglar. No buscar significado todavia. Sentirlo en el cuerpo. Dejar que este presente sin necesidad de entender.',
+            'Estar con lo que surgio. No analizar. No arreglar. Sentirlo en el cuerpo. Dejar que este presente sin necesidad de entender.',
           practices:
-            'Escritura libre, escaneo corporal, procesamiento somatico, inmersion en la naturaleza, re-escuchar musica, sentarse en silencio.',
+            'Escritura libre, escaneo corporal, procesamiento somatico, inmersion en la naturaleza, silencio.',
         },
         {
           name: 'Reconocer',
           polarity: 'equilibrio',
           question: 'Que significa esto?',
           description:
-            'Nombrar lo que ves. Conectar con patrones. Comenzar a entender, no solo con el intelecto, sino con todo el ser. Aqui es donde emergen los temas y donde empiezas a ver como los diferentes nodos se conectan.',
+            'Nombrar lo que ves. Conectar con patrones. Entender con todo el ser, no solo con el intelecto.',
           practices:
-            'Escritura reflexiva, dialogo de partes IFS, identificacion de patrones, terapia de integracion, escritura musical pista por pista.',
+            'Escritura reflexiva, dialogo de partes IFS, identificacion de patrones, terapia de integracion.',
         },
         {
           name: 'Retornar',
           polarity: 'masculino',
           question: 'Que hare con esto?',
           description:
-            'Traerlo de vuelta. Comprometerse. Actuar. Cambiar algo en la vida diaria. Compartir lo aprendido. Servir. Sin el retorno, el viaje esta incompleto. Las ideas que se quedan en el diario pero nunca llegan a la vida diaria son hermosas pero inertes.',
+            'Traerlo de vuelta. Comprometerse. Actuar. Cambiar algo en la vida diaria. Sin el retorno, las ideas son hermosas pero inertes.',
           practices:
-            'Compromisos de comportamiento, alineacion de valores, cambios de estilo de vida, reparacion relacional, servicio, compartir en comunidad, responsabilidad.',
+            'Compromisos de comportamiento, alineacion de valores, cambios de estilo de vida, reparacion relacional, servicio.',
         },
       ],
     },
@@ -156,34 +156,34 @@ const content = {
       label: 'Las Cuatro Piedras Angulares',
       heading: 'El suelo donde crece.',
       subtitle:
-        'No estan separadas del marco. Son los principios que sostienen cada pieza de contenido, cada pregunta, cada practica.',
+        'Los principios que sostienen cada pieza de contenido, cada pregunta, cada practica.',
       items: [
         {
           name: 'Informado por el trauma',
           description:
-            'Todo el contenido esta escrito con conciencia de que el lector puede estar procesando trauma. Las preguntas invitan, nunca empujan. Los recursos de anclaje siempre estan accesibles. Las experiencias dificiles se normalizan, no se patologizan.',
+            'Las preguntas invitan, nunca empujan. Los recursos de anclaje siempre estan accesibles. Las experiencias dificiles se normalizan, no se patologizan.',
         },
         {
           name: 'Culturalmente fundamentado',
           description:
-            'Las practicas en este marco tienen raices. Nombramos esas raices. Nunca presentamos tecnicas extraidas como innovaciones independientes. El contexto cultural es inseparable del contenido practico.',
+            'Las practicas tienen raices. Nombramos esas raices. El contexto cultural es inseparable del contenido practico.',
         },
         {
           name: 'Eticamente enraizado',
           description:
-            'La herramienta es un companero, nunca una autoridad. Sin dinamica de guru. Sin gamificacion. Sin creacion de dependencia. Recursos de crisis siempre visibles. Codigo abierto significa transparente, auditable, confiable.',
+            'Un companero, nunca una autoridad. Sin dinamica de guru. Sin gamificacion. Codigo abierto significa transparente y auditable.',
         },
         {
           name: 'Sostenido colectivamente',
           description:
-            'La integracion no es trabajo solitario. Las tradiciones psicodelicas mas antiguas son comunales. El contenido apunta hacia la comunidad. La herramienta misma es de codigo abierto. Construida y mejorada colectivamente.',
+            'Las tradiciones psicodelicas mas antiguas son comunales. La herramienta misma es de codigo abierto. Construida y mejorada colectivamente.',
         },
       ],
     },
     cta: {
       heading: 'Explora cada nodo.',
       subtitle:
-        'Profundiza en los seis dominios de integracion. Cada nodo tiene sus propias preguntas de diario, practicas y recursos.',
+        'Profundiza en los seis dominios de integracion.',
       button: 'Comenzar con Tierra',
     },
   },
@@ -205,24 +205,24 @@ export default async function FrameworkPage({
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center py-32">
           <div className="md:col-span-7 lg:col-span-6">
             <ScrollReveal variant="fade-in">
-              <p className="text-xs tracking-[0.2em] uppercase text-ink-muted mb-8 font-sans">
+              <p className="text-xs tracking-[0.2em] uppercase text-cloud/60 mb-8 font-sans">
                 {t.hero.label}
               </p>
             </ScrollReveal>
             <ScrollReveal variant="fade-up" delay={0.1}>
-              <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light leading-[1.05] tracking-[-0.03em] whitespace-pre-line">
+              <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light leading-[1.05] tracking-[-0.03em] whitespace-pre-line text-white">
                 {t.hero.title}
               </h1>
             </ScrollReveal>
             <ScrollReveal variant="fade-up" delay={0.25}>
-              <p className="mt-8 text-xl md:text-2xl text-ink-muted font-light leading-relaxed max-w-[50ch]">
+              <p className="mt-8 text-xl md:text-2xl text-cloud/60 font-light leading-relaxed max-w-[50ch]">
                 {t.hero.subtitle}
               </p>
             </ScrollReveal>
           </div>
           <div className="md:col-span-5 lg:col-span-5 lg:col-start-8">
             <ScrollReveal variant="fade-up" delay={0.35}>
-              <p className="text-lg text-ink-muted font-light leading-relaxed">
+              <p className="text-lg text-cloud/60 font-light leading-relaxed">
                 {t.hero.body}
               </p>
             </ScrollReveal>
@@ -236,11 +236,11 @@ export default async function FrameworkPage({
         alt={pageImages.framework.alt[locale as Locale]}
         className="h-[50vh] md:h-[60vh]"
         speed={0.12}
-        overlay="bg-forest-deep/50"
+        overlay="bg-deep/50"
       />
 
       {/* ── SIX NODES ── */}
-      <Section spacing="lg" className="bg-sand">
+      <Section spacing="lg" className="bg-forest">
         <ScrollReveal variant="fade-up">
           <SectionHeader
             label={t.nodes.label}
@@ -300,26 +300,26 @@ export default async function FrameworkPage({
               <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-start">
                 {/* Left: big number + name + question */}
                 <div className="md:col-span-5 lg:col-span-4">
-                  <span className="block font-sans text-7xl md:text-8xl lg:text-9xl font-light text-ink/[0.07] leading-none tabular-nums">
+                  <span className="block font-sans text-7xl md:text-8xl lg:text-9xl font-light text-white/[0.05] leading-none tabular-nums">
                     {String(i + 1).padStart(2, '0')}
                   </span>
-                  <h3 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light tracking-[-0.02em] leading-[1.1] -mt-4 md:-mt-6">
+                  <h3 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light tracking-[-0.02em] leading-[1.1] -mt-4 md:-mt-6 text-white">
                     {phase.name}
                   </h3>
                   <p className="text-xs tracking-[0.2em] uppercase text-sage mt-4 font-sans">
                     {phase.polarity}
                   </p>
-                  <p className="font-serif text-2xl md:text-3xl italic text-moss mt-8 leading-[1.3]">
+                  <p className="font-serif text-2xl md:text-3xl italic text-sage mt-8 leading-[1.3]">
                     &ldquo;{phase.question}&rdquo;
                   </p>
                 </div>
 
                 {/* Right: description + practices */}
                 <div className="md:col-span-6 md:col-start-7">
-                  <p className="text-lg text-ink-muted font-light leading-relaxed mb-8">
+                  <p className="text-lg text-cloud/60 font-light leading-relaxed mb-8">
                     {phase.description}
                   </p>
-                  <p className="text-sm text-ink-muted/60 font-light leading-relaxed">
+                  <p className="text-sm text-cloud/40 font-light leading-relaxed">
                     {phase.practices}
                   </p>
                 </div>
@@ -330,17 +330,17 @@ export default async function FrameworkPage({
       </Section>
 
       {/* ── FOUR CORNERSTONES ── */}
-      <Section spacing="lg" className="bg-sand">
+      <Section spacing="lg" className="bg-forest">
         <ScrollReveal variant="slide-right">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
             <div className="md:col-span-4">
-              <p className="text-xs tracking-[0.2em] uppercase text-ink-muted mb-4 font-sans">
+              <p className="text-xs tracking-[0.2em] uppercase text-cloud/60 mb-4 font-sans">
                 {t.cornerstones.label}
               </p>
-              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light leading-[1.1] tracking-[-0.02em]">
+              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light leading-[1.1] tracking-[-0.02em] text-white">
                 {t.cornerstones.heading}
               </h2>
-              <p className="mt-5 text-lg text-ink-muted font-light leading-relaxed max-w-[40ch]">
+              <p className="mt-5 text-lg text-cloud/60 font-light leading-relaxed max-w-[40ch]">
                 {t.cornerstones.subtitle}
               </p>
             </div>
@@ -348,14 +348,14 @@ export default async function FrameworkPage({
               <div className="space-y-12">
                 {t.cornerstones.items.map((item, i) => (
                   <div key={item.name} className="flex items-start gap-6">
-                    <span className="shrink-0 text-xs text-ink-muted/40 font-sans tabular-nums mt-2">
+                    <span className="shrink-0 text-xs text-cloud/20 font-sans tabular-nums mt-2">
                       {String(i + 1).padStart(2, '0')}
                     </span>
                     <div>
-                      <h3 className="font-serif text-xl md:text-2xl font-light tracking-[-0.01em] mb-3">
+                      <h3 className="font-serif text-xl md:text-2xl font-light tracking-[-0.01em] mb-3 text-white">
                         {item.name}
                       </h3>
-                      <p className="text-ink-muted font-light leading-relaxed max-w-[55ch]">
+                      <p className="text-cloud/60 font-light leading-relaxed max-w-[55ch]">
                         {item.description}
                       </p>
                     </div>

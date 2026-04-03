@@ -14,7 +14,7 @@ export function CrisisBar({ locale }: CrisisBarProps) {
     <div
       role="complementary"
       aria-label={locale === 'es' ? 'Recursos de crisis' : 'Crisis resources'}
-      className="fixed bottom-0 left-0 right-0 z-40 bg-crisis-bg/95 backdrop-blur-sm text-crisis-text"
+      className="fixed bottom-0 left-0 right-0 z-40 bg-onyx/95 backdrop-blur-xl text-crisis-text"
     >
       <div className="mx-auto max-w-[1400px] px-4 py-2 flex items-center gap-3 overflow-x-auto scrollbar-none">
         <span className="shrink-0 text-[10px] tracking-[0.15em] uppercase text-crisis-accent font-sans flex items-center gap-1.5">

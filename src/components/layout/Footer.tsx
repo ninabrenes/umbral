@@ -40,15 +40,15 @@ export function Footer({ locale }: FooterProps) {
       : 'Open source under MIT license'
 
   return (
-    <footer className="bg-forest-deep text-ivory/70 pb-16">
+    <footer className="bg-onyx text-cloud/50 pb-16">
       <div className="mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 pt-24 pb-12">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
           {/* Brand */}
           <div className="md:col-span-5">
-            <p className="font-serif text-2xl font-light text-ivory mb-4">
+            <p className="font-serif text-2xl font-light text-white mb-4">
               umbral
             </p>
-            <p className="text-sm font-light leading-relaxed max-w-[40ch] text-ivory/50">
+            <p className="text-sm font-light leading-relaxed max-w-[40ch] text-cloud/40">
               {locale === 'en'
                 ? 'preparation. experience. integration. the network that connects it all.'
                 : 'preparación. experiencia. integración. la red que lo conecta todo.'}
@@ -57,7 +57,7 @@ export function Footer({ locale }: FooterProps) {
 
           {/* Framework */}
           <div className="md:col-span-2">
-            <p className="text-xs tracking-[0.15em] uppercase text-ivory/40 mb-5">
+            <p className="text-xs tracking-[0.15em] uppercase text-cloud/30 mb-5">
               {locale === 'en' ? 'The Framework' : 'El Marco'}
             </p>
             <ul className="space-y-3">
@@ -65,7 +65,7 @@ export function Footer({ locale }: FooterProps) {
                 <li key={link.key}>
                   <Link
                     href={`/${locale}${link.href}`}
-                    className="text-sm font-light hover:text-ivory transition-colors"
+                    className="text-sm font-light hover:text-mint transition-colors"
                   >
                     {link[locale]}
                   </Link>
@@ -76,7 +76,7 @@ export function Footer({ locale }: FooterProps) {
 
           {/* Resources */}
           <div className="md:col-span-2">
-            <p className="text-xs tracking-[0.15em] uppercase text-ivory/40 mb-5">
+            <p className="text-xs tracking-[0.15em] uppercase text-cloud/30 mb-5">
               {locale === 'en' ? 'Resources' : 'Recursos'}
             </p>
             <ul className="space-y-3">
@@ -84,7 +84,7 @@ export function Footer({ locale }: FooterProps) {
                 <li key={link.key}>
                   <Link
                     href={`/${locale}${link.href}`}
-                    className="text-sm font-light hover:text-ivory transition-colors"
+                    className="text-sm font-light hover:text-mint transition-colors"
                   >
                     {link[locale]}
                   </Link>
@@ -95,7 +95,7 @@ export function Footer({ locale }: FooterProps) {
 
           {/* Community */}
           <div className="md:col-span-3">
-            <p className="text-xs tracking-[0.15em] uppercase text-ivory/40 mb-5">
+            <p className="text-xs tracking-[0.15em] uppercase text-cloud/30 mb-5">
               {locale === 'en' ? 'Community' : 'Comunidad'}
             </p>
             <ul className="space-y-3">
@@ -105,7 +105,7 @@ export function Footer({ locale }: FooterProps) {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm font-light hover:text-ivory transition-colors"
+                    className="text-sm font-light hover:text-mint transition-colors"
                   >
                     {link[locale]}
                   </a>
@@ -116,11 +116,11 @@ export function Footer({ locale }: FooterProps) {
         </div>
 
         {/* Disclaimer */}
-        <div className="mt-20 pt-8 border-t border-ivory/10">
-          <p className="text-xs text-ivory/35 font-light leading-relaxed max-w-[80ch]">
+        <div className="mt-20 pt-8 border-t border-glass-border">
+          <p className="text-xs text-cloud/30 font-light leading-relaxed max-w-[80ch]">
             {disclaimer}
           </p>
-          <p className="mt-4 text-xs text-ivory/25 font-light">
+          <p className="mt-4 text-xs text-cloud/20 font-light">
             {copyright}
           </p>
         </div>

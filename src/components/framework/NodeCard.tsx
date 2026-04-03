@@ -21,7 +21,7 @@ export function NodeCard({ node, locale, index }: NodeCardProps) {
   return (
     <Link
       href={`/${locale}/framework/${node.id}`}
-      className={`group block py-6 border-b border-ink/[0.06] last:border-b-0 border-l-2 border-l-transparent pl-4 -ml-4 transition-all duration-200 ${nodeBorderColors[node.id]}`}
+      className={`group block py-6 border-b border-white/[0.06] last:border-b-0 border-l-2 border-l-transparent pl-4 -ml-4 transition-all duration-200 ${nodeBorderColors[node.id]}`}
     >
       <div className="flex items-start gap-5">
         <div className="shrink-0 mt-1 transition-colors">
@@ -29,14 +29,14 @@ export function NodeCard({ node, locale, index }: NodeCardProps) {
         </div>
         <div className="min-w-0">
           <div className="flex items-baseline gap-3 mb-1.5">
-            <span className="text-[11px] text-ink-muted/40 font-sans tabular-nums">
+            <span className="text-[11px] text-cloud/30 font-sans tabular-nums">
               {String(index + 1).padStart(2, '0')}
             </span>
-            <h3 className="font-serif text-2xl font-light tracking-[-0.01em] group-hover:text-moss transition-colors">
+            <h3 className="font-serif text-2xl font-light tracking-[-0.01em] text-white group-hover:text-mint transition-colors">
               {node.name[locale]}
             </h3>
           </div>
-          <p className="text-sm text-ink-muted/70 font-light leading-relaxed">
+          <p className="text-sm text-cloud/60 font-light leading-relaxed">
             {node.tagline[locale]}
           </p>
         </div>

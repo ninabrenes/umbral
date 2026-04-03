@@ -9,11 +9,11 @@ interface ButtonProps extends ComponentProps<'button'> {
 
 const variants: Record<Variant, string> = {
   primary:
-    'bg-forest-deep text-ivory hover:bg-forest transition-colors active:scale-[0.98]',
+    'bg-mint text-deep hover:bg-mint/90 transition-colors active:scale-[0.98]',
   secondary:
-    'border border-ink/15 text-ink hover:bg-ink/5 transition-colors active:scale-[0.98]',
+    'border border-glass-border text-cloud hover:bg-glass transition-colors active:scale-[0.98]',
   ghost:
-    'text-ink/70 hover:text-ink transition-colors border-b border-ink/20 pb-px hover:border-ink/40',
+    'text-cloud/70 hover:text-mint transition-colors border-b border-glass-border pb-px hover:border-mint/40',
 }
 
 export function Button({

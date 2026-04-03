@@ -1,83 +1,72 @@
 import { setRequestLocale } from 'next-intl/server'
-import { Section } from '@/components/ui/Section'
-import { SectionHeader } from '@/components/ui/SectionHeader'
-import { Button } from '@/components/ui/Button'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
-import Image from 'next/image'
-import { NodeCard } from '@/components/framework/NodeCard'
-import { nodes } from '@/content/framework/nodes'
-import { pageImages, artImages } from '@/content/framework/images'
 import { Marquee } from '@/components/ui/Marquee'
-import type { Locale } from '@/types'
+import Image from 'next/image'
+import { artImages } from '@/content/framework/images'
+import { nodes } from '@/content/framework/nodes'
+import { NodeIcon } from '@/components/framework/NodeIcon'
+import type { Locale, NodeId } from '@/types'
 
+/* ── Node color map for hover glow borders ── */
+const nodeGlowBorder: Record<NodeId, string> = {
+  ground: 'hover:border-node-ground/40',
+  roots: 'hover:border-node-roots/40',
+  spore: 'hover:border-node-spore/40',
+  weave: 'hover:border-node-weave/40',
+  fruit: 'hover:border-node-fruit/40',
+  canopy: 'hover:border-node-canopy/40',
+}
+
+/* ── Bilingual content (trimmed to essentials) ── */
 const content = {
   en: {
     hero: {
-      above: 'Free, open-source, evidence-informed',
       title: 'preparation.\nexperience.\nintegration.',
       subtitle: 'the network that connects it all.',
       cta: 'Explore the Framework',
-      ctaSecondary: 'See the science',
     },
     framework: {
       label: 'The Mycelial Network',
-      heading: 'Six nodes. One living network.',
-      subtitle:
-        'Like mycelium connecting trees in a forest, these six domains of integration are interconnected. When one shifts, all shift.',
     },
     philosophy: {
-      label: 'What we believe',
-      heading: 'Integration is 80% of the value.',
-      body: 'The psychedelic experience opens the door. Integration is the work of walking through it. This tool exists because preparation and integration deserve the same care, rigor, and beauty as the experience itself.',
-      points: [
-        'Evidence-informed, culturally grounded, trauma-aware.',
-        'Neither condones nor condemns. Harm reduction over ideology.',
-        'Privacy by design. Your journal is encrypted. Your data is yours.',
-        'Open source. Community-built. Free forever.',
-      ],
+      line: 'Integration is 80% of the value.',
     },
     cta: {
-      label: 'Coming soon',
       heading: 'The portal is being built.',
-      subtitle:
-        'A private space for preparation pathways, encrypted journaling, and integration tracking across all six nodes.',
+      subtitle: 'Preparation pathways. Encrypted journaling. Integration tracking.',
       button: 'Join the Waitlist',
     },
   },
   es: {
     hero: {
-      above: 'Gratuito, de código abierto, informado por evidencia',
       title: 'preparación.\nexperiencia.\nintegración.',
       subtitle: 'la red que lo conecta todo.',
       cta: 'Explorar el Marco',
-      ctaSecondary: 'Ver la ciencia',
     },
     framework: {
       label: 'La Red Micelial',
-      heading: 'Seis nodos. Una red viviente.',
-      subtitle:
-        'Como el micelio conectando árboles en un bosque, estos seis dominios de integración están interconectados. Cuando uno cambia, todos cambian.',
     },
     philosophy: {
-      label: 'Lo que creemos',
-      heading: 'La integración es el 80% del valor.',
-      body: 'La experiencia psicodélica abre la puerta. La integración es el trabajo de cruzarla. Esta herramienta existe porque la preparación y la integración merecen el mismo cuidado, rigor y belleza que la experiencia misma.',
-      points: [
-        'Informado por evidencia, culturalmente fundamentado, consciente del trauma.',
-        'Ni condena ni aprueba. Reducción de daños sobre ideología.',
-        'Privacidad por diseño. Tu diario está encriptado. Tus datos son tuyos.',
-        'Código abierto. Construido por la comunidad. Gratis para siempre.',
-      ],
+      line: 'La integración es el 80% del valor.',
     },
     cta: {
-      label: 'Próximamente',
       heading: 'El portal se está construyendo.',
-      subtitle:
-        'Un espacio privado para caminos de preparación, diario encriptado y seguimiento de integración en los seis nodos.',
+      subtitle: 'Caminos de preparación. Diario encriptado. Seguimiento de integración.',
       button: 'Unirse a la Lista',
     },
   },
 }
+
+/* ── Art images for bento grid ── */
+const bentoArt = [artImages.cosmicNebula, artImages.psychedelicSwirls]
+const artStripImages = [
+  artImages.cosmicNebula,
+  artImages.radiantSilhouette,
+  artImages.handsReaching,
+  artImages.floatingFigure,
+  artImages.psychedelicSwirls,
+  artImages.dancingFigures,
+]
 
 export default async function Home({
   params,
@@ -90,146 +79,206 @@ export default async function Home({
 
   return (
     <>
-      {/* ── HERO (dark, immersive) ── */}
-      <section className="relative min-h-[100dvh] flex items-center bg-forest-deep overflow-hidden">
-        {/* Background video */}
+      {/* ── HERO (full viewport, dark, immersive) ── */}
+      <section className="relative min-h-[100dvh] flex items-center bg-onyx overflow-hidden">
+        {/* Video background */}
         <div className="absolute inset-0">
           <video
             autoPlay
             muted
             loop
             playsInline
-            className="absolute inset-0 w-full h-full object-cover opacity-20"
+            className="absolute inset-0 w-full h-full object-cover opacity-15"
           >
             <source src="/images/art/hero-video.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-gradient-to-b from-forest-deep/50 via-forest-deep/20 to-forest-deep" />
+          <div className="absolute inset-0 bg-gradient-to-b from-onyx/60 via-onyx/30 to-deep" />
         </div>
 
         {/* Content */}
         <div className="relative z-10 mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 w-full py-32 md:py-40">
-          <p className="text-[11px] tracking-[0.25em] uppercase text-sage font-sans font-normal mb-10">
-            {t.hero.above}
-          </p>
-          <h1 className="font-serif text-[clamp(3.5rem,10vw,8rem)] font-light leading-[0.98] tracking-[-0.03em] whitespace-pre-line text-ivory">
-            {t.hero.title}
-          </h1>
-          <p className="mt-10 text-xl md:text-2xl text-ivory/70 font-light max-w-[30ch]">
-            {t.hero.subtitle}
-          </p>
-          <div className="mt-16 flex flex-wrap items-center gap-5">
-            <a
-              href={`/${locale}/framework`}
-              className="inline-flex items-center justify-center px-8 py-4 text-sm font-sans font-medium tracking-wide bg-ivory text-forest-deep rounded-[var(--radius-pill)] transition-opacity duration-200 hover:opacity-90"
-            >
-              {t.hero.cta}
-            </a>
-            <a
-              href={`/${locale}/science`}
-              className="inline-flex items-center justify-center px-8 py-4 text-sm font-sans font-medium tracking-wide text-ivory border border-ivory/30 rounded-[var(--radius-pill)] transition-colors duration-200 hover:border-ivory/60"
-            >
-              {t.hero.ctaSecondary}
-            </a>
+          <ScrollReveal>
+            <h1 className="font-serif text-[clamp(4rem,12vw,9rem)] font-light leading-[0.95] tracking-[-0.03em] whitespace-pre-line text-white">
+              {t.hero.title}
+            </h1>
+          </ScrollReveal>
+          <ScrollReveal delay={0.15}>
+            <p className="mt-10 text-xl md:text-2xl text-cloud/60 font-light max-w-[28ch]">
+              {t.hero.subtitle}
+            </p>
+          </ScrollReveal>
+          <ScrollReveal delay={0.3}>
+            <div className="mt-16">
+              <a
+                href={`/${locale}/framework`}
+                className="inline-flex items-center justify-center px-8 py-4 text-sm font-sans font-medium tracking-wide bg-mint text-deep rounded-[var(--radius-pill)] transition-opacity duration-200 hover:opacity-90"
+              >
+                {t.hero.cta}
+              </a>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* ── MARQUEE BAND ── */}
+      <Marquee className="py-5 bg-deep text-sage/50" speed={40}>
+        preparation · experience · integration · the network that connects it all
+      </Marquee>
+
+      {/* ── FRAMEWORK — BENTO GRID ── */}
+      <section className="bg-deep py-32 md:py-48 px-6 md:px-12 lg:px-20">
+        <div className="mx-auto max-w-[1400px]">
+          <ScrollReveal>
+            <p className="text-[11px] tracking-[0.25em] uppercase text-mint font-sans font-normal mb-16 md:mb-24">
+              {t.framework.label}
+            </p>
+          </ScrollReveal>
+
+          {/* Bento grid: asymmetric layout */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
+            {/* Row 1: large art + 2 nodes */}
+            <div className="md:row-span-2 relative aspect-[3/4] rounded-2xl overflow-hidden">
+              <ScrollReveal className="h-full">
+                <Image
+                  src={bentoArt[0].src}
+                  alt={bentoArt[0].alt[locale as Locale]}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-deep/60 to-transparent" />
+              </ScrollReveal>
+            </div>
+
+            {nodes.slice(0, 2).map((node, i) => (
+              <ScrollReveal key={node.id} delay={i * 0.08}>
+                <a
+                  href={`/${locale}/framework/${node.id}`}
+                  className={`group flex flex-col justify-between p-6 md:p-8 rounded-2xl backdrop-blur-xl border border-glass-border bg-white/[0.04] transition-all duration-200 aspect-square md:aspect-auto md:h-full ${nodeGlowBorder[node.id]}`}
+                >
+                  <NodeIcon
+                    nodeId={node.id}
+                    size={28}
+                    useNodeColor
+                    weight="duotone"
+                  />
+                  <p className="mt-auto text-lg font-serif text-white">
+                    {node.name[locale as Locale]}
+                  </p>
+                </a>
+              </ScrollReveal>
+            ))}
+
+            {/* Row 2: 2 more nodes (left art carries over via row-span) */}
+            {nodes.slice(2, 4).map((node, i) => (
+              <ScrollReveal key={node.id} delay={(i + 2) * 0.08}>
+                <a
+                  href={`/${locale}/framework/${node.id}`}
+                  className={`group flex flex-col justify-between p-6 md:p-8 rounded-2xl backdrop-blur-xl border border-glass-border bg-white/[0.04] transition-all duration-200 aspect-square md:aspect-auto md:h-full ${nodeGlowBorder[node.id]}`}
+                >
+                  <NodeIcon
+                    nodeId={node.id}
+                    size={28}
+                    useNodeColor
+                    weight="duotone"
+                  />
+                  <p className="mt-auto text-lg font-serif text-white">
+                    {node.name[locale as Locale]}
+                  </p>
+                </a>
+              </ScrollReveal>
+            ))}
+
+            {/* Row 3: 2 nodes + large art */}
+            {nodes.slice(4, 6).map((node, i) => (
+              <ScrollReveal key={node.id} delay={(i + 4) * 0.08}>
+                <a
+                  href={`/${locale}/framework/${node.id}`}
+                  className={`group flex flex-col justify-between p-6 md:p-8 rounded-2xl backdrop-blur-xl border border-glass-border bg-white/[0.04] transition-all duration-200 aspect-square md:aspect-auto md:h-full ${nodeGlowBorder[node.id]}`}
+                >
+                  <NodeIcon
+                    nodeId={node.id}
+                    size={28}
+                    useNodeColor
+                    weight="duotone"
+                  />
+                  <p className="mt-auto text-lg font-serif text-white">
+                    {node.name[locale as Locale]}
+                  </p>
+                </a>
+              </ScrollReveal>
+            ))}
+
+            <div className="md:row-span-1 relative aspect-[3/4] md:aspect-auto rounded-2xl overflow-hidden">
+              <ScrollReveal className="h-full">
+                <Image
+                  src={bentoArt[1].src}
+                  alt={bentoArt[1].alt[locale as Locale]}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-deep/60 to-transparent" />
+              </ScrollReveal>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ── FRAMEWORK PREVIEW (light) ── */}
-      <Section spacing="lg" className="bg-cream">
-        <ScrollReveal>
-          <SectionHeader
-            label={t.framework.label}
-            heading={t.framework.heading}
-            subtitle={t.framework.subtitle}
-          />
-        </ScrollReveal>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-20">
-          {nodes.map((node, i) => (
-            <ScrollReveal key={node.id} delay={i * 0.06}>
-              <NodeCard
-                node={node}
-                locale={locale as Locale}
-                index={i}
-              />
+      {/* ── PHILOSOPHY — single callout ── */}
+      <section className="bg-onyx py-32 md:py-48 px-6 md:px-12 lg:px-20">
+        <div className="mx-auto max-w-[900px]">
+          <ScrollReveal>
+            <div className="backdrop-blur-xl border border-glass-border bg-white/[0.04] rounded-3xl px-10 py-16 md:px-16 md:py-24 text-center">
+              <p className="font-serif text-3xl md:text-5xl lg:text-6xl font-light leading-[1.1] tracking-[-0.02em] text-white">
+                {t.philosophy.line}
+              </p>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* ── ART STRIP ── */}
+      <section className="bg-deep py-4 md:py-5 px-4 md:px-5">
+        <div className="grid grid-cols-3 md:grid-cols-6 gap-3 md:gap-4">
+          {artStripImages.map((img, i) => (
+            <ScrollReveal key={i} delay={i * 0.05}>
+              <div className="group relative aspect-square rounded-2xl overflow-hidden">
+                <Image
+                  src={img.src}
+                  alt={img.alt[locale as Locale]}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  sizes="(max-width: 768px) 33vw, 16vw"
+                />
+                <div className="absolute inset-0 bg-deep/0 group-hover:bg-deep/20 transition-colors duration-300 rounded-2xl" />
+              </div>
             </ScrollReveal>
           ))}
         </div>
-      </Section>
+      </section>
 
-      {/* ── MARQUEE BAND ── */}
-      <Marquee className="py-6 bg-forest-deep text-sage/60" speed={40}>
-        preparation · experience · integration · the network that connects it all
-      </Marquee>
-
-      {/* ── ART STRIP ── */}
-      <div className="grid grid-cols-3 md:grid-cols-6 gap-0">
-        {[
-          artImages.cosmicNebula,
-          artImages.radiantSilhouette,
-          artImages.handsReaching,
-          artImages.floatingFigure,
-          artImages.psychedelicSwirls,
-          artImages.dancingFigures,
-        ].map((img, i) => (
-          <div key={i} className="relative aspect-square overflow-hidden">
-            <Image
-              src={img.src}
-              alt={img.alt[locale as Locale]}
-              fill
-              className="object-cover hover:scale-105 transition-transform duration-700"
-              sizes="(max-width: 768px) 33vw, 16vw"
-            />
-          </div>
-        ))}
-      </div>
-
-      {/* ── PHILOSOPHY (dark) ── */}
-      <Section spacing="lg" dark>
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-8">
-          <div className="md:col-span-5">
-            <ScrollReveal>
-              <p className="text-[11px] tracking-[0.2em] uppercase text-sage mb-5 font-sans font-normal">
-                {t.philosophy.label}
-              </p>
-              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light leading-[1.1] tracking-[-0.02em] text-ivory">
-                {t.philosophy.heading}
+      {/* ── PORTAL CTA — glassmorphic card ── */}
+      <section className="bg-deep py-32 md:py-48 px-6 md:px-12 lg:px-20">
+        <div className="mx-auto max-w-[800px]">
+          <ScrollReveal>
+            <div className="backdrop-blur-xl border border-glass-border bg-white/[0.04] rounded-3xl px-10 py-16 md:px-16 md:py-20 text-center">
+              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-light leading-[1.1] tracking-[-0.02em] text-white mb-6">
+                {t.cta.heading}
               </h2>
-            </ScrollReveal>
-          </div>
-          <div className="md:col-span-6 md:col-start-7">
-            <ScrollReveal delay={0.1}>
-              <p className="text-lg text-ivory/60 font-light leading-[1.75] mb-12">
-                {t.philosophy.body}
+              <p className="text-lg text-cloud/60 font-light mb-12 max-w-[40ch] mx-auto">
+                {t.cta.subtitle}
               </p>
-              <ul className="space-y-5">
-                {t.philosophy.points.map((point) => (
-                  <li
-                    key={point}
-                    className="flex items-start gap-4 text-ivory/70 font-light"
-                  >
-                    <span className="shrink-0 mt-[0.65em] w-1 h-1 rounded-full bg-sage" />
-                    <span className="leading-[1.7]">{point}</span>
-                  </li>
-                ))}
-              </ul>
-            </ScrollReveal>
-          </div>
+              <a
+                href={`/${locale}/portal`}
+                className="inline-flex items-center justify-center px-8 py-4 text-sm font-sans font-medium tracking-wide bg-mint text-deep rounded-[var(--radius-pill)] transition-opacity duration-200 hover:opacity-90"
+              >
+                {t.cta.button}
+              </a>
+            </div>
+          </ScrollReveal>
         </div>
-      </Section>
-
-      {/* ── PORTAL CTA (light) ── */}
-      <Section spacing="lg" className="bg-cream-warm">
-        <ScrollReveal>
-          <div className="max-w-2xl">
-            <SectionHeader
-              label={t.cta.label}
-              heading={t.cta.heading}
-              subtitle={t.cta.subtitle}
-            />
-            <Button href={`/${locale}/portal`}>{t.cta.button}</Button>
-          </div>
-        </ScrollReveal>
-      </Section>
+      </section>
     </>
   )
 }

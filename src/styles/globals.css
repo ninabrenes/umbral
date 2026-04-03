@@ -1,31 +1,34 @@
 @import "tailwindcss";
 
 @theme {
-  /* ── PUBLIC SITE (light editorial) ── */
-  --color-cream: oklch(0.96 0.01 80);
-  --color-sand: oklch(0.92 0.03 65);
-  --color-moon: oklch(0.97 0.005 80);
-  --color-ink: oklch(0.20 0.02 150);
-  --color-ink-muted: oklch(0.45 0.02 150);
+  /* ── BASE (dark-first) ── */
+  --color-onyx: oklch(0.07 0.01 160);        /* #0A0D0B — darkest bg */
+  --color-deep: oklch(0.12 0.03 165);        /* #051F20 — primary bg */
+  --color-forest: oklch(0.17 0.04 165);      /* #0B2B26 — sections */
+  --color-teal: oklch(0.22 0.04 170);        /* #163832 — cards, surfaces */
+  --color-green: oklch(0.30 0.05 168);       /* #235347 — elevated surfaces */
 
-  /* ── FOREST PALETTE (portal + accents) ── */
-  --color-forest-deep: oklch(0.10 0.02 150);
-  --color-forest-mid: oklch(0.22 0.04 155);
-  --color-forest: oklch(0.15 0.03 150);
-  --color-moss: oklch(0.35 0.06 150);
-  --color-sage: oklch(0.55 0.08 150);
-  --color-sage-deep: oklch(0.45 0.07 155);
-  --color-sage-light: oklch(0.70 0.06 150);
+  /* ── ACCENT ── */
+  --color-sage: oklch(0.65 0.06 155);        /* #8EB69B — secondary text */
+  --color-mint: oklch(0.75 0.08 155);        /* #ACDBB8 — primary accent */
+  --color-olive: oklch(0.72 0.06 130);       /* #B0C9A1 — alt accent */
 
-  /* ── WARM CREAM ── */
-  --color-cream-warm: oklch(0.94 0.02 75);
+  /* ── LIGHT ── */
+  --color-mist: oklch(0.90 0.03 155);        /* #D3F4D1 — highlight */
+  --color-cloud: oklch(0.93 0.005 150);      /* #EAEBEA — primary text */
+  --color-white: oklch(1.00 0 0);            /* #FFFFFF — headings */
 
-  /* ── ACCENTS ── */
-  --color-gold: oklch(0.70 0.12 85);
-  --color-gold-muted: oklch(0.60 0.08 85);
-  --color-ivory: oklch(0.95 0.01 80);
+  /* ── GLASS ── */
+  --color-glass: oklch(0.20 0.03 165 / 0.6); /* glassmorphism bg */
+  --color-glass-border: oklch(1.00 0 0 / 0.08);
+  --color-glass-glow: oklch(0.75 0.08 155 / 0.15);
 
-  /* ── NODE ACCENTS (warm, desaturated) ── */
+  /* ── CRISIS (high contrast, unchanged) ── */
+  --color-crisis-bg: oklch(0.20 0.05 25);
+  --color-crisis-text: oklch(0.95 0.01 80);
+  --color-crisis-accent: oklch(0.65 0.15 25);
+
+  /* ── NODE ACCENTS (keep) ── */
   --color-node-ground: oklch(0.55 0.06 45);
   --color-node-roots: oklch(0.50 0.07 155);
   --color-node-spore: oklch(0.55 0.06 280);
@@ -33,28 +36,26 @@
   --color-node-fruit: oklch(0.58 0.10 85);
   --color-node-canopy: oklch(0.50 0.05 230);
 
-  /* ── CRISIS (high contrast always) ── */
-  --color-crisis-bg: oklch(0.20 0.05 25);
-  --color-crisis-text: oklch(0.95 0.01 80);
-  --color-crisis-accent: oklch(0.65 0.15 25);
-
   /* ── TYPOGRAPHY ── */
   --font-serif: var(--font-serif);
   --font-sans: var(--font-sans);
 
   /* ── SPACING ── */
-  --space-section: 8rem;
-  --space-section-lg: 12rem;
+  --space-section: 6rem;
+  --space-section-lg: 10rem;
 
   /* ── BORDER RADIUS ── */
-  --radius-card: 1.25rem;
+  --radius-card: 1.5rem;
   --radius-pill: 9999px;
+  --radius-glass: 1.25rem;
 }
 
 /* ── BASE ── */
 body {
   font-family: var(--font-sans);
   font-weight: 300;
+  background-color: oklch(0.07 0.01 160);
+  color: oklch(0.93 0.005 150);
   -webkit-font-smoothing: antialiased;
 }
 
