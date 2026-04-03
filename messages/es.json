@@ -1,0 +1,37 @@
+{
+  "meta": {
+    "title": "Umbral — Preparación e Integración Psicodélica",
+    "description": "Portal gratuito, de código abierto e informado por evidencia para la preparación e integración psicodélica."
+  },
+  "nav": {
+    "science": "Ciencia",
+    "framework": "El Marco",
+    "safety": "Seguridad",
+    "blog": "Blog",
+    "about": "Acerca de",
+    "portal": "Entrar al Portal",
+    "language": "EN"
+  },
+  "crisis": {
+    "title": "Recursos de Crisis",
+    "subtitle": "Si necesitas apoyo inmediato",
+    "emergency": "Si estás en peligro inmediato, llama a servicios de emergencia.",
+    "fireside": "Fireside Project — Apoyo Psicodélico",
+    "988": "988 Línea de Suicidio y Crisis",
+    "text": "Crisis Text Line — Envía HOME al 741741",
+    "samhsa": "Línea de Ayuda SAMHSA"
+  },
+  "footer": {
+    "disclaimer": "Umbral es una herramienta educativa. No proporciona atención médica, terapia ni servicios profesionales.",
+    "openSource": "Código abierto",
+    "reciprocity": "Reciprocidad Indígena",
+    "privacy": "Tus datos son tuyos"
+  },
+  "home": {
+    "hero": {
+      "title": "preparación. experiencia. integración.",
+      "subtitle": "la red que lo conecta todo.",
+      "cta": "Explorar el Marco"
+    }
+  }
+}

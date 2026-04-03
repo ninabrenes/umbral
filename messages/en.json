@@ -1,0 +1,37 @@
+{
+  "meta": {
+    "title": "Umbral — Psychedelic Preparation & Integration",
+    "description": "Free, open-source, evidence-informed psychedelic preparation and integration portal."
+  },
+  "nav": {
+    "science": "Science",
+    "framework": "The Framework",
+    "safety": "Safety",
+    "blog": "Blog",
+    "about": "About",
+    "portal": "Enter Portal",
+    "language": "ES"
+  },
+  "crisis": {
+    "title": "Crisis Resources",
+    "subtitle": "If you need immediate support",
+    "emergency": "If you are in immediate danger, call emergency services.",
+    "fireside": "Fireside Project — Psychedelic Support",
+    "988": "988 Suicide & Crisis Lifeline",
+    "text": "Crisis Text Line — Text HOME to 741741",
+    "samhsa": "SAMHSA Helpline"
+  },
+  "footer": {
+    "disclaimer": "Umbral is an educational tool. It does not provide medical care, therapy, or professional services.",
+    "openSource": "Open source",
+    "reciprocity": "Indigenous Reciprocity",
+    "privacy": "Your data is yours"
+  },
+  "home": {
+    "hero": {
+      "title": "preparation. experience. integration.",
+      "subtitle": "the network that connects it all.",
+      "cta": "Explore the Framework"
+    }
+  }
+}

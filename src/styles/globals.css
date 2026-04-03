@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── PUBLIC SITE (light editorial) ── */
+  --color-cream: oklch(0.96 0.01 80);
+  --color-sand: oklch(0.92 0.03 65);
+  --color-moon: oklch(0.97 0.005 80);
+  --color-ink: oklch(0.20 0.02 150);
+  --color-ink-muted: oklch(0.45 0.02 150);
+
+  /* ── FOREST PALETTE (portal + accents) ── */
+  --color-forest-deep: oklch(0.10 0.02 150);
+  --color-forest: oklch(0.15 0.03 150);
+  --color-moss: oklch(0.35 0.06 150);
+  --color-sage: oklch(0.55 0.08 150);
+  --color-sage-light: oklch(0.70 0.06 150);
+
+  /* ── ACCENTS ── */
+  --color-gold: oklch(0.70 0.12 85);
+  --color-gold-muted: oklch(0.60 0.08 85);
+  --color-ivory: oklch(0.95 0.01 80);
+
+  /* ── CRISIS (high contrast always) ── */
+  --color-crisis-bg: oklch(0.20 0.05 25);
+  --color-crisis-text: oklch(0.95 0.01 80);
+  --color-crisis-accent: oklch(0.65 0.15 25);
+
+  /* ── TYPOGRAPHY ── */
+  --font-serif: var(--font-serif);
+  --font-sans: var(--font-sans);
+
+  /* ── SPACING ── */
+  --space-section: 8rem;
+  --space-section-lg: 12rem;
+
+  /* ── BORDER RADIUS ── */
+  --radius-card: 1.25rem;
+  --radius-pill: 9999px;
+}
+
+/* ── BASE ── */
+body {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── REDUCED MOTION ── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
