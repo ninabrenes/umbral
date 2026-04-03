@@ -7,6 +7,7 @@ import Image from 'next/image'
 import { NodeCard } from '@/components/framework/NodeCard'
 import { nodes } from '@/content/framework/nodes'
 import { pageImages, artImages } from '@/content/framework/images'
+import { Marquee } from '@/components/ui/Marquee'
 import type { Locale } from '@/types'
 
 const content = {
@@ -154,6 +155,11 @@ export default async function Home({
           ))}
         </div>
       </Section>
+
+      {/* ── MARQUEE BAND ── */}
+      <Marquee className="py-6 bg-forest-deep text-sage/60" speed={40}>
+        preparation · experience · integration · the network that connects it all
+      </Marquee>
 
       {/* ── ART STRIP ── */}
       <div className="grid grid-cols-3 md:grid-cols-6 gap-0">

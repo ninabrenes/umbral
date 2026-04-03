@@ -4,7 +4,10 @@ import { Button } from '@/components/ui/Button'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { ParallaxImage } from '@/components/ui/ParallaxImage'
 import { pageImages, artImages } from '@/content/framework/images'
+import { Path, LockKey, ChartLine, MusicNotes } from '@phosphor-icons/react/dist/ssr'
 import type { Locale } from '@/types'
+
+const featureIcons = [Path, LockKey, ChartLine, MusicNotes] as const
 
 const content = {
   en: {
@@ -160,23 +163,27 @@ export default async function PortalPage({
             {locale === 'en' ? 'What awaits inside' : 'Lo que espera adentro'}
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-16 md:gap-y-24">
-            {t.features.map((feature, i) => (
-              <ScrollReveal key={i} variant="fade-up" delay={i * 0.1}>
-                <div className="group">
-                  <div className="flex items-baseline gap-4 mb-4">
-                    <span className="text-xs text-ivory/20 font-sans tabular-nums">
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
-                    <h3 className="font-serif text-2xl md:text-3xl font-light tracking-[-0.01em] text-ivory/90">
-                      {feature.title}
-                    </h3>
+            {t.features.map((feature, i) => {
+              const FeatureIcon = featureIcons[i]
+              return (
+                <ScrollReveal key={i} variant="fade-up" delay={i * 0.1}>
+                  <div className="group border-t border-ivory/[0.06] pt-8">
+                    <FeatureIcon size={32} weight="duotone" className="text-sage mb-6" />
+                    <div className="flex items-baseline gap-4 mb-4">
+                      <span className="text-xs text-ivory/20 font-sans tabular-nums">
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+                      <h3 className="font-serif text-2xl md:text-3xl font-light tracking-[-0.01em] text-ivory/90">
+                        {feature.title}
+                      </h3>
+                    </div>
+                    <p className="text-ivory/40 font-light leading-relaxed pl-10 max-w-[45ch]">
+                      {feature.description}
+                    </p>
                   </div>
-                  <p className="text-ivory/40 font-light leading-relaxed pl-10 max-w-[45ch]">
-                    {feature.description}
-                  </p>
-                </div>
-              </ScrollReveal>
-            ))}
+                </ScrollReveal>
+              )
+            })}
           </div>
         </div>
       </section>
@@ -207,11 +214,11 @@ export default async function PortalPage({
                   name="email"
                   required
                   placeholder={t.cta.placeholder}
-                  className="flex-1 bg-ivory/[0.05] border border-ivory/[0.08] rounded-full px-6 py-3 text-sm text-ivory placeholder:text-ivory/25 font-light focus:outline-none focus:border-gold/40 transition-colors"
+                  className="flex-1 bg-white/[0.06] border border-white/[0.1] rounded-xl px-5 py-4 text-sm text-ivory placeholder:text-ivory/30 font-light focus:outline-none focus:border-sage/40 focus:ring-1 focus:ring-sage/20 transition-colors"
                 />
                 <button
                   type="submit"
-                  className="inline-flex items-center justify-center px-7 py-3 text-sm tracking-[0.08em] uppercase font-sans font-normal rounded-full bg-gold text-forest-deep hover:bg-gold/90 transition-colors active:scale-[0.98] transition-transform duration-150"
+                  className="inline-flex items-center justify-center px-7 py-4 text-sm tracking-[0.08em] uppercase font-sans font-medium rounded-xl bg-gold text-forest-deep hover:bg-gold/90 transition-colors active:scale-[0.98] duration-150"
                 >
                   {t.cta.button}
                 </button>

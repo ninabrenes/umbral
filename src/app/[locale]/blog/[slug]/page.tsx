@@ -4,6 +4,7 @@ import { setRequestLocale } from 'next-intl/server'
 import { Section } from '@/components/ui/Section'
 import { posts, getPostBySlug } from '@/content/blog/posts'
 import { routing } from '@/i18n/routing'
+import { ArrowLeft, Calendar, Tag } from '@phosphor-icons/react/dist/ssr'
 import type { Locale } from '@/types'
 
 const categoryLabels: Record<string, { en: string; es: string }> = {
@@ -70,21 +71,27 @@ export default async function BlogPost({
             href={`/${locale}/blog`}
             className="inline-flex items-center gap-2 text-sm text-ink-muted hover:text-ink transition-colors duration-200 font-sans mb-12"
           >
-            <span aria-hidden="true">&larr;</span>
+            <ArrowLeft size={16} weight="duotone" />
             {t.back}
           </Link>
 
           {/* meta */}
           <div className="flex items-center gap-4 mb-8">
-            <time
-              dateTime={post.date}
-              className="text-sm text-ink-muted font-light tabular-nums"
-            >
-              {formatDate(post.date, locale as Locale)}
-            </time>
+            <span className="inline-flex items-center gap-1.5">
+              <Calendar size={14} weight="duotone" className="text-ink-muted/60" />
+              <time
+                dateTime={post.date}
+                className="text-sm text-ink-muted font-light tabular-nums"
+              >
+                {formatDate(post.date, locale as Locale)}
+              </time>
+            </span>
             <span className="w-1 h-1 rounded-full bg-ink/20" />
-            <span className="text-xs tracking-[0.2em] uppercase text-ink-muted font-sans font-normal">
-              {category}
+            <span className="inline-flex items-center gap-1.5">
+              <Tag size={14} weight="duotone" className="text-sage/60" />
+              <span className="bg-sage/10 text-sage text-[10px] tracking-[0.15em] uppercase px-3 py-1 rounded-full font-sans">
+                {category}
+              </span>
             </span>
           </div>
 
@@ -98,8 +105,12 @@ export default async function BlogPost({
             {post.description[locale as Locale]}
           </p>
 
-          {/* separator */}
-          <div className="w-12 h-px bg-ink/15 mb-16" />
+          {/* decorative separator */}
+          <div className="flex items-center gap-3 mb-16">
+            <div className="w-12 h-px bg-ink/15" />
+            <div className="w-1.5 h-1.5 rounded-full bg-sage/30" />
+            <div className="w-8 h-px bg-ink/10" />
+          </div>
 
           {/* placeholder body */}
           <div className="space-y-6">

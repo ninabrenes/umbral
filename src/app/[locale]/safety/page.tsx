@@ -6,8 +6,32 @@ import { ParallaxImage } from '@/components/ui/ParallaxImage'
 import { crisisResources } from '@/content/safety/crisis-resources'
 import { contraindications } from '@/content/safety/contraindications'
 import { artImages } from '@/content/framework/images'
+import {
+  Warning,
+  WarningCircle,
+  Info,
+  Question,
+  Phone,
+  ChatText,
+  Lifebuoy,
+  Heartbeat,
+  Armchair,
+  House,
+  Spiral,
+  Shield,
+} from '@phosphor-icons/react/dist/ssr'
 import type { Locale } from '@/types'
 import type { Severity } from '@/content/safety/contraindications'
+import type { Icon, IconWeight } from '@phosphor-icons/react'
+
+const severityIcons: Record<Severity, { icon: Icon; weight: IconWeight }> = {
+  critical: { icon: Warning, weight: 'fill' },
+  high: { icon: WarningCircle, weight: 'duotone' },
+  moderate: { icon: Info, weight: 'duotone' },
+  unknown: { icon: Question, weight: 'duotone' },
+}
+
+const harmReductionIcons: Icon[] = [Heartbeat, Armchair, House, Spiral]
 
 const content = {
   en: {
@@ -216,34 +240,41 @@ export default async function SafetyPage({
           </div>
           <div className="md:col-span-7 md:col-start-6">
             <div className="space-y-4">
-              {crisisResources.map((resource) => (
-                <a
-                  key={resource.contact}
-                  href={resource.href}
-                  className="block rounded-lg border border-crisis-text/10 bg-crisis-text/[0.04] p-6 md:p-8 transition-colors duration-200 hover:bg-crisis-text/[0.08] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-crisis-accent"
-                >
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                    <div>
-                      <h3 className="font-serif text-xl md:text-2xl font-light text-crisis-text">
-                        {resource.name[locale as Locale]}
-                      </h3>
-                      <p className="mt-1 text-sm text-crisis-text/60 font-light">
-                        {resource.description[locale as Locale]}
-                      </p>
+              {crisisResources.map((resource) => {
+                const isText = resource.href.startsWith('sms:')
+                const CrisisIcon = isText ? ChatText : Phone
+                return (
+                  <a
+                    key={resource.contact}
+                    href={resource.href}
+                    className="block rounded-lg border border-white/10 bg-crisis-bg/80 backdrop-blur-sm p-6 md:p-8 transition-colors duration-200 hover:bg-crisis-text/[0.08] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-crisis-accent"
+                  >
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                      <div className="flex items-start gap-4">
+                        <div className="shrink-0 mt-0.5 flex items-center justify-center w-10 h-10 rounded-full bg-crisis-accent/15">
+                          <CrisisIcon size={20} weight="duotone" className="text-crisis-accent" />
+                        </div>
+                        <div>
+                          <h3 className="font-serif text-xl md:text-2xl font-light text-crisis-text">
+                            {resource.name[locale as Locale]}
+                          </h3>
+                          <p className="mt-1 text-sm text-crisis-text/60 font-light">
+                            {resource.description[locale as Locale]}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="shrink-0 flex items-center gap-3 min-h-[44px] min-w-[44px]">
+                        <span className="text-xs tracking-[0.15em] uppercase text-crisis-text/40">
+                          {isText ? t.crisis.textLabel : t.crisis.callLabel}
+                        </span>
+                        <span className="font-serif text-2xl md:text-3xl font-light text-crisis-accent tracking-tight">
+                          {resource.contact}
+                        </span>
+                      </div>
                     </div>
-                    <div className="shrink-0 flex items-center gap-3 min-h-[44px] min-w-[44px]">
-                      <span className="text-xs tracking-[0.15em] uppercase text-crisis-text/40">
-                        {resource.href.startsWith('sms:')
-                          ? t.crisis.textLabel
-                          : t.crisis.callLabel}
-                      </span>
-                      <span className="font-serif text-2xl md:text-3xl font-light text-crisis-accent tracking-tight">
-                        {resource.contact}
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              ))}
+                  </a>
+                )
+              })}
             </div>
           </div>
         </div>
@@ -276,6 +307,10 @@ export default async function SafetyPage({
                   <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
                     <div className="md:col-span-4">
                       <div className="flex items-center gap-3 mb-2">
+                        {(() => {
+                          const { icon: SeverityIcon, weight } = severityIcons[item.severity]
+                          return <SeverityIcon size={16} weight={weight} className={style.badgeText} />
+                        })()}
                         <span
                           className={`inline-block text-[10px] tracking-[0.15em] uppercase px-2.5 py-1 rounded ${style.badge} ${style.badgeText}`}
                         >
@@ -327,18 +362,26 @@ export default async function SafetyPage({
             </div>
             <div className="md:col-span-7 md:col-start-6">
               <div className="space-y-10">
-                {t.harmReduction.principles.map((principle, index) => (
-                  <ScrollReveal key={principle.title} variant="slide-left" delay={index * 0.08}>
-                    <div>
-                      <h3 className="font-serif text-2xl font-light leading-tight mb-3">
-                        {principle.title}
-                      </h3>
-                      <p className="text-base text-ink-muted font-light leading-relaxed max-w-[50ch]">
-                        {principle.body}
-                      </p>
-                    </div>
-                  </ScrollReveal>
-                ))}
+                {t.harmReduction.principles.map((principle, index) => {
+                  const PrincipleIcon = harmReductionIcons[index]
+                  return (
+                    <ScrollReveal key={principle.title} variant="slide-left" delay={index * 0.08}>
+                      <div className="flex items-start gap-4">
+                        <div className="shrink-0 mt-1">
+                          <PrincipleIcon size={28} weight="duotone" className="text-sage" />
+                        </div>
+                        <div>
+                          <h3 className="font-serif text-2xl font-light leading-tight mb-3">
+                            {principle.title}
+                          </h3>
+                          <p className="text-base text-ink-muted font-light leading-relaxed max-w-[50ch]">
+                            {principle.body}
+                          </p>
+                        </div>
+                      </div>
+                    </ScrollReveal>
+                  )
+                })}
               </div>
             </div>
           </div>
@@ -346,9 +389,10 @@ export default async function SafetyPage({
       </ScrollReveal>
 
       {/* ── DISCLAIMERS ── */}
-      <Section spacing="lg">
+      <Section spacing="lg" className="border-t border-ink/[0.06]">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
           <div className="md:col-span-4">
+            <Shield size={32} weight="duotone" className="text-ink-muted mb-5" />
             <p className="text-xs tracking-[0.2em] uppercase text-ink-muted mb-4 font-sans">
               {t.disclaimers.label}
             </p>

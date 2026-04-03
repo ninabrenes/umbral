@@ -1,3 +1,6 @@
+'use client'
+
+import { useState, useCallback } from 'react'
 import type { Locale, NodeId } from '@/types'
 
 const nodeColors: Record<NodeId, string> = {
@@ -65,6 +68,7 @@ const nodePositions: Record<NodeId, { x: number; y: number }> = {
 }
 
 const CIRCLE_RADIUS = 42
+const CIRCLE_RADIUS_ACTIVE = 48
 
 // Generate connections between nodes (hexagonal edges + some cross-connections)
 function getConnections(): Array<{ from: NodeId; to: NodeId }> {
@@ -108,6 +112,31 @@ interface NetworkDiagramProps {
 export function NetworkDiagram({ locale }: NetworkDiagramProps) {
   const connections = getConnections()
   const nodeIds: NodeId[] = ['ground', 'roots', 'spore', 'weave', 'fruit', 'canopy']
+  const [activeNode, setActiveNode] = useState<NodeId | null>(null)
+
+  const isConnected = useCallback(
+    (nodeId: NodeId): boolean => {
+      if (!activeNode) return false
+      if (nodeId === activeNode) return true
+      return connections.some(
+        ({ from, to }) =>
+          (from === activeNode && to === nodeId) ||
+          (to === activeNode && from === nodeId),
+      )
+    },
+    [activeNode, connections],
+  )
+
+  const isConnectionActive = useCallback(
+    (from: NodeId, to: NodeId): boolean => {
+      if (!activeNode) return false
+      return (
+        from === activeNode ||
+        to === activeNode
+      )
+    },
+    [activeNode],
+  )
 
   return (
     <svg
@@ -119,19 +148,24 @@ export function NetworkDiagram({ locale }: NetworkDiagramProps) {
           ? 'The Mycelial Network — 6 interconnected nodes'
           : 'La Red Micelial — 6 nodos interconectados'
       }
+      onMouseLeave={() => setActiveNode(null)}
     >
       {/* ── connections ── */}
       {connections.map(({ from, to }) => {
         const p1 = nodePositions[from]
         const p2 = nodePositions[to]
+        const active = isConnectionActive(from, to)
+        const dimmed = activeNode !== null && !active
+
         return (
           <path
             key={`${from}-${to}`}
             d={getCurvedPath(p1.x, p1.y, p2.x, p2.y)}
             fill="none"
-            stroke="oklch(0.45 0.03 150)"
-            strokeWidth={1}
-            opacity={0.18}
+            stroke={active ? nodeColors[activeNode!] : 'oklch(0.45 0.03 150)'}
+            strokeWidth={active ? 2 : 1}
+            opacity={dimmed ? 0.06 : active ? 0.55 : 0.18}
+            style={{ transition: 'stroke 0.2s, stroke-width 0.2s, opacity 0.2s' }}
           />
         )
       })}
@@ -142,23 +176,59 @@ export function NetworkDiagram({ locale }: NetworkDiagramProps) {
         const color = nodeColors[id]
         const name = nodeNames[id][locale]
         const icon = nodeIconPaths[id]
+        const isActive = id === activeNode
+        const connected = isConnected(id)
+        const dimmed = activeNode !== null && !connected
+
+        const radius = isActive ? CIRCLE_RADIUS_ACTIVE : CIRCLE_RADIUS
 
         return (
-          <g key={id}>
+          <g
+            key={id}
+            onMouseEnter={() => setActiveNode(id)}
+            style={{ cursor: 'pointer' }}
+          >
+            {/* hover target — invisible larger circle for easier interaction */}
+            <circle
+              cx={pos.x}
+              cy={pos.y}
+              r={CIRCLE_RADIUS_ACTIVE + 8}
+              fill="transparent"
+            />
+
+            {/* glow ring on active */}
+            {isActive && (
+              <circle
+                cx={pos.x}
+                cy={pos.y}
+                r={radius + 6}
+                fill="none"
+                stroke={color}
+                strokeWidth={1}
+                opacity={0.25}
+                style={{ transition: 'r 0.2s, opacity 0.2s' }}
+              />
+            )}
+
             {/* background circle */}
             <circle
               cx={pos.x}
               cy={pos.y}
-              r={CIRCLE_RADIUS}
+              r={radius}
               fill={color}
-              fillOpacity={0.08}
+              fillOpacity={isActive ? 0.15 : 0.08}
               stroke={color}
-              strokeWidth={1.2}
-              strokeOpacity={0.35}
+              strokeWidth={isActive ? 1.8 : 1.2}
+              strokeOpacity={dimmed ? 0.15 : isActive ? 0.7 : 0.35}
+              style={{ transition: 'r 0.2s, fill-opacity 0.2s, stroke-width 0.2s, stroke-opacity 0.2s' }}
             />
 
             {/* icon paths */}
-            <g transform={`translate(${pos.x}, ${pos.y})`}>
+            <g
+              transform={`translate(${pos.x}, ${pos.y})`}
+              opacity={dimmed ? 0.3 : 1}
+              style={{ transition: 'opacity 0.2s' }}
+            >
               {icon.secondary && (
                 <path
                   d={icon.secondary}
@@ -180,12 +250,14 @@ export function NetworkDiagram({ locale }: NetworkDiagramProps) {
             {/* label */}
             <text
               x={pos.x}
-              y={pos.y + CIRCLE_RADIUS + 18}
+              y={pos.y + CIRCLE_RADIUS_ACTIVE + 20}
               textAnchor="middle"
-              fill="oklch(0.45 0.02 150)"
-              fontSize={13}
+              fill={isActive ? color : 'oklch(0.45 0.02 150)'}
+              fontSize={isActive ? 14 : 13}
               fontFamily="var(--font-sans), system-ui, sans-serif"
-              fontWeight={400}
+              fontWeight={isActive ? 500 : 400}
+              opacity={dimmed ? 0.35 : 1}
+              style={{ transition: 'fill 0.2s, font-size 0.2s, opacity 0.2s' }}
             >
               {name}
             </text>

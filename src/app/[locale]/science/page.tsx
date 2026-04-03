@@ -7,7 +7,28 @@ import { ParallaxImage } from '@/components/ui/ParallaxImage'
 import { CountUp } from '@/components/ui/CountUp'
 import { papers, organizations, books } from '@/content/framework/sources'
 import { artImages } from '@/content/framework/images'
+import {
+  BookOpenText,
+  Buildings,
+  TreeStructure,
+  ArrowsClockwise,
+  MusicNotes,
+  Compass,
+  Sparkle,
+  Flask,
+  HandHeart,
+} from '@phosphor-icons/react/dist/ssr'
 import type { Locale, Source } from '@/types'
+import type { Icon } from '@phosphor-icons/react'
+
+const findingIcons: Icon[] = [ArrowsClockwise, MusicNotes, Compass, Sparkle]
+
+const orgIconMap: Record<string, Icon> = {
+  'johns-hopkins': Flask,
+  maps: Flask,
+  'fireside-project': HandHeart,
+  chacruna: HandHeart,
+}
 
 const content = {
   en: {
@@ -159,6 +180,7 @@ function OrgEntry({
   source: Source
   description: string
 }) {
+  const OrgIcon = orgIconMap[source.id] ?? Flask
   return (
     <div className="py-8 border-b border-ink/[0.06] last:border-b-0">
       <a
@@ -167,15 +189,22 @@ function OrgEntry({
         rel="noopener noreferrer"
         className="block transition-opacity duration-200 hover:opacity-70"
       >
-        <h3 className="font-serif text-2xl md:text-3xl font-light leading-[1.2] tracking-[-0.01em]">
-          {source.title}
-        </h3>
-        <p className="mt-3 text-base text-ink-muted font-sans font-light leading-relaxed max-w-[60ch]">
-          {description}
-        </p>
-        <p className="mt-2 text-xs tracking-[0.2em] uppercase text-moss font-sans">
-          {source.url.replace(/^https?:\/\//, '').replace(/\/$/, '')}
-        </p>
+        <div className="flex items-start gap-4">
+          <div className="shrink-0 mt-1 flex items-center justify-center w-10 h-10 rounded-full bg-ink/[0.04]">
+            <OrgIcon size={20} weight="duotone" className="text-moss" />
+          </div>
+          <div>
+            <h3 className="font-serif text-2xl md:text-3xl font-light leading-[1.2] tracking-[-0.01em]">
+              {source.title}
+            </h3>
+            <p className="mt-3 text-base text-ink-muted font-sans font-light leading-relaxed max-w-[60ch]">
+              {description}
+            </p>
+            <p className="mt-2 text-xs tracking-[0.2em] uppercase text-moss font-sans">
+              {source.url.replace(/^https?:\/\//, '').replace(/\/$/, '')}
+            </p>
+          </div>
+        </div>
       </a>
     </div>
   )
@@ -236,7 +265,8 @@ export default async function SciencePage({
 
           {/* ── STATS BAR ── */}
           <div className="grid grid-cols-3 gap-8 mb-20 md:mb-28 border-b border-ink/[0.06] pb-16">
-            <div className="text-center">
+            <div className="text-center flex flex-col items-center">
+              <BookOpenText size={28} weight="duotone" className="text-moss mb-4" />
               <p className="font-serif text-5xl md:text-6xl font-light leading-none tracking-[-0.02em]">
                 <CountUp value={18} suffix="+" />
               </p>
@@ -244,7 +274,8 @@ export default async function SciencePage({
                 {t.stats.papers}
               </p>
             </div>
-            <div className="text-center">
+            <div className="text-center flex flex-col items-center">
+              <Buildings size={28} weight="duotone" className="text-moss mb-4" />
               <p className="font-serif text-5xl md:text-6xl font-light leading-none tracking-[-0.02em]">
                 <CountUp value={13} />
               </p>
@@ -252,7 +283,8 @@ export default async function SciencePage({
                 {t.stats.orgs}
               </p>
             </div>
-            <div className="text-center">
+            <div className="text-center flex flex-col items-center">
+              <TreeStructure size={28} weight="duotone" className="text-moss mb-4" />
               <p className="font-serif text-5xl md:text-6xl font-light leading-none tracking-[-0.02em]">
                 <CountUp value={6} />
               </p>
@@ -263,28 +295,34 @@ export default async function SciencePage({
           </div>
 
           <div className="space-y-24 md:space-y-32">
-            {t.findings.items.map((item, i) => (
-              <div
-                key={i}
-                className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-baseline"
-              >
-                <div className="md:col-span-1">
-                  <span className="font-sans text-5xl md:text-6xl font-light text-ink/10 tabular-nums leading-none">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
+            {t.findings.items.map((item, i) => {
+              const FindingIcon = findingIcons[i]
+              return (
+                <div
+                  key={i}
+                  className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-baseline"
+                >
+                  <div className="md:col-span-1">
+                    <div className="flex flex-col items-start gap-3">
+                      <FindingIcon size={32} weight="duotone" className="text-moss" />
+                      <span className="font-sans text-5xl md:text-6xl font-light text-ink/10 tabular-nums leading-none">
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="md:col-span-7 lg:col-span-6">
+                    <h3 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light leading-[1.1] tracking-[-0.02em] italic">
+                      {item.heading}
+                    </h3>
+                  </div>
+                  <div className="md:col-span-4 md:col-start-9 lg:col-span-4 lg:col-start-9">
+                    <p className="text-base text-ink-muted font-sans font-light leading-relaxed">
+                      {item.body}
+                    </p>
+                  </div>
                 </div>
-                <div className="md:col-span-7 lg:col-span-6">
-                  <h3 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light leading-[1.1] tracking-[-0.02em] italic">
-                    {item.heading}
-                  </h3>
-                </div>
-                <div className="md:col-span-4 md:col-start-9 lg:col-span-4 lg:col-start-9">
-                  <p className="text-base text-ink-muted font-sans font-light leading-relaxed">
-                    {item.body}
-                  </p>
-                </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
         </Section>
       </ScrollReveal>
@@ -300,7 +338,7 @@ export default async function SciencePage({
 
       {/* ── PUBLISHED RESEARCH ── */}
       <ScrollReveal variant="fade-up">
-        <Section spacing="lg">
+        <Section spacing="lg" className="border-t border-ink/[0.06]">
           <SectionHeader
             label={t.research.label}
             heading={t.research.heading}
@@ -339,7 +377,7 @@ export default async function SciencePage({
 
       {/* ── BOOKS ── */}
       <ScrollReveal variant="fade-in">
-        <Section spacing="lg">
+        <Section spacing="lg" className="border-t border-ink/[0.06]">
           <SectionHeader
             label={t.books.label}
             heading={t.books.heading}

@@ -5,6 +5,7 @@ import { Section } from '@/components/ui/Section'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { posts } from '@/content/blog/posts'
 import { artImages } from '@/content/framework/images'
+import { Calendar, Tag, ArrowRight } from '@phosphor-icons/react/dist/ssr'
 import type { Locale } from '@/types'
 
 const content = {
@@ -86,15 +87,21 @@ export default async function BlogIndex({
                 <ScrollReveal key={post.slug} variant="fade-up" delay={i * 0.1}>
                   <article className="py-12 first:pt-0 last:pb-0">
                     <div className="flex items-center gap-4 mb-5">
-                      <time
-                        dateTime={post.date}
-                        className="text-sm text-ink-muted font-light tabular-nums"
-                      >
-                        {formatDate(post.date, locale as Locale)}
-                      </time>
+                      <span className="inline-flex items-center gap-1.5">
+                        <Calendar size={14} weight="duotone" className="text-ink-muted/60" />
+                        <time
+                          dateTime={post.date}
+                          className="text-sm text-ink-muted font-light tabular-nums"
+                        >
+                          {formatDate(post.date, locale as Locale)}
+                        </time>
+                      </span>
                       <span className="w-1 h-1 rounded-full bg-ink/20" />
-                      <span className="text-xs tracking-[0.2em] uppercase text-ink-muted font-sans font-normal">
-                        {categoryLabels[post.category]?.[locale as Locale] ?? post.category}
+                      <span className="inline-flex items-center gap-1.5">
+                        <Tag size={14} weight="duotone" className="text-sage/60" />
+                        <span className="bg-sage/10 text-sage text-[10px] tracking-[0.15em] uppercase px-3 py-1 rounded-full font-sans">
+                          {categoryLabels[post.category]?.[locale as Locale] ?? post.category}
+                        </span>
                       </span>
                     </div>
 
@@ -113,9 +120,10 @@ export default async function BlogIndex({
 
                     <Link
                       href={`/${locale}/blog/${post.slug}`}
-                      className="inline-flex items-center gap-2 font-serif text-base italic text-moss hover:text-ink transition-colors duration-200 tracking-wide"
+                      className="group/read inline-flex items-center gap-2 font-serif text-base italic text-moss hover:text-ink transition-colors duration-200 tracking-wide"
                     >
-                      {t.read} <span aria-hidden="true" className="not-italic">&rarr;</span>
+                      {t.read}
+                      <ArrowRight size={16} weight="bold" className="transition-transform duration-200 group-hover/read:translate-x-1" />
                     </Link>
                   </article>
                 </ScrollReveal>

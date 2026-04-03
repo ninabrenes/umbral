@@ -6,6 +6,25 @@ import { Button } from '@/components/ui/Button'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { ParallaxImage } from '@/components/ui/ParallaxImage'
 import { pageImages, artImages } from '@/content/framework/images'
+import {
+  X,
+  Check,
+  GithubLogo,
+  GitBranch,
+  ShieldCheck,
+  LockKey,
+  EyeSlash,
+  Export,
+  Code,
+  HandsPraying,
+  HandHeart,
+  Scales,
+  Compass,
+  Gavel,
+  Bandaids,
+  TreeEvergreen,
+  Handshake,
+} from '@phosphor-icons/react/dist/ssr'
 import type { Locale } from '@/types'
 
 const content = {
@@ -183,6 +202,10 @@ const content = {
   },
 }
 
+const privacyIcons = [ShieldCheck, LockKey, EyeSlash, Export, Code] as const
+
+const principleIcons = [HandsPraying, HandHeart, Scales, Compass, Gavel, Bandaids, TreeEvergreen, Handshake] as const
+
 export default async function AboutPage({
   params,
 }: {
@@ -214,13 +237,15 @@ export default async function AboutPage({
                 {t.hero.not.map((line) => (
                   <li
                     key={line}
-                    className="text-sm text-ink-muted font-light leading-relaxed"
+                    className="flex items-start gap-2.5 text-sm text-ink-muted font-light leading-relaxed"
                   >
+                    <X size={16} weight="duotone" className="text-ink-muted/40 mt-0.5 shrink-0" />
                     {line}
                   </li>
                 ))}
               </ul>
-              <p className="mt-8 text-sm text-ink/80 font-light leading-relaxed">
+              <p className="mt-8 flex items-start gap-2.5 text-sm text-ink/80 font-light leading-relaxed">
+                <Check size={16} weight="duotone" className="text-sage mt-0.5 shrink-0" />
                 {t.hero.is}
               </p>
             </div>
@@ -273,6 +298,10 @@ export default async function AboutPage({
         <ScrollReveal variant="slide-left">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
             <div className="md:col-span-5">
+              <div className="flex items-center gap-4 mb-6">
+                <GithubLogo size={28} weight="duotone" className="text-ink-muted/40" />
+                <GitBranch size={20} weight="duotone" className="text-ink-muted/25" />
+              </div>
               <SectionHeader
                 label={t.openSource.label}
                 heading={t.openSource.heading}
@@ -289,6 +318,7 @@ export default async function AboutPage({
                 variant="secondary"
                 href="https://github.com/ninabrenes/umbral"
               >
+                <GithubLogo size={18} weight="duotone" className="inline-block mr-2 -mt-0.5" />
                 {t.openSource.cta}
               </Button>
             </div>
@@ -327,19 +357,30 @@ export default async function AboutPage({
                 <p className="text-sm text-ivory/50 font-light leading-relaxed mb-10">
                   {t.reciprocity.principles.intro}
                 </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-8">
-                  {t.reciprocity.principles.items.map((principle, i) => (
-                    <ScrollReveal key={principle.name} variant="fade-up" delay={i * 0.05}>
-                      <div>
-                        <p className="text-sm tracking-[0.15em] uppercase text-gold font-sans mb-2">
-                          {principle.name}
-                        </p>
-                        <p className="text-sm text-ivory/60 font-light leading-relaxed">
-                          {principle.desc}
-                        </p>
-                      </div>
-                    </ScrollReveal>
-                  ))}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-10">
+                  {t.reciprocity.principles.items.map((principle, i) => {
+                    const PrincipleIcon = principleIcons[i]
+                    return (
+                      <ScrollReveal key={principle.name} variant="fade-up" delay={i * 0.05}>
+                        <div className="relative">
+                          <span className="absolute -top-3 -left-1 font-serif text-5xl font-light text-gold/[0.08] leading-none select-none" aria-hidden="true">
+                            {String(i + 1).padStart(2, '0')}
+                          </span>
+                          <div className="relative pt-4">
+                            <div className="flex items-center gap-2.5 mb-2">
+                              <PrincipleIcon size={16} weight="duotone" className="text-gold/40" />
+                              <p className="text-sm tracking-[0.15em] uppercase text-gold font-sans">
+                                {principle.name}
+                              </p>
+                            </div>
+                            <p className="text-sm text-ivory/60 font-light leading-relaxed">
+                              {principle.desc}
+                            </p>
+                          </div>
+                        </div>
+                      </ScrollReveal>
+                    )
+                  })}
                 </div>
               </div>
 
@@ -378,16 +419,24 @@ export default async function AboutPage({
             </div>
             <div className="md:col-span-6 md:col-start-7">
               <ul className="space-y-10">
-                {t.privacy.points.map((point) => (
-                  <li key={point.title}>
-                    <h3 className="font-serif text-xl md:text-2xl font-light leading-[1.2] tracking-[-0.01em] mb-2">
-                      {point.title}
-                    </h3>
-                    <p className="text-base text-ink-muted font-light leading-relaxed max-w-[50ch]">
-                      {point.desc}
-                    </p>
-                  </li>
-                ))}
+                {t.privacy.points.map((point, i) => {
+                  const Icon = privacyIcons[i]
+                  return (
+                    <li key={point.title} className="flex gap-5">
+                      <div className="shrink-0 mt-1">
+                        <Icon size={24} weight="duotone" className="text-sage" />
+                      </div>
+                      <div>
+                        <h3 className="font-serif text-xl md:text-2xl font-light leading-[1.2] tracking-[-0.01em] mb-2">
+                          {point.title}
+                        </h3>
+                        <p className="text-base text-ink-muted font-light leading-relaxed max-w-[50ch]">
+                          {point.desc}
+                        </p>
+                      </div>
+                    </li>
+                  )
+                })}
               </ul>
             </div>
           </div>

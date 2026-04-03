@@ -3,7 +3,7 @@ import { Section } from '@/components/ui/Section'
 import { SectionHeader } from '@/components/ui/SectionHeader'
 import { Callout } from '@/components/ui/Callout'
 import { Button } from '@/components/ui/Button'
-import { NodeCard } from '@/components/framework/NodeCard'
+import { InteractiveNode } from '@/components/framework/InteractiveNode'
 import { NetworkDiagram } from '@/components/framework/NetworkDiagram'
 import { ProcessDiagram } from '@/components/framework/ProcessDiagram'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
@@ -254,17 +254,18 @@ export default async function FrameworkPage({
           <NetworkDiagram locale={locale as Locale} />
         </ScrollReveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {nodes.map((node, i) => (
             <ScrollReveal
               key={node.id}
-              variant={i % 2 === 0 ? 'slide-left' : 'slide-right'}
+              variant="fade-up"
               delay={i * 0.08}
             >
-              <NodeCard
+              <InteractiveNode
                 node={node}
                 locale={locale as Locale}
                 index={i}
+                href={`/${locale}/framework/${node.id}`}
               />
             </ScrollReveal>
           ))}
