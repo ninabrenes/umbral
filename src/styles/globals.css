@@ -2,39 +2,33 @@
 
 @theme {
   /* ── BASE (dark-first) ── */
-  --color-onyx: oklch(0.07 0.01 160);        /* #0A0D0B — darkest bg */
-  --color-deep: oklch(0.12 0.03 165);        /* #051F20 — primary bg */
-  --color-forest: oklch(0.17 0.04 165);      /* #0B2B26 — sections */
-  --color-teal: oklch(0.22 0.04 170);        /* #163832 — cards, surfaces */
-  --color-green: oklch(0.30 0.05 168);       /* #235347 — elevated surfaces */
+  --color-onyx: #0A0D0B;
+  --color-deep: #051F20;
+  --color-forest: #0B2B26;
+  --color-teal: #163832;
+  --color-green: #235347;
 
   /* ── ACCENT ── */
-  --color-sage: oklch(0.65 0.06 155);        /* #8EB69B — secondary text */
-  --color-mint: oklch(0.75 0.08 155);        /* #ACDBB8 — primary accent */
-  --color-olive: oklch(0.72 0.06 130);       /* #B0C9A1 — alt accent */
+  --color-sage: #8EB69B;
+  --color-mint: #ACDBB8;
+  --color-olive: #B0C9A1;
 
   /* ── LIGHT ── */
-  --color-mist: oklch(0.90 0.03 155);        /* #D3F4D1 — highlight */
-  --color-cloud: oklch(0.93 0.005 150);      /* #EAEBEA — primary text */
-  --color-white: oklch(1.00 0 0);            /* #FFFFFF — headings */
+  --color-mist: #D3F4D1;
+  --color-cloud: #EAEBEA;
 
-  /* ── GLASS ── */
-  --color-glass: oklch(0.20 0.03 165 / 0.6); /* glassmorphism bg */
-  --color-glass-border: oklch(1.00 0 0 / 0.08);
-  --color-glass-glow: oklch(0.75 0.08 155 / 0.15);
+  /* ── CRISIS ── */
+  --color-crisis-bg: #2D1518;
+  --color-crisis-text: #F2EEEE;
+  --color-crisis-accent: #C45C5C;
 
-  /* ── CRISIS (high contrast, unchanged) ── */
-  --color-crisis-bg: oklch(0.20 0.05 25);
-  --color-crisis-text: oklch(0.95 0.01 80);
-  --color-crisis-accent: oklch(0.65 0.15 25);
-
-  /* ── NODE ACCENTS (keep) ── */
-  --color-node-ground: oklch(0.55 0.06 45);
-  --color-node-roots: oklch(0.50 0.07 155);
-  --color-node-spore: oklch(0.55 0.06 280);
-  --color-node-weave: oklch(0.55 0.08 25);
-  --color-node-fruit: oklch(0.58 0.10 85);
-  --color-node-canopy: oklch(0.50 0.05 230);
+  /* ── NODE ACCENTS ── */
+  --color-node-ground: #9B7A5B;
+  --color-node-roots: #5B9B6B;
+  --color-node-spore: #7B5B9B;
+  --color-node-weave: #9B5B6B;
+  --color-node-fruit: #9B8B5B;
+  --color-node-canopy: #5B7B9B;
 
   /* ── TYPOGRAPHY ── */
   --font-serif: var(--font-serif);
@@ -54,9 +48,17 @@
 body {
   font-family: var(--font-sans);
   font-weight: 300;
-  background-color: oklch(0.07 0.01 160);
-  color: oklch(0.93 0.005 150);
+  background-color: var(--color-onyx);
+  color: var(--color-cloud);
   -webkit-font-smoothing: antialiased;
+}
+
+/* ── GLASS UTILITIES ── */
+.glass {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 /* ── NOISE TEXTURE ── */

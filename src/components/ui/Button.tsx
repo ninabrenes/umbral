@@ -11,9 +11,9 @@ const variants: Record<Variant, string> = {
   primary:
     'bg-mint text-deep hover:bg-mint/90 transition-colors active:scale-[0.98]',
   secondary:
-    'border border-glass-border text-cloud hover:bg-glass transition-colors active:scale-[0.98]',
+    'border border-white/[0.08] text-cloud hover:bg-white/[0.04] transition-colors active:scale-[0.98]',
   ghost:
-    'text-cloud/70 hover:text-mint transition-colors border-b border-glass-border pb-px hover:border-mint/40',
+    'text-cloud/70 hover:text-mint transition-colors border-b border-white/[0.08] pb-px hover:border-mint/40',
 }
 
 export function Button({

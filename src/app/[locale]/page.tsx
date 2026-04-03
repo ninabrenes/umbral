@@ -154,7 +154,7 @@ export default async function Home({
               <ScrollReveal key={node.id} delay={i * 0.08}>
                 <a
                   href={`/${locale}/framework/${node.id}`}
-                  className={`group flex flex-col justify-between p-6 md:p-8 rounded-2xl backdrop-blur-xl border border-glass-border bg-white/[0.04] transition-all duration-200 aspect-square md:aspect-auto md:h-full ${nodeGlowBorder[node.id]}`}
+                  className={`group flex flex-col justify-between p-6 md:p-8 rounded-2xl backdrop-blur-xl border border-white/[0.08] bg-white/[0.04] transition-all duration-200 aspect-square md:aspect-auto md:h-full ${nodeGlowBorder[node.id]}`}
                 >
                   <NodeIcon
                     nodeId={node.id}
@@ -174,7 +174,7 @@ export default async function Home({
               <ScrollReveal key={node.id} delay={(i + 2) * 0.08}>
                 <a
                   href={`/${locale}/framework/${node.id}`}
-                  className={`group flex flex-col justify-between p-6 md:p-8 rounded-2xl backdrop-blur-xl border border-glass-border bg-white/[0.04] transition-all duration-200 aspect-square md:aspect-auto md:h-full ${nodeGlowBorder[node.id]}`}
+                  className={`group flex flex-col justify-between p-6 md:p-8 rounded-2xl backdrop-blur-xl border border-white/[0.08] bg-white/[0.04] transition-all duration-200 aspect-square md:aspect-auto md:h-full ${nodeGlowBorder[node.id]}`}
                 >
                   <NodeIcon
                     nodeId={node.id}
@@ -194,7 +194,7 @@ export default async function Home({
               <ScrollReveal key={node.id} delay={(i + 4) * 0.08}>
                 <a
                   href={`/${locale}/framework/${node.id}`}
-                  className={`group flex flex-col justify-between p-6 md:p-8 rounded-2xl backdrop-blur-xl border border-glass-border bg-white/[0.04] transition-all duration-200 aspect-square md:aspect-auto md:h-full ${nodeGlowBorder[node.id]}`}
+                  className={`group flex flex-col justify-between p-6 md:p-8 rounded-2xl backdrop-blur-xl border border-white/[0.08] bg-white/[0.04] transition-all duration-200 aspect-square md:aspect-auto md:h-full ${nodeGlowBorder[node.id]}`}
                 >
                   <NodeIcon
                     nodeId={node.id}
@@ -229,7 +229,7 @@ export default async function Home({
       <section className="bg-onyx py-32 md:py-48 px-6 md:px-12 lg:px-20">
         <div className="mx-auto max-w-[900px]">
           <ScrollReveal>
-            <div className="backdrop-blur-xl border border-glass-border bg-white/[0.04] rounded-3xl px-10 py-16 md:px-16 md:py-24 text-center">
+            <div className="backdrop-blur-xl border border-white/[0.08] bg-white/[0.04] rounded-3xl px-10 py-16 md:px-16 md:py-24 text-center">
               <p className="font-serif text-3xl md:text-5xl lg:text-6xl font-light leading-[1.1] tracking-[-0.02em] text-white">
                 {t.philosophy.line}
               </p>
@@ -262,7 +262,7 @@ export default async function Home({
       <section className="bg-deep py-32 md:py-48 px-6 md:px-12 lg:px-20">
         <div className="mx-auto max-w-[800px]">
           <ScrollReveal>
-            <div className="backdrop-blur-xl border border-glass-border bg-white/[0.04] rounded-3xl px-10 py-16 md:px-16 md:py-20 text-center">
+            <div className="backdrop-blur-xl border border-white/[0.08] bg-white/[0.04] rounded-3xl px-10 py-16 md:px-16 md:py-20 text-center">
               <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-light leading-[1.1] tracking-[-0.02em] text-white mb-6">
                 {t.cta.heading}
               </h2>

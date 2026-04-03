@@ -22,7 +22,7 @@ export function Section({
 }: SectionProps) {
   const darkClasses = dark ? 'bg-forest' : ''
   const glassClasses = glass
-    ? 'bg-glass backdrop-blur-xl border border-glass-border rounded-[var(--radius-glass)]'
+    ? 'bg-white/[0.04] backdrop-blur-xl border border-white/[0.08] rounded-[var(--radius-glass)]'
     : ''
 
   return (

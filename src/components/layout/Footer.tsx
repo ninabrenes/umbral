@@ -116,7 +116,7 @@ export function Footer({ locale }: FooterProps) {
         </div>
 
         {/* Disclaimer */}
-        <div className="mt-20 pt-8 border-t border-glass-border">
+        <div className="mt-20 pt-8 border-t border-white/[0.08]">
           <p className="text-xs text-cloud/30 font-light leading-relaxed max-w-[80ch]">
             {disclaimer}
           </p>

@@ -19,7 +19,7 @@ export function Nav({ locale }: NavProps) {
   const otherLabel = locale === 'en' ? 'ES' : 'EN'
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-deep/80 backdrop-blur-xl border-b border-glass-border shadow-[inset_0_-1px_0_rgba(255,255,255,0.05)] transition-all duration-300">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-deep/80 backdrop-blur-xl border-b border-white/[0.08] shadow-[inset_0_-1px_0_rgba(255,255,255,0.05)] transition-all duration-300">
       <nav className="mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 h-16 flex items-center justify-between">
         <Link
           href={`/${locale}`}
