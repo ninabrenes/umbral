@@ -6,6 +6,7 @@ import { routing } from '@/i18n/routing'
 import { serif, sans } from '@/lib/fonts'
 import { Nav } from '@/components/layout/Nav'
 import { Footer } from '@/components/layout/Footer'
+import { LenisProvider } from '@/components/layout/LenisProvider'
 import { CrisisBar } from '@/components/ui/CrisisBar'
 import type { Locale } from '@/types'
 import '@/styles/globals.css'
@@ -40,10 +41,12 @@ export default async function LocaleLayout({
     <html lang={locale} className={`${serif.variable} ${sans.variable}`}>
       <body className="bg-cream text-ink font-sans font-light antialiased">
         <NextIntlClientProvider messages={messages}>
-          <Nav locale={locale as Locale} />
-          <main className="pt-16">{children}</main>
-          <Footer locale={locale as Locale} />
-          <CrisisBar locale={locale as Locale} />
+          <LenisProvider>
+            <Nav locale={locale as Locale} />
+            <main className="pt-16">{children}</main>
+            <Footer locale={locale as Locale} />
+            <CrisisBar locale={locale as Locale} />
+          </LenisProvider>
         </NextIntlClientProvider>
       </body>
     </html>
