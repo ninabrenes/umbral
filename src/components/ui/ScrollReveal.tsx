@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 
 type RevealVariant = 'fade-up' | 'fade-in' | 'slide-left' | 'slide-right' | 'scale'
 
@@ -11,12 +11,12 @@ interface ScrollRevealProps {
   variant?: RevealVariant
 }
 
-const INITIAL_STYLES: Record<RevealVariant, { opacity: string; transform: string }> = {
-  'fade-up': { opacity: '0', transform: 'translateY(30px)' },
-  'fade-in': { opacity: '0', transform: 'none' },
-  'slide-left': { opacity: '0', transform: 'translateX(-40px)' },
-  'slide-right': { opacity: '0', transform: 'translateX(40px)' },
-  'scale': { opacity: '0', transform: 'scale(0.95)' },
+const variantClass: Record<RevealVariant, string> = {
+  'fade-up': 'reveal-up',
+  'fade-in': 'reveal-in',
+  'slide-left': 'reveal-left',
+  'slide-right': 'reveal-right',
+  'scale': 'reveal-scale',
 }
 
 export function ScrollReveal({
@@ -26,34 +26,33 @@ export function ScrollReveal({
   variant = 'fade-up',
 }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement>(null)
+  const [animated, setAnimated] = useState(false)
 
   useEffect(() => {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const el = ref.current
     if (prefersReduced || !el) return
 
-    const initial = INITIAL_STYLES[variant]
-    el.style.opacity = initial.opacity
-    el.style.transform = initial.transform
-    el.style.transition = `opacity 0.9s cubic-bezier(0.25, 0.1, 0.25, 1) ${delay}s, transform 0.9s cubic-bezier(0.25, 0.1, 0.25, 1) ${delay}s`
-
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          el.style.opacity = '1'
-          el.style.transform = 'none'
+          setAnimated(true)
           observer.disconnect()
         }
       },
-      { threshold: 0.1, rootMargin: '0px 0px -10% 0px' }
+      { threshold: 0.1, rootMargin: '0px 0px -8% 0px' }
     )
 
     observer.observe(el)
     return () => observer.disconnect()
-  }, [delay, variant])
+  }, [])
 
   return (
-    <div ref={ref} className={className}>
+    <div
+      ref={ref}
+      className={`${className ?? ''} ${animated ? `reveal-animated ${variantClass[variant]}` : ''}`}
+      style={animated && delay > 0 ? { animationDelay: `${delay}s` } : undefined}
+    >
       {children}
     </div>
   )

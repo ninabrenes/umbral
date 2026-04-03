@@ -201,7 +201,7 @@ export default async function FrameworkPage({
   return (
     <>
       {/* ── HERO ── */}
-      <Section spacing="none" className="min-h-[85dvh] flex items-center">
+      <Section spacing="none" className="min-h-[85dvh] flex items-center bg-deep">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center py-32">
           <div className="md:col-span-7 lg:col-span-6">
             <ScrollReveal variant="fade-in">
@@ -280,7 +280,7 @@ export default async function FrameworkPage({
       </section>
 
       {/* ── PROCESS LAYER ── */}
-      <Section spacing="lg">
+      <Section spacing="lg" className="bg-teal">
         <ScrollReveal variant="fade-in">
           <SectionHeader
             label={t.process.label}
@@ -330,7 +330,7 @@ export default async function FrameworkPage({
       </Section>
 
       {/* ── FOUR CORNERSTONES ── */}
-      <Section spacing="lg" className="bg-forest">
+      <Section spacing="lg" className="bg-deep">
         <ScrollReveal variant="slide-right">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
             <div className="md:col-span-4">
@@ -368,7 +368,7 @@ export default async function FrameworkPage({
       </Section>
 
       {/* ── CTA ── */}
-      <Section spacing="lg">
+      <Section spacing="lg" className="bg-forest">
         <ScrollReveal variant="fade-up">
           <div className="max-w-2xl">
             <SectionHeader

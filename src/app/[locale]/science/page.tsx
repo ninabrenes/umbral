@@ -240,7 +240,7 @@ export default async function SciencePage({
   return (
     <>
       {/* ── HERO ── */}
-      <Section spacing="none" className="min-h-[70dvh] flex items-center">
+      <Section spacing="none" className="min-h-[70dvh] flex items-center bg-deep">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center py-32 md:py-40">
           <div className="md:col-span-8 lg:col-span-7">
             <p className="text-xs tracking-[0.2em] uppercase text-cloud/60 mb-8 font-sans">
@@ -358,7 +358,7 @@ export default async function SciencePage({
 
       {/* ── ORGANIZATIONS ── */}
       <ScrollReveal variant="slide-left">
-        <Section spacing="lg" className="bg-forest">
+        <Section spacing="lg" className="bg-teal">
           <SectionHeader
             label={t.orgs.label}
             heading={t.orgs.heading}
@@ -377,7 +377,7 @@ export default async function SciencePage({
 
       {/* ── BOOKS ── */}
       <ScrollReveal variant="fade-in">
-        <Section spacing="lg" className="border-t border-white/[0.06]">
+        <Section spacing="lg" className="bg-deep">
           <SectionHeader
             label={t.books.label}
             heading={t.books.heading}

@@ -218,7 +218,7 @@ export default async function AboutPage({
   return (
     <>
       {/* ── HERO ── */}
-      <Section spacing="none" className="min-h-[80dvh] flex items-center">
+      <Section spacing="none" className="min-h-[80dvh] flex items-center bg-deep">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-start py-32 md:py-40">
           <div className="md:col-span-7 lg:col-span-6">
             <p className="text-xs tracking-[0.2em] uppercase text-cloud/60 mb-8 font-sans">
@@ -294,7 +294,7 @@ export default async function AboutPage({
       </section>
 
       {/* ── OPEN SOURCE ── */}
-      <Section spacing="lg">
+      <Section spacing="lg" className="bg-teal">
         <ScrollReveal variant="slide-left">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
             <div className="md:col-span-5">
@@ -405,7 +405,7 @@ export default async function AboutPage({
       </Section>
 
       {/* ── PRIVACY ── */}
-      <Section spacing="lg">
+      <Section spacing="lg" className="bg-forest">
         <ScrollReveal variant="slide-right">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
             <div className="md:col-span-5">
@@ -453,7 +453,7 @@ export default async function AboutPage({
       />
 
       {/* ── CONTRIBUTE ── */}
-      <Section spacing="lg" className="bg-deep text-cloud">
+      <Section spacing="lg" className="bg-teal text-cloud">
         <ScrollReveal variant="fade-up">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 items-center">
             <div className="md:col-span-7 lg:col-span-6">

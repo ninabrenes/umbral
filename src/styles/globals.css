@@ -83,6 +83,39 @@ body::after {
   will-change: transform;
 }
 
+/* ── SCROLL REVEAL ANIMATIONS ── */
+@keyframes reveal-up {
+  from { opacity: 0.2; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes reveal-in {
+  from { opacity: 0.2; }
+  to { opacity: 1; }
+}
+@keyframes reveal-left {
+  from { opacity: 0.2; transform: translateX(-24px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes reveal-right {
+  from { opacity: 0.2; transform: translateX(24px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes reveal-scale {
+  from { opacity: 0.2; transform: scale(0.97); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.reveal-animated {
+  animation-fill-mode: both;
+  animation-duration: 0.8s;
+  animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+.reveal-up { animation-name: reveal-up; }
+.reveal-in { animation-name: reveal-in; }
+.reveal-left { animation-name: reveal-left; }
+.reveal-right { animation-name: reveal-right; }
+.reveal-scale { animation-name: reveal-scale; }
+
 /* ── REDUCED MOTION ── */
 @media (prefers-reduced-motion: reduce) {
   *,

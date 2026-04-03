@@ -208,7 +208,7 @@ export default async function SafetyPage({
   return (
     <>
       {/* ── HERO ── */}
-      <Section spacing="lg">
+      <Section spacing="lg" className="bg-deep">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pt-24 md:pt-32">
           <div className="md:col-span-8 lg:col-span-7">
             <p className="text-xs tracking-[0.2em] uppercase text-cloud/60 mb-8 font-sans">
@@ -290,7 +290,7 @@ export default async function SafetyPage({
       />
 
       {/* ── CONTRAINDICATIONS ── */}
-      <Section spacing="lg">
+      <Section spacing="lg" className="bg-forest">
         <SectionHeader
           label={t.contraindications.label}
           heading={t.contraindications.heading}
@@ -347,7 +347,7 @@ export default async function SafetyPage({
 
       {/* ── HARM REDUCTION PRINCIPLES ── */}
       <ScrollReveal variant="fade-in">
-        <Section spacing="lg" className="bg-forest">
+        <Section spacing="lg" className="bg-teal">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
             <div className="md:col-span-4">
               <p className="text-xs tracking-[0.2em] uppercase text-cloud/60 mb-4 font-sans">
@@ -389,7 +389,7 @@ export default async function SafetyPage({
       </ScrollReveal>
 
       {/* ── DISCLAIMERS ── */}
-      <Section spacing="lg" className="border-t border-white/[0.06]">
+      <Section spacing="lg" className="bg-deep">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
           <div className="md:col-span-4">
             <Shield size={32} weight="duotone" className="text-cloud/60 mb-5" />

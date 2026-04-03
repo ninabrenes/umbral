@@ -1,20 +1,19 @@
 import { setRequestLocale } from 'next-intl/server'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
-import { Marquee } from '@/components/ui/Marquee'
 import Image from 'next/image'
 import { artImages } from '@/content/framework/images'
 import { nodes } from '@/content/framework/nodes'
 import { NodeIcon } from '@/components/framework/NodeIcon'
 import type { Locale, NodeId } from '@/types'
 
-/* ── Node color map for hover glow borders ── */
-const nodeGlowBorder: Record<NodeId, string> = {
-  ground: 'hover:border-node-ground/40',
-  roots: 'hover:border-node-roots/40',
-  spore: 'hover:border-node-spore/40',
-  weave: 'hover:border-node-weave/40',
-  fruit: 'hover:border-node-fruit/40',
-  canopy: 'hover:border-node-canopy/40',
+/* ── Card background colors for variety ── */
+const nodeCardBg: Record<NodeId, string> = {
+  ground: 'bg-teal/50 hover:bg-teal',
+  roots: 'bg-green/50 hover:bg-green',
+  spore: 'bg-teal/50 hover:bg-teal',
+  weave: 'bg-green/50 hover:bg-green',
+  fruit: 'bg-teal/50 hover:bg-teal',
+  canopy: 'bg-green/50 hover:bg-green',
 }
 
 /* ── Bilingual content (trimmed to essentials) ── */
@@ -59,14 +58,6 @@ const content = {
 
 /* ── Art images for bento grid ── */
 const bentoArt = [artImages.cosmicNebula, artImages.psychedelicSwirls]
-const artStripImages = [
-  artImages.cosmicNebula,
-  artImages.radiantSilhouette,
-  artImages.handsReaching,
-  artImages.floatingFigure,
-  artImages.psychedelicSwirls,
-  artImages.dancingFigures,
-]
 
 export default async function Home({
   params,
@@ -80,7 +71,7 @@ export default async function Home({
   return (
     <>
       {/* ── HERO (full viewport, dark, immersive) ── */}
-      <section className="relative min-h-[100dvh] flex items-center bg-onyx overflow-hidden">
+      <section className="relative min-h-[100dvh] flex items-center bg-deep overflow-hidden">
         {/* Video background */}
         <div className="absolute inset-0">
           <video
@@ -92,7 +83,7 @@ export default async function Home({
           >
             <source src="/images/art/hero-video.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-gradient-to-b from-onyx/60 via-onyx/30 to-deep" />
+          <div className="absolute inset-0 bg-gradient-to-b from-deep/60 via-deep/30 to-deep" />
         </div>
 
         {/* Content */}
@@ -120,13 +111,8 @@ export default async function Home({
         </div>
       </section>
 
-      {/* ── MARQUEE BAND ── */}
-      <Marquee className="py-5 bg-deep text-sage/50" speed={40}>
-        preparation · experience · integration · the network that connects it all
-      </Marquee>
-
       {/* ── FRAMEWORK — BENTO GRID ── */}
-      <section className="bg-deep py-32 md:py-48 px-6 md:px-12 lg:px-20">
+      <section className="bg-forest py-32 md:py-48 px-6 md:px-12 lg:px-20">
         <div className="mx-auto max-w-[1400px]">
           <ScrollReveal>
             <p className="text-[11px] tracking-[0.25em] uppercase text-mint font-sans font-normal mb-16 md:mb-24">
@@ -134,102 +120,155 @@ export default async function Home({
             </p>
           </ScrollReveal>
 
-          {/* Bento grid: asymmetric layout */}
+          {/* Bento grid: varied card types for asymmetry */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
-            {/* Row 1: large art + 2 nodes */}
-            <div className="md:row-span-2 relative aspect-[3/4] rounded-2xl overflow-hidden">
-              <ScrollReveal className="h-full">
+            {/* Image card — cosmic nebula (tall, spans 2 cols + 2 rows) */}
+            <ScrollReveal className="md:col-span-2 md:row-span-2">
+              <div className="relative overflow-hidden rounded-2xl h-full min-h-[320px] md:min-h-[420px]">
                 <Image
                   src={bentoArt[0].src}
                   alt={bentoArt[0].alt[locale as Locale]}
                   fill
                   className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 33vw"
+                  sizes="(max-width: 768px) 100vw, 66vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-deep/60 to-transparent" />
-              </ScrollReveal>
-            </div>
-
-            {nodes.slice(0, 2).map((node, i) => (
-              <ScrollReveal key={node.id} delay={i * 0.08}>
-                <a
-                  href={`/${locale}/framework/${node.id}`}
-                  className={`group flex flex-col justify-between p-6 md:p-8 rounded-2xl backdrop-blur-xl border border-white/[0.08] bg-white/[0.04] transition-all duration-200 aspect-square md:aspect-auto md:h-full ${nodeGlowBorder[node.id]}`}
-                >
-                  <NodeIcon
-                    nodeId={node.id}
-                    size={28}
-                    useNodeColor
-                    weight="duotone"
-                  />
-                  <p className="mt-auto text-lg font-serif text-white">
-                    {node.name[locale as Locale]}
+                <div className="absolute inset-0 bg-gradient-to-t from-onyx/80 via-transparent to-transparent" />
+                <div className="absolute bottom-0 left-0 p-6">
+                  <p className="text-cloud/60 text-xs uppercase tracking-[0.15em] font-sans">
+                    {locale === 'es' ? 'La Red Micelial' : 'The Mycelial Network'}
                   </p>
-                </a>
-              </ScrollReveal>
-            ))}
+                </div>
+              </div>
+            </ScrollReveal>
 
-            {/* Row 2: 2 more nodes (left art carries over via row-span) */}
-            {nodes.slice(2, 4).map((node, i) => (
-              <ScrollReveal key={node.id} delay={(i + 2) * 0.08}>
-                <a
-                  href={`/${locale}/framework/${node.id}`}
-                  className={`group flex flex-col justify-between p-6 md:p-8 rounded-2xl backdrop-blur-xl border border-white/[0.08] bg-white/[0.04] transition-all duration-200 aspect-square md:aspect-auto md:h-full ${nodeGlowBorder[node.id]}`}
-                >
-                  <NodeIcon
-                    nodeId={node.id}
-                    size={28}
-                    useNodeColor
-                    weight="duotone"
-                  />
-                  <p className="mt-auto text-lg font-serif text-white">
-                    {node.name[locale as Locale]}
-                  </p>
-                </a>
-              </ScrollReveal>
-            ))}
+            {/* Node: Ground */}
+            <ScrollReveal delay={0.08}>
+              <a
+                href={`/${locale}/framework/${nodes[0].id}`}
+                className={`group flex flex-col justify-between rounded-2xl p-6 min-h-[180px] h-full transition-colors duration-300 ${nodeCardBg[nodes[0].id]}`}
+              >
+                <NodeIcon nodeId={nodes[0].id} size={28} useNodeColor weight="duotone" />
+                <div>
+                  <h3 className="text-cloud font-serif text-xl">{nodes[0].name[locale as Locale]}</h3>
+                  <p className="text-cloud/40 text-sm mt-1">{nodes[0].tagline[locale as Locale]}</p>
+                </div>
+              </a>
+            </ScrollReveal>
 
-            {/* Row 3: 2 nodes + large art */}
-            {nodes.slice(4, 6).map((node, i) => (
-              <ScrollReveal key={node.id} delay={(i + 4) * 0.08}>
-                <a
-                  href={`/${locale}/framework/${node.id}`}
-                  className={`group flex flex-col justify-between p-6 md:p-8 rounded-2xl backdrop-blur-xl border border-white/[0.08] bg-white/[0.04] transition-all duration-200 aspect-square md:aspect-auto md:h-full ${nodeGlowBorder[node.id]}`}
-                >
-                  <NodeIcon
-                    nodeId={node.id}
-                    size={28}
-                    useNodeColor
-                    weight="duotone"
-                  />
-                  <p className="mt-auto text-lg font-serif text-white">
-                    {node.name[locale as Locale]}
-                  </p>
-                </a>
-              </ScrollReveal>
-            ))}
+            {/* Node: Roots */}
+            <ScrollReveal delay={0.16}>
+              <a
+                href={`/${locale}/framework/${nodes[1].id}`}
+                className={`group flex flex-col justify-between rounded-2xl p-6 min-h-[180px] h-full transition-colors duration-300 ${nodeCardBg[nodes[1].id]}`}
+              >
+                <NodeIcon nodeId={nodes[1].id} size={28} useNodeColor weight="duotone" />
+                <div>
+                  <h3 className="text-cloud font-serif text-xl">{nodes[1].name[locale as Locale]}</h3>
+                  <p className="text-cloud/40 text-sm mt-1">{nodes[1].tagline[locale as Locale]}</p>
+                </div>
+              </a>
+            </ScrollReveal>
 
-            <div className="md:row-span-1 relative aspect-[3/4] md:aspect-auto rounded-2xl overflow-hidden">
-              <ScrollReveal className="h-full">
+            {/* Node: Spore */}
+            <ScrollReveal delay={0.24}>
+              <a
+                href={`/${locale}/framework/${nodes[2].id}`}
+                className={`group flex flex-col justify-between rounded-2xl p-6 min-h-[180px] h-full transition-colors duration-300 ${nodeCardBg[nodes[2].id]}`}
+              >
+                <NodeIcon nodeId={nodes[2].id} size={28} useNodeColor weight="duotone" />
+                <div>
+                  <h3 className="text-cloud font-serif text-xl">{nodes[2].name[locale as Locale]}</h3>
+                  <p className="text-cloud/40 text-sm mt-1">{nodes[2].tagline[locale as Locale]}</p>
+                </div>
+              </a>
+            </ScrollReveal>
+
+            {/* Image card — psychedelic swirls (tall, spans 2 cols + 2 rows) */}
+            <ScrollReveal className="md:col-span-2 md:row-span-2">
+              <div className="relative overflow-hidden rounded-2xl h-full min-h-[320px] md:min-h-[420px]">
                 <Image
                   src={bentoArt[1].src}
                   alt={bentoArt[1].alt[locale as Locale]}
                   fill
                   className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 33vw"
+                  sizes="(max-width: 768px) 100vw, 66vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-deep/60 to-transparent" />
-              </ScrollReveal>
-            </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-onyx/80 via-transparent to-transparent" />
+                <div className="absolute bottom-0 left-0 p-6">
+                  <p className="text-cloud/60 text-xs uppercase tracking-[0.15em] font-sans">
+                    {locale === 'es' ? 'Preparación e Integración' : 'Preparation & Integration'}
+                  </p>
+                </div>
+              </div>
+            </ScrollReveal>
+
+            {/* Node: Weave */}
+            <ScrollReveal delay={0.32}>
+              <a
+                href={`/${locale}/framework/${nodes[3].id}`}
+                className={`group flex flex-col justify-between rounded-2xl p-6 min-h-[180px] h-full transition-colors duration-300 ${nodeCardBg[nodes[3].id]}`}
+              >
+                <NodeIcon nodeId={nodes[3].id} size={28} useNodeColor weight="duotone" />
+                <div>
+                  <h3 className="text-cloud font-serif text-xl">{nodes[3].name[locale as Locale]}</h3>
+                  <p className="text-cloud/40 text-sm mt-1">{nodes[3].tagline[locale as Locale]}</p>
+                </div>
+              </a>
+            </ScrollReveal>
+
+            {/* Node: Fruit */}
+            <ScrollReveal delay={0.40}>
+              <a
+                href={`/${locale}/framework/${nodes[4].id}`}
+                className={`group flex flex-col justify-between rounded-2xl p-6 min-h-[180px] h-full transition-colors duration-300 ${nodeCardBg[nodes[4].id]}`}
+              >
+                <NodeIcon nodeId={nodes[4].id} size={28} useNodeColor weight="duotone" />
+                <div>
+                  <h3 className="text-cloud font-serif text-xl">{nodes[4].name[locale as Locale]}</h3>
+                  <p className="text-cloud/40 text-sm mt-1">{nodes[4].tagline[locale as Locale]}</p>
+                </div>
+              </a>
+            </ScrollReveal>
+
+            {/* Node: Canopy */}
+            <ScrollReveal delay={0.48}>
+              <a
+                href={`/${locale}/framework/${nodes[5].id}`}
+                className={`group flex flex-col justify-between rounded-2xl p-6 min-h-[180px] h-full transition-colors duration-300 ${nodeCardBg[nodes[5].id]}`}
+              >
+                <NodeIcon nodeId={nodes[5].id} size={28} useNodeColor weight="duotone" />
+                <div>
+                  <h3 className="text-cloud font-serif text-xl">{nodes[5].name[locale as Locale]}</h3>
+                  <p className="text-cloud/40 text-sm mt-1">{nodes[5].tagline[locale as Locale]}</p>
+                </div>
+              </a>
+            </ScrollReveal>
+
+            {/* Full-width callout quote */}
+            <ScrollReveal className="md:col-span-3">
+              <div className="bg-deep rounded-2xl px-10 py-12 md:px-16 md:py-16 text-center">
+                <p className="font-serif text-2xl md:text-3xl lg:text-4xl font-light leading-[1.15] tracking-[-0.02em] text-cloud">
+                  {t.philosophy.line}
+                </p>
+              </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
 
-      {/* ── PHILOSOPHY — single callout ── */}
-      <section className="bg-onyx py-32 md:py-48 px-6 md:px-12 lg:px-20">
-        <div className="mx-auto max-w-[900px]">
+      {/* ── PHILOSOPHY — full-bleed art background ── */}
+      <section className="relative min-h-[60vh] flex items-center overflow-hidden">
+        <Image
+          src={artImages.handsReaching.src}
+          alt={artImages.handsReaching.alt[locale as Locale]}
+          fill
+          className="object-cover opacity-30"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-deep/60 to-onyx/80" />
+        <div className="relative z-10 mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 w-full py-32 md:py-48">
           <ScrollReveal>
-            <div className="backdrop-blur-xl border border-white/[0.08] bg-white/[0.04] rounded-3xl px-10 py-16 md:px-16 md:py-24 text-center">
+            <div className="max-w-[900px] mx-auto text-center">
               <p className="font-serif text-3xl md:text-5xl lg:text-6xl font-light leading-[1.1] tracking-[-0.02em] text-white">
                 {t.philosophy.line}
               </p>
@@ -238,28 +277,8 @@ export default async function Home({
         </div>
       </section>
 
-      {/* ── ART STRIP ── */}
-      <section className="bg-deep py-4 md:py-5 px-4 md:px-5">
-        <div className="grid grid-cols-3 md:grid-cols-6 gap-3 md:gap-4">
-          {artStripImages.map((img, i) => (
-            <ScrollReveal key={i} delay={i * 0.05}>
-              <div className="group relative aspect-square rounded-2xl overflow-hidden">
-                <Image
-                  src={img.src}
-                  alt={img.alt[locale as Locale]}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-700"
-                  sizes="(max-width: 768px) 33vw, 16vw"
-                />
-                <div className="absolute inset-0 bg-deep/0 group-hover:bg-deep/20 transition-colors duration-300 rounded-2xl" />
-              </div>
-            </ScrollReveal>
-          ))}
-        </div>
-      </section>
-
-      {/* ── PORTAL CTA — glassmorphic card ── */}
-      <section className="bg-deep py-32 md:py-48 px-6 md:px-12 lg:px-20">
+      {/* ── PORTAL CTA — elevated teal surface ── */}
+      <section className="bg-teal py-32 md:py-48 px-6 md:px-12 lg:px-20">
         <div className="mx-auto max-w-[800px]">
           <ScrollReveal>
             <div className="backdrop-blur-xl border border-white/[0.08] bg-white/[0.04] rounded-3xl px-10 py-16 md:px-16 md:py-20 text-center">
