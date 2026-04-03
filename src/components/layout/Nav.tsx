@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import type { Locale } from '@/types'
+import { MobileMenu } from './MobileMenu'
 
 interface NavProps {
   locale: Locale
@@ -14,7 +15,7 @@ const links = [
 ] as const
 
 export function Nav({ locale }: NavProps) {
-  const otherLocale = locale === 'en' ? 'es' : 'en'
+  const otherLocale: Locale = locale === 'en' ? 'es' : 'en'
   const otherLabel = locale === 'en' ? 'ES' : 'EN'
 
   return (
@@ -42,16 +43,22 @@ export function Nav({ locale }: NavProps) {
         <div className="flex items-center gap-5">
           <Link
             href={`/${otherLocale}`}
-            className="text-xs tracking-[0.15em] uppercase text-ink-muted hover:text-ink transition-colors font-sans"
+            className="hidden md:inline text-xs tracking-[0.15em] uppercase text-ink-muted hover:text-ink transition-colors font-sans"
           >
             {otherLabel}
           </Link>
           <Link
             href={`/${locale}/portal`}
-            className="hidden sm:inline-flex items-center px-5 py-2 text-xs tracking-[0.1em] uppercase bg-forest-deep text-ivory rounded-full hover:bg-forest transition-colors"
+            className="hidden md:inline-flex items-center px-5 py-2 text-xs tracking-[0.1em] uppercase bg-forest-deep text-ivory rounded-full hover:bg-forest transition-colors"
           >
-            {locale === 'en' ? 'Portal' : 'Portal'}
+            Portal
           </Link>
+          <MobileMenu
+            locale={locale}
+            otherLocale={otherLocale}
+            otherLabel={otherLabel}
+            links={links}
+          />
         </div>
       </nav>
     </header>

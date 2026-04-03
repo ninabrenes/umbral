@@ -41,7 +41,7 @@ export default async function LocaleLayout({
       <body className="bg-cream text-ink font-sans font-light antialiased">
         <NextIntlClientProvider messages={messages}>
           <Nav locale={locale as Locale} />
-          <main className="pt-16 pb-16">{children}</main>
+          <main className="pt-16">{children}</main>
           <Footer locale={locale as Locale} />
           <CrisisBar locale={locale as Locale} />
         </NextIntlClientProvider>
