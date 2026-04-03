@@ -1,6 +1,7 @@
 import { setRequestLocale } from 'next-intl/server'
 import { Section } from '@/components/ui/Section'
 import { SectionHeader } from '@/components/ui/SectionHeader'
+import { Callout } from '@/components/ui/Callout'
 import { papers, organizations, books } from '@/content/framework/sources'
 import type { Locale, Source } from '@/types'
 
@@ -215,22 +216,27 @@ export default async function SciencePage({
         <p className="text-xs tracking-[0.2em] uppercase text-ink-muted mb-16 md:mb-24 font-sans">
           {t.findings.label}
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-20 md:gap-y-28">
+        <div className="space-y-24 md:space-y-32">
           {t.findings.items.map((item, i) => (
             <div
               key={i}
-              className={`${
-                i % 2 === 0
-                  ? 'md:col-span-6 lg:col-span-5'
-                  : 'md:col-span-6 md:col-start-7 lg:col-span-5 lg:col-start-8'
-              }`}
+              className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-baseline"
             >
-              <h3 className="font-serif text-3xl md:text-4xl font-light leading-[1.15] tracking-[-0.02em] mb-6">
-                {item.heading}
-              </h3>
-              <p className="text-base text-ink-muted font-sans font-light leading-relaxed">
-                {item.body}
-              </p>
+              <div className="md:col-span-1">
+                <span className="font-sans text-5xl md:text-6xl font-light text-ink/10 tabular-nums leading-none">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+              </div>
+              <div className="md:col-span-7 lg:col-span-6">
+                <h3 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light leading-[1.1] tracking-[-0.02em] italic">
+                  {item.heading}
+                </h3>
+              </div>
+              <div className="md:col-span-4 md:col-start-9 lg:col-span-4 lg:col-start-9">
+                <p className="text-base text-ink-muted font-sans font-light leading-relaxed">
+                  {item.body}
+                </p>
+              </div>
             </div>
           ))}
         </div>
@@ -260,16 +266,14 @@ export default async function SciencePage({
           label={t.orgs.label}
           heading={t.orgs.heading}
         />
-        <div className="grid grid-cols-1 md:grid-cols-12">
-          <div className="md:col-span-9 lg:col-span-8">
-            {organizations.map((org) => (
-              <OrgEntry
-                key={org.id}
-                source={org}
-                description={t.orgs.items[org.id] ?? ''}
-              />
-            ))}
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-4">
+          {organizations.map((org) => (
+            <OrgEntry
+              key={org.id}
+              source={org}
+              description={t.orgs.items[org.id] ?? ''}
+            />
+          ))}
         </div>
       </Section>
 

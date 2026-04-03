@@ -115,9 +115,10 @@ export default async function PortalPage({
             </div>
           </div>
         </div>
-        {/* gradient fade from cream to forest-deep */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-forest-deep" />
       </section>
+
+      {/* gradient fade from cream to forest-deep — gradual like walking into a forest */}
+      <div className="relative h-[240px]" style={{ background: 'linear-gradient(to bottom, var(--color-cream) 0%, var(--color-sage-light) 30%, var(--color-moss) 55%, var(--color-forest) 75%, var(--color-forest-deep) 100%)' }} />
 
       {/* ── HERO: dark portal aesthetic ── */}
       <section className="bg-forest-deep text-ivory min-h-[80dvh] flex items-center">

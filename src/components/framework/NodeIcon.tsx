@@ -1,19 +1,30 @@
 import type { NodeId } from '@/types'
 
+const nodeColorClasses: Record<NodeId, string> = {
+  ground: 'text-node-ground',
+  roots: 'text-node-roots',
+  spore: 'text-node-spore',
+  weave: 'text-node-weave',
+  fruit: 'text-node-fruit',
+  canopy: 'text-node-canopy',
+}
+
 interface NodeIconProps {
   nodeId: NodeId
   size?: number
   className?: string
+  useNodeColor?: boolean
 }
 
-export function NodeIcon({ nodeId, size = 32, className = '' }: NodeIconProps) {
+export function NodeIcon({ nodeId, size = 32, className = '', useNodeColor = false }: NodeIconProps) {
+  const colorClass = useNodeColor ? nodeColorClasses[nodeId] : ''
   const props = {
     width: size,
     height: size,
     viewBox: '0 0 32 32',
     fill: 'none',
     xmlns: 'http://www.w3.org/2000/svg',
-    className,
+    className: `${colorClass} ${className}`.trim(),
   }
 
   switch (nodeId) {

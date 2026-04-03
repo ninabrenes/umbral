@@ -13,7 +13,7 @@ const variants: Record<Variant, string> = {
   secondary:
     'border border-ink/15 text-ink hover:bg-ink/5 transition-colors active:scale-[0.98]',
   ghost:
-    'text-ink-muted hover:text-ink transition-colors',
+    'text-ink/70 hover:text-ink transition-colors border-b border-ink/20 pb-px hover:border-ink/40',
 }
 
 export function Button({

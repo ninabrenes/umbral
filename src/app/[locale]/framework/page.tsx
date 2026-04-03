@@ -1,6 +1,7 @@
 import { setRequestLocale } from 'next-intl/server'
 import { Section } from '@/components/ui/Section'
 import { SectionHeader } from '@/components/ui/SectionHeader'
+import { Callout } from '@/components/ui/Callout'
 import { Button } from '@/components/ui/Button'
 import { NodeCard } from '@/components/framework/NodeCard'
 import { nodes } from '@/content/framework/nodes'
@@ -20,6 +21,9 @@ const content = {
       heading: 'Each node is a concentration of integration work.',
       subtitle:
         'Like trees in a forest, each has its own character, but none exists without the others.',
+    },
+    callout: {
+      quote: 'Nothing in the forest thrives alone.',
     },
     process: {
       label: 'The Process Layer',
@@ -104,6 +108,9 @@ const content = {
       heading: 'Cada nodo es una concentracion de trabajo de integracion.',
       subtitle:
         'Como arboles en un bosque, cada uno tiene su propio caracter, pero ninguno existe sin los otros.',
+    },
+    callout: {
+      quote: 'Nada en el bosque prospera solo.',
     },
     process: {
       label: 'La Capa de Proceso',
@@ -229,6 +236,11 @@ export default async function FrameworkPage({
         </div>
       </Section>
 
+      {/* ── CALLOUT ── */}
+      <section>
+        <Callout quote={t.callout.quote} />
+      </section>
+
       {/* ── PROCESS LAYER ── */}
       <Section spacing="lg">
         <SectionHeader
@@ -236,29 +248,37 @@ export default async function FrameworkPage({
           heading={t.process.heading}
           subtitle={t.process.subtitle}
         />
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 lg:gap-16">
+        <div className="space-y-24 md:space-y-32">
           {t.process.phases.map((phase, i) => (
-            <div key={phase.name}>
-              <div className="mb-8">
-                <span className="text-xs text-ink-muted/50 font-sans tabular-nums">
+            <div
+              key={phase.name}
+              className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-start"
+            >
+              {/* Left: big number + name + question */}
+              <div className="md:col-span-5 lg:col-span-4">
+                <span className="block font-sans text-7xl md:text-8xl lg:text-9xl font-light text-ink/[0.07] leading-none tabular-nums">
                   {String(i + 1).padStart(2, '0')}
                 </span>
-                <h3 className="font-serif text-3xl md:text-4xl font-light tracking-[-0.01em] mt-2">
+                <h3 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light tracking-[-0.02em] leading-[1.1] -mt-4 md:-mt-6">
                   {phase.name}
                 </h3>
-                <p className="text-xs tracking-[0.2em] uppercase text-sage mt-3 font-sans">
+                <p className="text-xs tracking-[0.2em] uppercase text-sage mt-4 font-sans">
                   {phase.polarity}
                 </p>
+                <p className="font-serif text-2xl md:text-3xl italic text-moss mt-8 leading-[1.3]">
+                  &ldquo;{phase.question}&rdquo;
+                </p>
               </div>
-              <p className="text-lg text-ink-muted font-light leading-relaxed mb-6">
-                {phase.description}
-              </p>
-              <p className="text-sm text-ink-muted/60 font-light leading-relaxed mb-8">
-                {phase.practices}
-              </p>
-              <p className="font-serif text-xl italic text-moss">
-                &ldquo;{phase.question}&rdquo;
-              </p>
+
+              {/* Right: description + practices */}
+              <div className="md:col-span-6 md:col-start-7">
+                <p className="text-lg text-ink-muted font-light leading-relaxed mb-8">
+                  {phase.description}
+                </p>
+                <p className="text-sm text-ink-muted/60 font-light leading-relaxed">
+                  {phase.practices}
+                </p>
+              </div>
             </div>
           ))}
         </div>

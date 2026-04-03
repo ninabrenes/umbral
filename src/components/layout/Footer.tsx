@@ -23,6 +23,8 @@ const footerLinks = {
   community: [
     { key: 'github', en: 'GitHub', es: 'GitHub', href: 'https://github.com/ninabrenes/umbral' },
     { key: 'reciprocity', en: 'Indigenous Reciprocity', es: 'Reciprocidad Indígena', href: 'https://chacruna.net/indigenous-reciprocity-initiative/' },
+    { key: 'contribute', en: 'Contribute', es: 'Contribuir', href: 'https://github.com/ninabrenes/umbral/issues' },
+    { key: 'license', en: 'MIT License', es: 'Licencia MIT', href: 'https://github.com/ninabrenes/umbral/blob/main/LICENSE' },
   ],
 } as const
 

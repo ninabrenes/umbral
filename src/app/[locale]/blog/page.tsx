@@ -97,10 +97,9 @@ export default async function BlogIndex({
 
                   <Link
                     href={`/${locale}/blog/${post.slug}`}
-                    className="inline-flex items-center gap-2 text-sm text-moss hover:text-sage transition-colors duration-200 font-sans"
+                    className="inline-flex items-center gap-2 font-serif text-base italic text-moss hover:text-ink transition-colors duration-200 tracking-wide"
                   >
-                    {t.read}
-                    <span aria-hidden="true">&rarr;</span>
+                    {t.read} <span aria-hidden="true" className="not-italic">&rarr;</span>
                   </Link>
                 </article>
               ))}

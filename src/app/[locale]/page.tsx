@@ -3,6 +3,7 @@ import { Section } from '@/components/ui/Section'
 import { SectionHeader } from '@/components/ui/SectionHeader'
 import { Button } from '@/components/ui/Button'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
+import { MyceliumSVG } from '@/components/ui/MyceliumSVG'
 import { NodeCard } from '@/components/framework/NodeCard'
 import { nodes } from '@/content/framework/nodes'
 import type { Locale } from '@/types'
@@ -91,7 +92,7 @@ export default async function Home({
       <section className="min-h-[100dvh] flex items-center">
         <div className="mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 w-full">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center py-32 md:py-40">
-            <div className="md:col-span-8 lg:col-span-7">
+            <div className="md:col-span-7 lg:col-span-6">
               <p className="text-[11px] tracking-[0.2em] uppercase text-ink-muted mb-10 font-sans font-normal">
                 {t.hero.above}
               </p>
@@ -107,6 +108,9 @@ export default async function Home({
                   {t.hero.ctaSecondary}
                 </Button>
               </div>
+            </div>
+            <div className="hidden md:flex md:col-span-5 lg:col-span-6 items-center justify-center">
+              <MyceliumSVG className="w-full max-w-[420px] h-auto opacity-80" />
             </div>
           </div>
         </div>

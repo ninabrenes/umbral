@@ -1,6 +1,7 @@
 import { setRequestLocale } from 'next-intl/server'
 import { Section } from '@/components/ui/Section'
 import { SectionHeader } from '@/components/ui/SectionHeader'
+import { Callout } from '@/components/ui/Callout'
 import { Button } from '@/components/ui/Button'
 import type { Locale } from '@/types'
 
@@ -22,6 +23,9 @@ const content = {
       heading: 'The Mycelial Network',
       body: 'Beneath every forest, an invisible web of mycelium connects the trees. Nutrients flow through it. Signals pass between organisms separated by hundreds of meters. Nothing in the forest thrives alone.',
       body2: 'The Mycelial Network is our framework for understanding integration. Six nodes, each representing a domain of human experience, connected the way mycelium connects a forest. When one node shifts, the others respond. Integration is never isolated. It is always relational.',
+    },
+    callout: {
+      quote: 'Tools for vulnerable experiences must be transparent in their construction.',
     },
     openSource: {
       label: 'Open Source',
@@ -106,6 +110,9 @@ const content = {
       body: 'Debajo de cada bosque, una red invisible de micelio conecta los árboles. Los nutrientes fluyen a través de ella. Las señales pasan entre organismos separados por cientos de metros. Nada en el bosque prospera solo.',
       body2: 'La Red Micelial es nuestro marco para entender la integración. Seis nodos, cada uno representando un dominio de la experiencia humana, conectados como el micelio conecta un bosque. Cuando un nodo cambia, los otros responden. La integración nunca es aislada. Siempre es relacional.',
     },
+    callout: {
+      quote: 'Las herramientas para experiencias vulnerables deben ser transparentes en su construccion.',
+    },
     openSource: {
       label: 'Código Abierto',
       heading: 'Transparencia como confianza.',
@@ -186,7 +193,7 @@ export default async function AboutPage({
     <>
       {/* ── HERO ── */}
       <Section spacing="none" className="min-h-[80dvh] flex items-center">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center py-32 md:py-40">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-start py-32 md:py-40">
           <div className="md:col-span-7 lg:col-span-6">
             <p className="text-xs tracking-[0.2em] uppercase text-ink-muted mb-8 font-sans">
               {t.hero.label}
@@ -194,11 +201,11 @@ export default async function AboutPage({
             <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl font-light leading-[1.05] tracking-[-0.03em]">
               {t.hero.heading}
             </h1>
-            <p className="mt-8 text-lg md:text-xl text-ink-muted font-light leading-relaxed max-w-[50ch]">
+            <p className="mt-10 md:mt-14 text-lg md:text-xl text-ink-muted font-light leading-relaxed max-w-[50ch]">
               {t.hero.body}
             </p>
           </div>
-          <div className="md:col-span-4 md:col-start-9">
+          <div className="md:col-span-4 md:col-start-9 md:pt-16">
             <div className="border-l border-ink/10 pl-8">
               <ul className="space-y-3">
                 {t.hero.not.map((line) => (
@@ -239,6 +246,11 @@ export default async function AboutPage({
           </div>
         </div>
       </Section>
+
+      {/* ── CALLOUT ── */}
+      <section className="bg-cream">
+        <Callout quote={t.callout.quote} />
+      </section>
 
       {/* ── OPEN SOURCE ── */}
       <Section spacing="lg">
@@ -359,31 +371,37 @@ export default async function AboutPage({
       </Section>
 
       {/* ── CONTRIBUTE ── */}
-      <Section spacing="lg" className="bg-sand">
-        <div className="max-w-2xl">
-          <SectionHeader
-            label={t.contribute.label}
-            heading={t.contribute.heading}
-          />
-          <p className="text-lg text-ink-muted font-light leading-relaxed mb-10 max-w-[55ch]">
-            {t.contribute.body}
-          </p>
-          <div className="flex flex-col sm:flex-row items-start gap-6">
-            <Button
-              variant="primary"
-              href="https://github.com/ninabrenes/umbral"
-            >
-              {t.contribute.github}
-            </Button>
-            <p className="text-sm text-ink-muted font-light self-center">
-              {t.contribute.contact}{' '}
-              <a
-                href="mailto:hello@umbral.earth"
-                className="text-ink underline underline-offset-4 decoration-ink/20 hover:decoration-ink/50 transition-colors duration-200"
-              >
-                {t.contribute.email}
-              </a>
+      <Section spacing="lg" className="bg-forest-deep text-ivory">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 items-center">
+          <div className="md:col-span-7 lg:col-span-6">
+            <p className="text-xs tracking-[0.2em] uppercase text-gold/80 mb-4 font-sans">
+              {t.contribute.label}
             </p>
+            <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light leading-[1.05] tracking-[-0.03em] text-ivory">
+              {t.contribute.heading}
+            </h2>
+            <p className="mt-8 text-lg text-ivory/60 font-light leading-relaxed max-w-[50ch]">
+              {t.contribute.body}
+            </p>
+          </div>
+          <div className="md:col-span-4 md:col-start-9">
+            <div className="flex flex-col gap-6">
+              <Button
+                variant="primary"
+                href="https://github.com/ninabrenes/umbral"
+              >
+                {t.contribute.github}
+              </Button>
+              <p className="text-sm text-ivory/40 font-light">
+                {t.contribute.contact}{' '}
+                <a
+                  href="mailto:hello@umbral.earth"
+                  className="text-gold underline underline-offset-4 decoration-gold/30 hover:decoration-gold/60 transition-colors duration-200"
+                >
+                  {t.contribute.email}
+                </a>
+              </p>
+            </div>
           </div>
         </div>
       </Section>
