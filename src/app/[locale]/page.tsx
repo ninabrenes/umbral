@@ -14,6 +14,7 @@ const content = {
       title: 'preparation.\nexperience.\nintegration.',
       subtitle: 'the network that connects it all.',
       cta: 'Explore the Framework',
+      ctaSecondary: 'See the science',
     },
     framework: {
       label: 'The Mycelial Network',
@@ -46,6 +47,7 @@ const content = {
       title: 'preparación.\nexperiencia.\nintegración.',
       subtitle: 'la red que lo conecta todo.',
       cta: 'Explorar el Marco',
+      ctaSecondary: 'Ver la ciencia',
     },
     framework: {
       label: 'La Red Micelial',
@@ -86,28 +88,32 @@ export default async function Home({
   return (
     <>
       {/* ── HERO ── */}
-      <Section spacing="none" className="min-h-[100dvh] flex items-center">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center min-h-[100dvh] py-32">
-          <div className="md:col-span-7 lg:col-span-6">
-            <p className="text-xs tracking-[0.2em] uppercase text-ink-muted mb-8 font-sans">
-              {t.hero.above}
-            </p>
-            <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light leading-[1.05] tracking-[-0.03em] whitespace-pre-line">
-              {t.hero.title}
-            </h1>
-            <p className="mt-8 text-xl md:text-2xl text-ink-muted font-light">
-              {t.hero.subtitle}
-            </p>
-            <div className="mt-12">
-              <Button href={`/${locale}/framework`}>{t.hero.cta}</Button>
+      <section className="min-h-[100dvh] flex items-center">
+        <div className="mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 w-full">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center py-32 md:py-40">
+            <div className="md:col-span-8 lg:col-span-7">
+              <p className="text-[11px] tracking-[0.2em] uppercase text-ink-muted mb-10 font-sans font-normal">
+                {t.hero.above}
+              </p>
+              <h1 className="font-serif text-[clamp(3rem,8vw,7rem)] font-light leading-[1.02] tracking-[-0.03em] whitespace-pre-line">
+                {t.hero.title}
+              </h1>
+              <p className="mt-8 text-xl md:text-2xl text-ink-muted font-light max-w-[28ch]">
+                {t.hero.subtitle}
+              </p>
+              <div className="mt-14 flex items-center gap-6">
+                <Button href={`/${locale}/framework`}>{t.hero.cta}</Button>
+                <Button href={`/${locale}/science`} variant="ghost">
+                  {t.hero.ctaSecondary}
+                </Button>
+              </div>
             </div>
           </div>
-          <div className="hidden md:block md:col-span-5 lg:col-span-6" />
         </div>
-      </Section>
+      </section>
 
       {/* ── FRAMEWORK PREVIEW ── */}
-      <Section spacing="lg">
+      <Section spacing="lg" className="border-t border-ink/[0.06]">
         <ScrollReveal>
           <SectionHeader
             label={t.framework.label}
@@ -115,9 +121,9 @@ export default async function Home({
             subtitle={t.framework.subtitle}
           />
         </ScrollReveal>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-20">
           {nodes.map((node, i) => (
-            <ScrollReveal key={node.id} delay={i * 0.08}>
+            <ScrollReveal key={node.id} delay={i * 0.06}>
               <NodeCard
                 node={node}
                 locale={locale as Locale}
@@ -129,11 +135,11 @@ export default async function Home({
       </Section>
 
       {/* ── PHILOSOPHY ── */}
-      <Section spacing="lg" className="bg-sand">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
+      <Section spacing="lg" className="bg-sand border-t border-ink/[0.04]">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-8">
           <div className="md:col-span-5">
             <ScrollReveal>
-              <p className="text-xs tracking-[0.2em] uppercase text-ink-muted mb-4 font-sans">
+              <p className="text-[11px] tracking-[0.2em] uppercase text-ink-muted mb-5 font-sans font-normal">
                 {t.philosophy.label}
               </p>
               <h2 className="font-serif text-4xl md:text-5xl font-light leading-[1.1] tracking-[-0.02em]">
@@ -143,17 +149,17 @@ export default async function Home({
           </div>
           <div className="md:col-span-6 md:col-start-7">
             <ScrollReveal delay={0.1}>
-              <p className="text-lg text-ink-muted font-light leading-relaxed mb-10">
+              <p className="text-lg text-ink-muted font-light leading-[1.75] mb-12">
                 {t.philosophy.body}
               </p>
-              <ul className="space-y-4">
+              <ul className="space-y-5">
                 {t.philosophy.points.map((point) => (
                   <li
                     key={point}
-                    className="flex items-start gap-3 text-ink/80 font-light"
+                    className="flex items-start gap-4 text-ink/75 font-light"
                   >
-                    <span className="shrink-0 mt-2 w-1 h-1 rounded-full bg-moss" />
-                    <span className="leading-relaxed">{point}</span>
+                    <span className="shrink-0 mt-[0.65em] w-1 h-1 rounded-full bg-moss" />
+                    <span className="leading-[1.7]">{point}</span>
                   </li>
                 ))}
               </ul>
@@ -163,7 +169,7 @@ export default async function Home({
       </Section>
 
       {/* ── PORTAL CTA ── */}
-      <Section spacing="lg">
+      <Section spacing="lg" className="border-t border-ink/[0.06]">
         <ScrollReveal>
           <div className="max-w-2xl">
             <SectionHeader

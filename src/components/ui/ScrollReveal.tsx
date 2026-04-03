@@ -1,10 +1,6 @@
 'use client'
 
 import { useRef, useEffect } from 'react'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-gsap.registerPlugin(ScrollTrigger)
 
 interface ScrollRevealProps {
   children: React.ReactNode
@@ -17,30 +13,26 @@ export function ScrollReveal({ children, className, delay = 0 }: ScrollRevealPro
 
   useEffect(() => {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (prefersReduced || !ref.current) return
+    const el = ref.current
+    if (prefersReduced || !el) return
 
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        ref.current,
-        { opacity: 0, y: 60 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: 'power2.out',
-          delay,
-          scrollTrigger: {
-            trigger: ref.current,
-            start: 'top 85%',
-            once: true,
-          },
+    el.style.opacity = '0'
+    el.style.transform = 'translateY(30px)'
+    el.style.transition = `opacity 0.9s cubic-bezier(0.25, 0.1, 0.25, 1) ${delay}s, transform 0.9s cubic-bezier(0.25, 0.1, 0.25, 1) ${delay}s`
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.style.opacity = '1'
+          el.style.transform = 'none'
+          observer.disconnect()
         }
-      )
-    }, ref)
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -10% 0px' }
+    )
 
-    return () => {
-      ctx.revert()
-    }
+    observer.observe(el)
+    return () => observer.disconnect()
   }, [delay])
 
   return (

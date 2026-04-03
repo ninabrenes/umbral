@@ -38,7 +38,7 @@ export function Footer({ locale }: FooterProps) {
       : 'Open source under MIT license'
 
   return (
-    <footer className="bg-forest-deep text-ivory/70 pb-24">
+    <footer className="bg-forest-deep text-ivory/70 pb-16">
       <div className="mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 pt-24 pb-12">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
           {/* Brand */}
