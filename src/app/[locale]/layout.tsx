@@ -4,6 +4,10 @@ import { getMessages, setRequestLocale } from 'next-intl/server'
 import { notFound } from 'next/navigation'
 import { routing } from '@/i18n/routing'
 import { serif, sans } from '@/lib/fonts'
+import { Nav } from '@/components/layout/Nav'
+import { Footer } from '@/components/layout/Footer'
+import { CrisisBar } from '@/components/ui/CrisisBar'
+import type { Locale } from '@/types'
 import '@/styles/globals.css'
 
 export const metadata: Metadata = {
@@ -34,9 +38,12 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} className={`${serif.variable} ${sans.variable}`}>
-      <body className="bg-cream text-ink font-sans font-light antialiased min-h-screen">
+      <body className="bg-cream text-ink font-sans font-light antialiased">
         <NextIntlClientProvider messages={messages}>
-          {children}
+          <Nav locale={locale as Locale} />
+          <main className="pt-16 pb-16">{children}</main>
+          <Footer locale={locale as Locale} />
+          <CrisisBar locale={locale as Locale} />
         </NextIntlClientProvider>
       </body>
     </html>

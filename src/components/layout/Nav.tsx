@@ -1,0 +1,59 @@
+import Link from 'next/link'
+import type { Locale } from '@/types'
+
+interface NavProps {
+  locale: Locale
+}
+
+const links = [
+  { key: 'framework', en: 'The Framework', es: 'El Marco', href: '/framework' },
+  { key: 'science', en: 'Science', es: 'Ciencia', href: '/science' },
+  { key: 'safety', en: 'Safety', es: 'Seguridad', href: '/safety' },
+  { key: 'blog', en: 'Blog', es: 'Blog', href: '/blog' },
+  { key: 'about', en: 'About', es: 'Acerca de', href: '/about' },
+] as const
+
+export function Nav({ locale }: NavProps) {
+  const otherLocale = locale === 'en' ? 'es' : 'en'
+  const otherLabel = locale === 'en' ? 'ES' : 'EN'
+
+  return (
+    <header className="fixed top-0 left-0 right-0 z-50 bg-cream/80 backdrop-blur-md border-b border-ink/[0.06]">
+      <nav className="mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 h-16 flex items-center justify-between">
+        <Link
+          href={`/${locale}`}
+          className="font-serif text-xl font-light tracking-[-0.01em] text-ink"
+        >
+          umbral
+        </Link>
+
+        <div className="hidden md:flex items-center gap-8">
+          {links.map((link) => (
+            <Link
+              key={link.key}
+              href={`/${locale}${link.href}`}
+              className="text-sm text-ink-muted hover:text-ink transition-colors font-sans font-light"
+            >
+              {link[locale]}
+            </Link>
+          ))}
+        </div>
+
+        <div className="flex items-center gap-5">
+          <Link
+            href={`/${otherLocale}`}
+            className="text-xs tracking-[0.15em] uppercase text-ink-muted hover:text-ink transition-colors font-sans"
+          >
+            {otherLabel}
+          </Link>
+          <Link
+            href={`/${locale}/portal`}
+            className="hidden sm:inline-flex items-center px-5 py-2 text-xs tracking-[0.1em] uppercase bg-forest-deep text-ivory rounded-full hover:bg-forest transition-colors"
+          >
+            {locale === 'en' ? 'Portal' : 'Portal'}
+          </Link>
+        </div>
+      </nav>
+    </header>
+  )
+}
