@@ -2,13 +2,29 @@
 
 import { useRef, useEffect } from 'react'
 
+type RevealVariant = 'fade-up' | 'fade-in' | 'slide-left' | 'slide-right' | 'scale'
+
 interface ScrollRevealProps {
   children: React.ReactNode
   className?: string
   delay?: number
+  variant?: RevealVariant
 }
 
-export function ScrollReveal({ children, className, delay = 0 }: ScrollRevealProps) {
+const INITIAL_STYLES: Record<RevealVariant, { opacity: string; transform: string }> = {
+  'fade-up': { opacity: '0', transform: 'translateY(30px)' },
+  'fade-in': { opacity: '0', transform: 'none' },
+  'slide-left': { opacity: '0', transform: 'translateX(-40px)' },
+  'slide-right': { opacity: '0', transform: 'translateX(40px)' },
+  'scale': { opacity: '0', transform: 'scale(0.95)' },
+}
+
+export function ScrollReveal({
+  children,
+  className,
+  delay = 0,
+  variant = 'fade-up',
+}: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -16,8 +32,9 @@ export function ScrollReveal({ children, className, delay = 0 }: ScrollRevealPro
     const el = ref.current
     if (prefersReduced || !el) return
 
-    el.style.opacity = '0'
-    el.style.transform = 'translateY(30px)'
+    const initial = INITIAL_STYLES[variant]
+    el.style.opacity = initial.opacity
+    el.style.transform = initial.transform
     el.style.transition = `opacity 0.9s cubic-bezier(0.25, 0.1, 0.25, 1) ${delay}s, transform 0.9s cubic-bezier(0.25, 0.1, 0.25, 1) ${delay}s`
 
     const observer = new IntersectionObserver(
@@ -33,7 +50,7 @@ export function ScrollReveal({ children, className, delay = 0 }: ScrollRevealPro
 
     observer.observe(el)
     return () => observer.disconnect()
-  }, [delay])
+  }, [delay, variant])
 
   return (
     <div ref={ref} className={className}>

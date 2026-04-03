@@ -27,3 +27,20 @@ export const PAGE_TRANSITION = {
   exit: { opacity: 0 },
   transition: { duration: 0.5, ease: 'easeInOut' },
 } as const
+
+export const PARALLAX = {
+  speed: 0.15,
+  scale: 1.15,
+} as const
+
+export const STAGGER = {
+  fast: 0.04,
+  normal: 0.08,
+  slow: 0.12,
+} as const
+
+export const DURATION = {
+  fast: 0.5,
+  normal: 0.8,
+  slow: 1.2,
+} as const
