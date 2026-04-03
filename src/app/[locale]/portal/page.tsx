@@ -1,5 +1,7 @@
 import { setRequestLocale } from 'next-intl/server'
+import Image from 'next/image'
 import { Button } from '@/components/ui/Button'
+import { pageImages } from '@/content/framework/images'
 import type { Locale } from '@/types'
 
 const content = {
@@ -121,8 +123,17 @@ export default async function PortalPage({
       <div className="relative h-[240px]" style={{ background: 'linear-gradient(to bottom, var(--color-cream) 0%, var(--color-sage-light) 30%, var(--color-moss) 55%, var(--color-forest) 75%, var(--color-forest-deep) 100%)' }} />
 
       {/* ── HERO: dark portal aesthetic ── */}
-      <section className="bg-forest-deep text-ivory min-h-[80dvh] flex items-center">
-        <div className="mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 py-32 md:py-40 w-full">
+      <section className="relative bg-forest-deep text-ivory min-h-[80dvh] flex items-center overflow-hidden">
+        <div className="absolute inset-0">
+          <Image
+            src={pageImages.portal.src}
+            alt=""
+            fill
+            className="object-cover opacity-20"
+            sizes="100vw"
+          />
+        </div>
+        <div className="relative z-10 mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 py-32 md:py-40 w-full">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
             <div className="md:col-span-8 lg:col-span-7">
               <p className="text-xs tracking-[0.2em] uppercase text-ivory/40 mb-8 font-sans">

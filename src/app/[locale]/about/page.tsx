@@ -1,8 +1,10 @@
 import { setRequestLocale } from 'next-intl/server'
+import Image from 'next/image'
 import { Section } from '@/components/ui/Section'
 import { SectionHeader } from '@/components/ui/SectionHeader'
 import { Callout } from '@/components/ui/Callout'
 import { Button } from '@/components/ui/Button'
+import { pageImages } from '@/content/framework/images'
 import type { Locale } from '@/types'
 
 const content = {
@@ -227,6 +229,16 @@ export default async function AboutPage({
 
       {/* ── MYCELIAL NETWORK ── */}
       <Section spacing="lg" className="bg-sand">
+        <div className="relative aspect-[16/9] md:aspect-[21/9] overflow-hidden rounded-[var(--radius-card)] mb-16">
+          <Image
+            src={pageImages.about.src}
+            alt={pageImages.about.alt[locale as Locale]}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 80vw"
+          />
+          <div className="absolute inset-0 bg-sand/20" />
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
           <div className="md:col-span-5">
             <p className="text-xs tracking-[0.2em] uppercase text-ink-muted mb-4 font-sans">

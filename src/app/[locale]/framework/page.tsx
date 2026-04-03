@@ -1,10 +1,12 @@
 import { setRequestLocale } from 'next-intl/server'
+import Image from 'next/image'
 import { Section } from '@/components/ui/Section'
 import { SectionHeader } from '@/components/ui/SectionHeader'
 import { Callout } from '@/components/ui/Callout'
 import { Button } from '@/components/ui/Button'
 import { NodeCard } from '@/components/framework/NodeCard'
 import { nodes } from '@/content/framework/nodes'
+import { pageImages } from '@/content/framework/images'
 import type { Locale } from '@/types'
 
 const content = {
@@ -216,6 +218,18 @@ export default async function FrameworkPage({
           </div>
         </div>
       </Section>
+
+      {/* ── FRAMEWORK IMAGE ── */}
+      <div className="relative w-full h-[280px] md:h-[400px] overflow-hidden">
+        <Image
+          src={pageImages.framework.src}
+          alt={pageImages.framework.alt[locale as Locale]}
+          fill
+          className="object-cover"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-cream/30" />
+      </div>
 
       {/* ── SIX NODES ── */}
       <Section spacing="lg" className="bg-sand">

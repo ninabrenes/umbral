@@ -3,9 +3,10 @@ import { Section } from '@/components/ui/Section'
 import { SectionHeader } from '@/components/ui/SectionHeader'
 import { Button } from '@/components/ui/Button'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
-import { MyceliumSVG } from '@/components/ui/MyceliumSVG'
+import Image from 'next/image'
 import { NodeCard } from '@/components/framework/NodeCard'
 import { nodes } from '@/content/framework/nodes'
+import { pageImages } from '@/content/framework/images'
 import type { Locale } from '@/types'
 
 const content = {
@@ -109,8 +110,18 @@ export default async function Home({
                 </Button>
               </div>
             </div>
-            <div className="hidden md:flex md:col-span-5 lg:col-span-6 items-center justify-center">
-              <MyceliumSVG className="w-full max-w-[420px] h-auto opacity-80" />
+            <div className="hidden md:block md:col-span-5 lg:col-span-6 relative">
+              <div className="relative aspect-[3/4] lg:aspect-[4/5] overflow-hidden rounded-[var(--radius-card)]">
+                <Image
+                  src={pageImages.hero.src}
+                  alt={pageImages.hero.alt[locale as Locale]}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 0vw, 44vw"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-cream/40 to-transparent" />
+              </div>
             </div>
           </div>
         </div>

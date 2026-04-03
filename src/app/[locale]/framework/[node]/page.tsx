@@ -1,11 +1,13 @@
 import { notFound } from 'next/navigation'
 import { setRequestLocale } from 'next-intl/server'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Section } from '@/components/ui/Section'
 import { Button } from '@/components/ui/Button'
 import { NodeIcon } from '@/components/framework/NodeIcon'
 import { nodes } from '@/content/framework/nodes'
 import { nodePrompts } from '@/content/framework/prompts'
+import { nodeImages } from '@/content/framework/images'
 import type { Locale, NodeId } from '@/types'
 
 const validNodeIds: NodeId[] = ['ground', 'roots', 'spore', 'weave', 'fruit', 'canopy']
@@ -69,6 +71,7 @@ export default async function NodePage({
   const node = nodes.find((n) => n.id === nodeId)
   if (!node) notFound()
 
+  const image = nodeImages[nodeId]
   const prompts = nodePrompts[nodeId]
   const quotes = prompts.quotes[loc]
   const journalPrompts = prompts.prompts[loc]
@@ -140,6 +143,18 @@ export default async function NodePage({
           </div>
         </div>
       </Section>
+
+      {/* ── NODE IMAGE ── */}
+      <div className="relative w-full h-[240px] md:h-[360px] overflow-hidden">
+        <Image
+          src={image.src}
+          alt={image.alt[locale as Locale]}
+          fill
+          className="object-cover"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-cream/20" />
+      </div>
 
       {/* ── DESCRIPTION ── */}
       <Section spacing="default" className="bg-sand">
