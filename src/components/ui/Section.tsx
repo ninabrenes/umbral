@@ -6,8 +6,8 @@ interface SectionProps extends ComponentProps<'section'> {
 }
 
 const spacingMap = {
-  default: 'py-24 md:py-32',
-  lg: 'py-32 md:py-40',
+  default: 'py-16 md:py-24',
+  lg: 'py-20 md:py-28',
   none: '',
 }
 
