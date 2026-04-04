@@ -250,10 +250,12 @@ export default async function FrameworkPage({
         </ScrollReveal>
 
         {/* Network diagram — visual centerpiece */}
-        <div className="py-16 md:py-24">
-          <ScrollReveal variant="scale" className="flex justify-center w-full">
-            <NetworkDiagram locale={locale as Locale} />
-          </ScrollReveal>
+        <div className="py-8 md:py-12">
+          <div className="bg-forest rounded-2xl p-8 md:p-12">
+            <ScrollReveal variant="scale" className="flex justify-center w-full">
+              <NetworkDiagram locale={locale as Locale} />
+            </ScrollReveal>
+          </div>
         </div>
 
         {/* Horizontal scroll carousel */}

@@ -84,7 +84,7 @@ export function ResearchCard({
       <div
         className={`
           h-full flex flex-col justify-between p-4 pl-5
-          ${isBook ? 'bg-teal/40' : 'bg-deep'}
+          ${isBook ? 'bg-teal/30' : 'bg-teal/20'}
           border border-white/[0.06] border-l-0 rounded-t-lg
         `}
       >

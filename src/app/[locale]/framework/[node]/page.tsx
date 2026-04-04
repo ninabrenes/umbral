@@ -9,6 +9,7 @@ import { ParallaxImage } from '@/components/ui/ParallaxImage'
 import { nodes } from '@/content/framework/nodes'
 import { nodePrompts } from '@/content/framework/prompts'
 import { nodeImages } from '@/content/framework/images'
+import { nodeDetails } from '@/content/framework/nodes-expanded'
 import type { Locale, NodeId } from '@/types'
 
 const validNodeIds: NodeId[] = ['ground', 'roots', 'spore', 'weave', 'fruit', 'canopy']
@@ -23,6 +24,11 @@ const pageContent = {
     polarityLabel: 'Polarity',
     chakraLabel: 'Chakra layer',
     nextLabel: 'Next node',
+    whyLabel: 'Why this matters',
+    practicesLabel: 'Practices',
+    connectionsLabel: 'Connections',
+    warningLabel: 'Warning signs of neglect',
+    connectedTo: 'Connected to',
     polarity: {
       masculine: 'Masculine \u2014 discipline, structure, daily practice',
       feminine: 'Feminine \u2014 witness, receive, feel',
@@ -38,6 +44,11 @@ const pageContent = {
     polarityLabel: 'Polaridad',
     chakraLabel: 'Capa de chakra',
     nextLabel: 'Siguiente nodo',
+    whyLabel: 'Por que importa',
+    practicesLabel: 'Practicas',
+    connectionsLabel: 'Conexiones',
+    warningLabel: 'Senales de alerta por descuido',
+    connectedTo: 'Conectado con',
     polarity: {
       masculine: 'Masculino \u2014 disciplina, estructura, practica diaria',
       feminine: 'Femenino \u2014 observar, recibir, sentir',
@@ -76,6 +87,7 @@ export default async function NodePage({
   const prompts = nodePrompts[nodeId]
   const quotes = prompts.quotes[loc]
   const journalPrompts = prompts.prompts[loc]
+  const detail = nodeDetails[nodeId]
 
   // find next node for navigation
   const currentIndex = validNodeIds.indexOf(nodeId)
@@ -175,6 +187,86 @@ export default async function NodePage({
         </ScrollReveal>
       </Section>
 
+      {/* ── WHY THIS MATTERS ── */}
+      <Section spacing="default" className="bg-deep">
+        <ScrollReveal variant="fade-up">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
+            <div className="md:col-span-4">
+              <p className="text-xs tracking-[0.2em] uppercase text-cloud/60 mb-4 font-sans">
+                {t.whyLabel}
+              </p>
+            </div>
+            <div className="md:col-span-7 md:col-start-6">
+              <p className="text-lg text-cloud font-light leading-relaxed">
+                {detail.whyItMatters[loc]}
+              </p>
+            </div>
+          </div>
+        </ScrollReveal>
+      </Section>
+
+      {/* ── PRACTICES ── */}
+      <Section spacing="default" className="bg-forest">
+        <ScrollReveal variant="fade-up">
+          <p className="text-xs tracking-[0.2em] uppercase text-cloud/60 mb-12 font-sans">
+            {t.practicesLabel}
+          </p>
+        </ScrollReveal>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {detail.practices.slice(0, 5).map((practice, i) => (
+            <ScrollReveal key={practice.name[loc]} variant="fade-up" delay={i * 0.06}>
+              <div className="bg-teal/30 rounded-xl p-6 md:p-8 h-full">
+                <h3 className="font-serif text-xl font-light tracking-[-0.01em] text-white mb-3">
+                  {practice.name[loc]}
+                </h3>
+                <p className="text-sm text-cloud/60 font-light leading-relaxed">
+                  {practice.description[loc]}
+                </p>
+                {practice.source && (
+                  <p className="mt-3 text-xs text-cloud/30 font-sans">
+                    {practice.source}
+                  </p>
+                )}
+              </div>
+            </ScrollReveal>
+          ))}
+        </div>
+      </Section>
+
+      {/* ── CONNECTIONS ── */}
+      <Section spacing="default" className="bg-teal">
+        <ScrollReveal variant="fade-up">
+          <p className="text-xs tracking-[0.2em] uppercase text-cloud/60 mb-12 font-sans">
+            {t.connectionsLabel}
+          </p>
+        </ScrollReveal>
+        <div className="space-y-6">
+          {detail.connections.map((conn, i) => {
+            const connectedNode = nodes.find((n) => n.id === conn.toNode)
+            return (
+              <ScrollReveal key={conn.toNode} variant="fade-up" delay={i * 0.06}>
+                <div className="bg-forest/60 rounded-xl p-6 md:p-8">
+                  <div className="flex items-center gap-3 mb-3">
+                    <p className="text-xs tracking-[0.15em] uppercase text-sage font-sans">
+                      {t.connectedTo}
+                    </p>
+                    <Link
+                      href={`/${locale}/framework/${conn.toNode}`}
+                      className="font-serif text-lg font-light text-white hover:text-sage transition-colors"
+                    >
+                      {connectedNode?.name[loc] ?? conn.toNode}
+                    </Link>
+                  </div>
+                  <p className="text-sm text-cloud/60 font-light leading-relaxed max-w-[65ch]">
+                    {conn.description[loc]}
+                  </p>
+                </div>
+              </ScrollReveal>
+            )
+          })}
+        </div>
+      </Section>
+
       {/* ── QUOTE ── */}
       <Section spacing="lg" className="bg-forest">
         <ScrollReveal variant="scale">
@@ -230,6 +322,32 @@ export default async function NodePage({
             </ol>
           </div>
         </div>
+      </Section>
+
+      {/* ── WARNING SIGNS ── */}
+      <Section spacing="default" className="bg-deep">
+        <ScrollReveal variant="fade-up">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
+            <div className="md:col-span-4">
+              <p className="text-xs tracking-[0.2em] uppercase text-cloud/40 mb-4 font-sans">
+                {t.warningLabel}
+              </p>
+            </div>
+            <div className="md:col-span-7 md:col-start-6">
+              <ul className="space-y-3">
+                {detail.warningSignsOfNeglect[loc].map((sign, i) => (
+                  <li
+                    key={i}
+                    className="flex items-start gap-3 text-sm text-cloud/50 font-light leading-relaxed"
+                  >
+                    <span className="shrink-0 text-cloud/20 mt-0.5">&mdash;</span>
+                    {sign}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </ScrollReveal>
       </Section>
 
       {/* ── NEXT NODE NAV ── */}
