@@ -215,14 +215,14 @@ export default async function FrameworkPage({
               </h1>
             </ScrollReveal>
             <ScrollReveal variant="fade-up" delay={0.25}>
-              <p className="mt-8 text-xl md:text-2xl text-cloud/60 font-light leading-relaxed max-w-[50ch]">
+              <p className="mt-8 text-xl md:text-2xl text-cloud font-light leading-relaxed max-w-[50ch]">
                 {t.hero.subtitle}
               </p>
             </ScrollReveal>
           </div>
           <div className="md:col-span-5 lg:col-span-5 lg:col-start-8">
             <ScrollReveal variant="fade-up" delay={0.35}>
-              <p className="text-lg text-cloud/60 font-light leading-relaxed">
+              <p className="text-lg text-cloud font-light leading-relaxed">
                 {t.hero.body}
               </p>
             </ScrollReveal>
@@ -249,10 +249,12 @@ export default async function FrameworkPage({
           />
         </ScrollReveal>
 
-        {/* Network diagram above node cards */}
-        <ScrollReveal variant="scale" className="flex justify-center mb-16 md:mb-24">
-          <NetworkDiagram locale={locale as Locale} />
-        </ScrollReveal>
+        {/* Network diagram — visual centerpiece */}
+        <div className="py-16 md:py-24">
+          <ScrollReveal variant="scale" className="flex justify-center w-full">
+            <NetworkDiagram locale={locale as Locale} />
+          </ScrollReveal>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {nodes.map((node, i) => (
@@ -289,10 +291,12 @@ export default async function FrameworkPage({
           />
         </ScrollReveal>
 
-        {/* Process diagram */}
-        <ScrollReveal variant="fade-in" className="flex justify-center mb-16 md:mb-24">
-          <ProcessDiagram locale={locale as Locale} />
-        </ScrollReveal>
+        {/* Process diagram — visual centerpiece */}
+        <div className="py-16 md:py-24">
+          <ScrollReveal variant="scale" className="flex justify-center w-full">
+            <ProcessDiagram locale={locale as Locale} />
+          </ScrollReveal>
+        </div>
 
         <div className="space-y-24 md:space-y-32">
           {t.process.phases.map((phase, i) => (
@@ -316,10 +320,10 @@ export default async function FrameworkPage({
 
                 {/* Right: description + practices */}
                 <div className="md:col-span-6 md:col-start-7">
-                  <p className="text-lg text-cloud/60 font-light leading-relaxed mb-8">
+                  <p className="text-lg text-cloud font-light leading-relaxed mb-8">
                     {phase.description}
                   </p>
-                  <p className="text-sm text-cloud/40 font-light leading-relaxed">
+                  <p className="text-sm text-cloud/60 font-light leading-relaxed">
                     {phase.practices}
                   </p>
                 </div>
@@ -340,7 +344,7 @@ export default async function FrameworkPage({
               <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light leading-[1.1] tracking-[-0.02em] text-white">
                 {t.cornerstones.heading}
               </h2>
-              <p className="mt-5 text-lg text-cloud/60 font-light leading-relaxed max-w-[40ch]">
+              <p className="mt-5 text-lg text-cloud font-light leading-relaxed max-w-[40ch]">
                 {t.cornerstones.subtitle}
               </p>
             </div>
@@ -355,7 +359,7 @@ export default async function FrameworkPage({
                       <h3 className="font-serif text-xl md:text-2xl font-light tracking-[-0.01em] mb-3 text-white">
                         {item.name}
                       </h3>
-                      <p className="text-cloud/60 font-light leading-relaxed max-w-[55ch]">
+                      <p className="text-cloud font-light leading-relaxed max-w-[55ch]">
                         {item.description}
                       </p>
                     </div>

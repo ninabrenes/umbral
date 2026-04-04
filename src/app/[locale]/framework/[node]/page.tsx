@@ -118,7 +118,7 @@ export default async function NodePage({
                 </h1>
               </ScrollReveal>
               <ScrollReveal variant="fade-up" delay={0.2}>
-                <p className="mt-6 text-xl md:text-2xl text-cloud/60 font-light">
+                <p className="mt-6 text-xl md:text-2xl text-cloud font-light">
                   {node.tagline[loc]}
                 </p>
               </ScrollReveal>
@@ -167,7 +167,7 @@ export default async function NodePage({
         <ScrollReveal variant="fade-up">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
             <div className="md:col-span-7 md:col-start-1">
-              <p className="text-xl md:text-2xl text-cloud/80 font-light leading-relaxed max-w-[55ch]">
+              <p className="text-xl md:text-2xl text-cloud font-light leading-relaxed max-w-[55ch]">
                 {node.description[loc]}
               </p>
             </div>
@@ -176,13 +176,13 @@ export default async function NodePage({
       </Section>
 
       {/* ── QUOTE ── */}
-      <Section spacing="lg">
+      <Section spacing="lg" className="bg-forest">
         <ScrollReveal variant="scale">
           <div className="max-w-3xl mx-auto text-center">
             {quotes.map((quote, i) => (
               <blockquote key={i} className={i > 0 ? 'mt-16' : ''}>
                 <div className="bg-white/[0.04] backdrop-blur-xl border border-white/[0.08] rounded-2xl p-8 md:p-12">
-                  <p className="font-serif text-2xl md:text-3xl lg:text-4xl font-light leading-[1.3] tracking-[-0.01em] italic text-cloud/80">
+                  <p className="font-serif text-2xl md:text-3xl lg:text-4xl font-light leading-[1.3] tracking-[-0.01em] italic text-cloud/70">
                     &ldquo;{quote.text}&rdquo;
                   </p>
                   <footer className="mt-6">
@@ -208,7 +208,7 @@ export default async function NodePage({
               <h2 className="font-serif text-4xl md:text-5xl font-light leading-[1.1] tracking-[-0.02em] text-white">
                 {t.journalHeading}
               </h2>
-              <p className="mt-5 text-lg text-cloud/60 font-light leading-relaxed max-w-[35ch]">
+              <p className="mt-5 text-lg text-cloud font-light leading-relaxed max-w-[35ch]">
                 {t.journalSubtitle}
               </p>
             </ScrollReveal>
@@ -244,7 +244,7 @@ export default async function NodePage({
                 <h3 className="font-serif text-3xl md:text-4xl lg:text-5xl font-light tracking-[-0.02em] text-white">
                   {nextNode.name[loc]}
                 </h3>
-                <p className="mt-3 text-lg text-cloud/60 font-light">
+                <p className="mt-3 text-lg text-cloud font-light">
                   {nextNode.tagline[loc]}
                 </p>
               </div>

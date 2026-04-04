@@ -6,10 +6,10 @@ import type { Locale, LegalJurisdiction } from '@/types'
 
 const statusColors: Record<LegalJurisdiction['status'], string> = {
   legal: 'bg-sage/20 text-sage border border-sage/30',
-  decriminalized: 'bg-gold/10 text-gold border border-gold/30',
-  medical: 'bg-moss/15 text-moss border border-moss/30',
-  illegal: 'bg-white/[0.04] text-cloud/60 border border-white/[0.08]',
-  'gray-area': 'bg-white/[0.04] text-cloud/60 border border-white/[0.08]',
+  decriminalized: 'bg-mint/20 text-mint border border-mint/30',
+  medical: 'bg-teal text-cloud border border-teal/30',
+  illegal: 'bg-crisis-accent/20 text-crisis-accent border border-crisis-accent/30',
+  'gray-area': 'bg-cloud/10 text-cloud/60 border border-white/[0.08]',
 }
 
 const statusLabels: Record<LegalJurisdiction['status'], { en: string; es: string }> = {
@@ -131,7 +131,7 @@ export default async function LegalPage({
           {legalJurisdictions.map((jurisdiction) => (
             <div
               key={jurisdiction.country}
-              className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 py-8 md:py-10 border-b border-white/[0.06] bg-white/[0.02] backdrop-blur-sm px-4 md:px-6 rounded-lg mb-1"
+              className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 py-8 md:py-10 border-b border-white/[0.06] px-4 md:px-6"
             >
               <div className="md:col-span-3">
                 <h3 className="font-serif text-2xl font-light tracking-[-0.01em] text-white">

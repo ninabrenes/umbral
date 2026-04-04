@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import type { Locale } from '@/types'
+import { ActiveNavLink } from './ActiveNavLink'
 import { MobileMenu } from './MobileMenu'
 
 interface NavProps {
@@ -30,13 +31,14 @@ export function Nav({ locale }: NavProps) {
 
         <div className="hidden md:flex items-center gap-8">
           {links.map((link) => (
-            <Link
+            <ActiveNavLink
               key={link.key}
               href={`/${locale}${link.href}`}
               className="text-sm text-cloud/70 hover:text-mint transition-colors duration-200 font-sans font-light"
+              activeClassName="text-sm text-mint font-sans font-normal transition-colors duration-200"
             >
               {link[locale]}
-            </Link>
+            </ActiveNavLink>
           ))}
         </div>
 

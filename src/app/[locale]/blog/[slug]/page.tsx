@@ -72,7 +72,7 @@ export default async function BlogPost({
             className="inline-flex items-center gap-2 text-sm text-cloud/60 hover:text-white transition-colors duration-200 font-sans mb-12"
           >
             <ArrowLeft size={16} weight="duotone" />
-            {t.back}
+            <span>{t.back}</span>
           </Link>
 
           {/* meta */}
@@ -89,7 +89,7 @@ export default async function BlogPost({
             <span className="w-1 h-1 rounded-full bg-white/20" />
             <span className="inline-flex items-center gap-1.5">
               <Tag size={14} weight="duotone" className="text-sage/60" />
-              <span className="bg-sage/10 text-sage text-[10px] tracking-[0.15em] uppercase px-3 py-1 rounded-full font-sans">
+              <span className="bg-teal/50 text-sage text-[10px] tracking-[0.15em] uppercase px-3 py-1 rounded-full font-sans">
                 {category}
               </span>
             </span>
@@ -101,7 +101,7 @@ export default async function BlogPost({
           </h1>
 
           {/* description as lede */}
-          <p className="text-xl text-cloud/60 font-light leading-relaxed mb-16">
+          <p className="text-xl text-cloud font-light leading-relaxed mb-16">
             {post.description[locale as Locale]}
           </p>
 
@@ -113,11 +113,11 @@ export default async function BlogPost({
           </div>
 
           {/* placeholder body */}
-          <div className="space-y-6">
+          <div className="space-y-8">
             <p className="font-serif text-2xl font-light leading-[1.3] text-cloud/70">
               {t.comingSoon}
             </p>
-            <p className="text-cloud/60 font-light leading-relaxed">
+            <p className="text-cloud font-light leading-relaxed">
               {t.comingSoonBody}
             </p>
           </div>

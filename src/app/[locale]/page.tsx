@@ -94,7 +94,7 @@ export default async function Home({
             </h1>
           </ScrollReveal>
           <ScrollReveal delay={0.15}>
-            <p className="mt-10 text-xl md:text-2xl text-cloud/60 font-light max-w-[28ch]">
+            <p className="mt-10 text-xl md:text-2xl text-cloud font-light max-w-[28ch]">
               {t.hero.subtitle}
             </p>
           </ScrollReveal>
@@ -145,12 +145,12 @@ export default async function Home({
             <ScrollReveal delay={0.08}>
               <a
                 href={`/${locale}/framework/${nodes[0].id}`}
-                className={`group flex flex-col justify-between rounded-2xl p-6 min-h-[180px] h-full transition-colors duration-300 ${nodeCardBg[nodes[0].id]}`}
+                className={`group flex flex-col justify-between rounded-2xl p-8 min-h-[200px] h-full transition-colors duration-300 ${nodeCardBg[nodes[0].id]}`}
               >
                 <NodeIcon nodeId={nodes[0].id} size={28} useNodeColor weight="duotone" />
                 <div>
                   <h3 className="text-cloud font-serif text-xl">{nodes[0].name[locale as Locale]}</h3>
-                  <p className="text-cloud/40 text-sm mt-1">{nodes[0].tagline[locale as Locale]}</p>
+                  <p className="text-cloud/60 text-sm mt-1">{nodes[0].tagline[locale as Locale]}</p>
                 </div>
               </a>
             </ScrollReveal>
@@ -159,12 +159,12 @@ export default async function Home({
             <ScrollReveal delay={0.16}>
               <a
                 href={`/${locale}/framework/${nodes[1].id}`}
-                className={`group flex flex-col justify-between rounded-2xl p-6 min-h-[180px] h-full transition-colors duration-300 ${nodeCardBg[nodes[1].id]}`}
+                className={`group flex flex-col justify-between rounded-2xl p-8 min-h-[200px] h-full transition-colors duration-300 ${nodeCardBg[nodes[1].id]}`}
               >
                 <NodeIcon nodeId={nodes[1].id} size={28} useNodeColor weight="duotone" />
                 <div>
                   <h3 className="text-cloud font-serif text-xl">{nodes[1].name[locale as Locale]}</h3>
-                  <p className="text-cloud/40 text-sm mt-1">{nodes[1].tagline[locale as Locale]}</p>
+                  <p className="text-cloud/60 text-sm mt-1">{nodes[1].tagline[locale as Locale]}</p>
                 </div>
               </a>
             </ScrollReveal>
@@ -173,12 +173,12 @@ export default async function Home({
             <ScrollReveal delay={0.24}>
               <a
                 href={`/${locale}/framework/${nodes[2].id}`}
-                className={`group flex flex-col justify-between rounded-2xl p-6 min-h-[180px] h-full transition-colors duration-300 ${nodeCardBg[nodes[2].id]}`}
+                className={`group flex flex-col justify-between rounded-2xl p-8 min-h-[200px] h-full transition-colors duration-300 ${nodeCardBg[nodes[2].id]}`}
               >
                 <NodeIcon nodeId={nodes[2].id} size={28} useNodeColor weight="duotone" />
                 <div>
                   <h3 className="text-cloud font-serif text-xl">{nodes[2].name[locale as Locale]}</h3>
-                  <p className="text-cloud/40 text-sm mt-1">{nodes[2].tagline[locale as Locale]}</p>
+                  <p className="text-cloud/60 text-sm mt-1">{nodes[2].tagline[locale as Locale]}</p>
                 </div>
               </a>
             </ScrollReveal>
@@ -206,12 +206,12 @@ export default async function Home({
             <ScrollReveal delay={0.32}>
               <a
                 href={`/${locale}/framework/${nodes[3].id}`}
-                className={`group flex flex-col justify-between rounded-2xl p-6 min-h-[180px] h-full transition-colors duration-300 ${nodeCardBg[nodes[3].id]}`}
+                className={`group flex flex-col justify-between rounded-2xl p-8 min-h-[200px] h-full transition-colors duration-300 ${nodeCardBg[nodes[3].id]}`}
               >
                 <NodeIcon nodeId={nodes[3].id} size={28} useNodeColor weight="duotone" />
                 <div>
                   <h3 className="text-cloud font-serif text-xl">{nodes[3].name[locale as Locale]}</h3>
-                  <p className="text-cloud/40 text-sm mt-1">{nodes[3].tagline[locale as Locale]}</p>
+                  <p className="text-cloud/60 text-sm mt-1">{nodes[3].tagline[locale as Locale]}</p>
                 </div>
               </a>
             </ScrollReveal>
@@ -220,12 +220,12 @@ export default async function Home({
             <ScrollReveal delay={0.40}>
               <a
                 href={`/${locale}/framework/${nodes[4].id}`}
-                className={`group flex flex-col justify-between rounded-2xl p-6 min-h-[180px] h-full transition-colors duration-300 ${nodeCardBg[nodes[4].id]}`}
+                className={`group flex flex-col justify-between rounded-2xl p-8 min-h-[200px] h-full transition-colors duration-300 ${nodeCardBg[nodes[4].id]}`}
               >
                 <NodeIcon nodeId={nodes[4].id} size={28} useNodeColor weight="duotone" />
                 <div>
                   <h3 className="text-cloud font-serif text-xl">{nodes[4].name[locale as Locale]}</h3>
-                  <p className="text-cloud/40 text-sm mt-1">{nodes[4].tagline[locale as Locale]}</p>
+                  <p className="text-cloud/60 text-sm mt-1">{nodes[4].tagline[locale as Locale]}</p>
                 </div>
               </a>
             </ScrollReveal>
@@ -234,24 +234,16 @@ export default async function Home({
             <ScrollReveal delay={0.48}>
               <a
                 href={`/${locale}/framework/${nodes[5].id}`}
-                className={`group flex flex-col justify-between rounded-2xl p-6 min-h-[180px] h-full transition-colors duration-300 ${nodeCardBg[nodes[5].id]}`}
+                className={`group flex flex-col justify-between rounded-2xl p-8 min-h-[200px] h-full transition-colors duration-300 ${nodeCardBg[nodes[5].id]}`}
               >
                 <NodeIcon nodeId={nodes[5].id} size={28} useNodeColor weight="duotone" />
                 <div>
                   <h3 className="text-cloud font-serif text-xl">{nodes[5].name[locale as Locale]}</h3>
-                  <p className="text-cloud/40 text-sm mt-1">{nodes[5].tagline[locale as Locale]}</p>
+                  <p className="text-cloud/60 text-sm mt-1">{nodes[5].tagline[locale as Locale]}</p>
                 </div>
               </a>
             </ScrollReveal>
 
-            {/* Full-width callout quote */}
-            <ScrollReveal className="md:col-span-3">
-              <div className="bg-deep rounded-2xl px-10 py-12 md:px-16 md:py-16 text-center">
-                <p className="font-serif text-2xl md:text-3xl lg:text-4xl font-light leading-[1.15] tracking-[-0.02em] text-cloud">
-                  {t.philosophy.line}
-                </p>
-              </div>
-            </ScrollReveal>
           </div>
         </div>
       </section>

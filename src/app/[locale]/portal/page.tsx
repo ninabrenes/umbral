@@ -214,11 +214,11 @@ export default async function PortalPage({
                   name="email"
                   required
                   placeholder={t.cta.placeholder}
-                  className="flex-1 bg-white/[0.06] border border-white/[0.1] rounded-xl px-5 py-4 text-sm text-cloud placeholder:text-cloud/30 font-light focus:outline-none focus:border-sage/40 focus:ring-1 focus:ring-sage/20 transition-colors"
+                  className="flex-1 bg-white/[0.06] border border-white/[0.1] rounded-xl px-5 py-4 text-sm text-cloud placeholder:text-cloud/30 font-light focus:outline-none focus:border-mint/50 focus:ring-2 focus:ring-mint/20 transition-colors"
                 />
                 <button
                   type="submit"
-                  className="inline-flex items-center justify-center px-7 py-4 text-sm tracking-[0.08em] uppercase font-sans font-medium rounded-xl bg-gold text-deep hover:bg-gold/90 transition-colors active:scale-[0.98] duration-150"
+                  className="inline-flex items-center justify-center px-7 py-4 text-sm tracking-[0.08em] uppercase font-sans font-medium rounded-xl bg-mint text-deep hover:bg-mint/90 transition-colors active:scale-[0.98] duration-150"
                 >
                   {t.cta.button}
                 </button>

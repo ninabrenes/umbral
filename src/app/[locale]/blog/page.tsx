@@ -61,7 +61,7 @@ export default async function BlogIndex({
               <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl font-light leading-[1.05] tracking-[-0.03em] text-white">
                 {t.title}
               </h1>
-              <p className="mt-6 text-lg text-cloud/60 font-light leading-relaxed max-w-[55ch]">
+              <p className="mt-6 text-lg text-cloud font-light leading-relaxed max-w-[55ch]">
                 {t.subtitle}
               </p>
             </ScrollReveal>
@@ -99,7 +99,7 @@ export default async function BlogIndex({
                       <span className="w-1 h-1 rounded-full bg-white/20" />
                       <span className="inline-flex items-center gap-1.5">
                         <Tag size={14} weight="duotone" className="text-sage/60" />
-                        <span className="bg-sage/10 text-sage text-[10px] tracking-[0.15em] uppercase px-3 py-1 rounded-full font-sans">
+                        <span className="bg-teal/50 text-sage text-[10px] tracking-[0.15em] uppercase px-3 py-1 rounded-full font-sans">
                           {categoryLabels[post.category]?.[locale as Locale] ?? post.category}
                         </span>
                       </span>
@@ -114,13 +114,13 @@ export default async function BlogIndex({
                       </Link>
                     </h2>
 
-                    <p className="text-cloud/60 font-light leading-relaxed max-w-[60ch] mb-5">
+                    <p className="text-cloud font-light leading-relaxed max-w-[60ch] mb-5">
                       {post.description[locale as Locale]}
                     </p>
 
                     <Link
                       href={`/${locale}/blog/${post.slug}`}
-                      className="group/read inline-flex items-center gap-2 font-serif text-base italic text-sage hover:text-white transition-colors duration-200 tracking-wide"
+                      className="group/read inline-flex items-center gap-2 font-serif text-base italic text-mint hover:text-white transition-colors duration-200 tracking-wide"
                     >
                       {t.read}
                       <ArrowRight size={16} weight="bold" className="transition-transform duration-200 group-hover/read:translate-x-1" />
