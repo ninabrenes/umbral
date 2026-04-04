@@ -1,5 +1,6 @@
 import { setRequestLocale } from 'next-intl/server'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
+import { Button } from '@/components/ui/Button'
 import Image from 'next/image'
 import { nodes } from '@/content/framework/nodes'
 import { artImages } from '@/content/framework/images'
@@ -71,15 +72,7 @@ export default async function Home({
             {t.hero.subtitle}
           </p>
           <div className="mt-12">
-            <a
-              href={`/${locale}/framework`}
-              className="group inline-flex items-center gap-2 pl-7 pr-2 py-3 text-sm font-sans tracking-[0.04em] bg-mint text-deep rounded-full hover:bg-mint/90 active:scale-[0.98] transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]"
-            >
-              {t.hero.cta}
-              <span className="flex items-center justify-center w-7 h-7 rounded-full bg-deep/15 group-hover:translate-x-0.5 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]">
-                <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 9L9 1M9 1H3M9 1V7" stroke="currentColor" strokeWidth="1.2"/></svg>
-              </span>
-            </a>
+            <Button href={`/${locale}/framework`}>{t.hero.cta}</Button>
           </div>
         </div>
       </section>
@@ -201,15 +194,7 @@ export default async function Home({
             </p>
           </ScrollReveal>
           <ScrollReveal delay={0.15}>
-            <a
-              href={`/${locale}/portal`}
-              className="group inline-flex items-center gap-2 pl-7 pr-2 py-3 text-sm font-sans tracking-[0.04em] bg-mint text-deep rounded-full hover:bg-mint/90 active:scale-[0.98] transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]"
-            >
-              {t.cta.button}
-              <span className="flex items-center justify-center w-7 h-7 rounded-full bg-deep/15 group-hover:translate-x-0.5 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]">
-                <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 9L9 1M9 1H3M9 1V7" stroke="currentColor" strokeWidth="1.2"/></svg>
-              </span>
-            </a>
+            <Button href={`/${locale}/portal`}>{t.cta.button}</Button>
           </ScrollReveal>
         </div>
       </section>

@@ -7,20 +7,14 @@ interface ButtonProps extends ComponentProps<'button'> {
   href?: string
 }
 
-const variants: Record<Variant, string> = {
-  primary:
-    'group flex items-center gap-2 pl-7 pr-2 py-2.5 text-sm font-sans tracking-[0.04em] bg-mint text-deep rounded-full hover:bg-mint/90 active:scale-[0.98] transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]',
-  secondary:
-    'flex items-center gap-2 px-7 py-3 text-sm font-sans tracking-[0.04em] text-cloud border border-white/[0.1] rounded-full hover:bg-white/[0.04] active:scale-[0.98] transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]',
-  ghost:
-    'text-cloud/70 hover:text-mint transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] border-b border-white/[0.1] pb-px hover:border-mint/30',
-}
+const base =
+  'inline-flex items-center justify-center gap-2 px-7 py-3 text-[13px] font-sans font-normal tracking-[0.06em] uppercase rounded-full active:scale-[0.98] transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]'
 
-const trailingArrow = (
-  <span className="flex items-center justify-center w-7 h-7 rounded-full bg-deep/15 group-hover:translate-x-0.5 group-hover:-translate-y-px group-hover:scale-105 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]">
-    <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 9L9 1M9 1H3M9 1V7" stroke="currentColor" strokeWidth="1.2"/></svg>
-  </span>
-)
+const variants: Record<Variant, string> = {
+  primary: 'bg-mint text-deep hover:bg-mint/90',
+  secondary: 'text-cloud border border-white/[0.1] hover:bg-white/[0.04]',
+  ghost: 'text-cloud/70 hover:text-mint border-b border-white/[0.1] pb-px hover:border-mint/30 rounded-none px-0 py-0',
+}
 
 export function Button({
   variant = 'primary',
@@ -29,21 +23,19 @@ export function Button({
   children,
   ...props
 }: ButtonProps) {
-  const base = 'uppercase font-normal'
+  const classes = `${variant !== 'ghost' ? base : ''} ${variants[variant]} ${className}`
 
   if (href) {
     return (
-      <a href={href} className={`${base} ${variants[variant]} ${className}`}>
+      <a href={href} className={classes}>
         {children}
-        {variant === 'primary' && trailingArrow}
       </a>
     )
   }
 
   return (
-    <button className={`${base} ${variants[variant]} ${className}`} {...props}>
+    <button className={classes} {...props}>
       {children}
-      {variant === 'primary' && trailingArrow}
     </button>
   )
 }
