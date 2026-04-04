@@ -99,7 +99,7 @@ export default async function PortalPage({
             alt=""
             className="h-full w-full"
             speed={0.08}
-            overlay="bg-deep/80"
+            overlay="bg-deep/70"
           />
         </div>
         <div className="relative z-10 mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 py-32 md:py-40 w-full">

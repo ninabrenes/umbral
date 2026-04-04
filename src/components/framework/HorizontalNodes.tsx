@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef } from 'react'
+import { useRef, useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { NodeIcon } from './NodeIcon'
@@ -14,11 +14,46 @@ interface HorizontalNodesProps {
 
 export function HorizontalNodes({ nodes, locale }: HorizontalNodesProps) {
   const scrollRef = useRef<HTMLDivElement>(null)
+  const [canScrollLeft, setCanScrollLeft] = useState(false)
+  const [canScrollRight, setCanScrollRight] = useState(true)
+
+  const updateScrollState = useCallback(() => {
+    const el = scrollRef.current
+    if (!el) return
+    setCanScrollLeft(el.scrollLeft > 10)
+    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 10)
+  }, [])
+
+  useEffect(() => {
+    const el = scrollRef.current
+    if (!el) return
+    updateScrollState()
+    el.addEventListener('scroll', updateScrollState, { passive: true })
+    return () => el.removeEventListener('scroll', updateScrollState)
+  }, [updateScrollState])
+
+  const scroll = (direction: 'left' | 'right') => {
+    scrollRef.current?.scrollBy({
+      left: direction === 'left' ? -340 : 340,
+      behavior: 'smooth',
+    })
+  }
 
   return (
     <div className="relative">
       {/* Left fade */}
       <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-forest to-transparent z-10 pointer-events-none" />
+
+      {/* Left arrow button */}
+      {canScrollLeft && (
+        <button
+          onClick={() => scroll('left')}
+          aria-label={locale === 'es' ? 'Desplazar a la izquierda' : 'Scroll left'}
+          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-forest/80 backdrop-blur-sm border border-white/[0.06] flex items-center justify-center text-cloud/60 hover:text-white hover:bg-forest transition-colors duration-200"
+        >
+          <span aria-hidden="true">&larr;</span>
+        </button>
+      )}
 
       {/* Scroll container */}
       <div
@@ -54,6 +89,25 @@ export function HorizontalNodes({ nodes, locale }: HorizontalNodesProps) {
 
       {/* Right fade */}
       <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-forest to-transparent z-10 pointer-events-none" />
+
+      {/* Right arrow button */}
+      {canScrollRight && (
+        <button
+          onClick={() => scroll('right')}
+          aria-label={locale === 'es' ? 'Desplazar a la derecha' : 'Scroll right'}
+          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-forest/80 backdrop-blur-sm border border-white/[0.06] flex items-center justify-center text-cloud/60 hover:text-white hover:bg-forest transition-colors duration-200"
+        >
+          <span aria-hidden="true">&rarr;</span>
+        </button>
+      )}
+
+      {/* Scroll hint */}
+      <p className="text-cloud/30 text-xs font-sans mt-3 px-6 md:px-12 lg:px-20">
+        <span className="inline-flex items-center gap-1">
+          {locale === 'es' ? 'Desliza para explorar' : 'Scroll to explore'}{' '}
+          <span className="text-mint">&rarr;</span>
+        </span>
+      </p>
     </div>
   )
 }

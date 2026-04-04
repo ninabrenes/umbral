@@ -124,7 +124,7 @@ export function BlogList({ posts, locale, readLabel, allLabel, minLabel, feature
       {/* post list */}
       <div className="divide-y divide-white/[0.06]">
         {rest.map((post) => (
-          <article key={post.slug} className="py-12 first:pt-0 last:pb-0">
+          <article key={post.slug} className="py-16 first:pt-0 last:pb-0">
             <div className="flex items-center gap-4 mb-5">
               <span className="inline-flex items-center gap-1.5">
                 <Calendar size={14} weight="duotone" className="text-cloud/40" />

@@ -284,7 +284,7 @@ export default async function SafetyPage({
             return (
               <ScrollReveal key={item.id} variant="fade-up" delay={index * 0.05}>
                 <div
-                  className={`rounded-2xl border ${style.border} ${style.bg} p-6 md:p-8`}
+                  className={`rounded-2xl border ${style.border} ${style.bg} p-8 md:p-10`}
                 >
                   <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
                     <div className="md:col-span-4">

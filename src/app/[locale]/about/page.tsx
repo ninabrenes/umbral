@@ -189,7 +189,7 @@ export default async function AboutPage({
           <ParallaxImage
             src={pageImages.about.src}
             alt={pageImages.about.alt[locale as Locale]}
-            className="aspect-[16/9] md:aspect-[21/9] rounded-[var(--radius-card)] mb-16"
+            className="aspect-[16/9] md:aspect-[21/9] min-h-[50vh] rounded-[var(--radius-card)] mb-16"
             speed={0.12}
             overlay="bg-deep/40"
           />
