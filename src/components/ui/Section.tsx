@@ -3,7 +3,6 @@ import { type ComponentProps } from 'react'
 interface SectionProps extends ComponentProps<'section'> {
   spacing?: 'default' | 'lg' | 'none'
   dark?: boolean
-  glass?: boolean
 }
 
 const spacingMap = {
@@ -15,19 +14,15 @@ const spacingMap = {
 export function Section({
   spacing = 'default',
   dark = false,
-  glass = false,
   className = '',
   children,
   ...props
 }: SectionProps) {
   const darkClasses = dark ? 'bg-forest' : ''
-  const glassClasses = glass
-    ? 'bg-white/[0.04] backdrop-blur-xl border border-white/[0.08] rounded-[var(--radius-glass)]'
-    : ''
 
   return (
     <section
-      className={`${spacingMap[spacing]} ${darkClasses} ${glassClasses} ${className}`}
+      className={`${spacingMap[spacing]} ${darkClasses} ${className}`}
       {...props}
     >
       <div className="mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20">

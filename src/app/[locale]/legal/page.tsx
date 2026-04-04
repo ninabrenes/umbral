@@ -9,7 +9,7 @@ const statusColors: Record<LegalJurisdiction['status'], string> = {
   decriminalized: 'bg-mint/20 text-mint border border-mint/30',
   medical: 'bg-teal text-cloud border border-teal/30',
   illegal: 'bg-crisis-accent/20 text-crisis-accent border border-crisis-accent/30',
-  'gray-area': 'bg-cloud/10 text-cloud/60 border border-white/[0.08]',
+  'gray-area': 'bg-cloud/10 text-cloud/60 border border-white/[0.04]',
 }
 
 const statusLabels: Record<LegalJurisdiction['status'], { en: string; es: string }> = {

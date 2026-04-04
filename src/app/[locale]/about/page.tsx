@@ -232,7 +232,7 @@ export default async function AboutPage({
             </p>
           </div>
           <div className="md:col-span-4 md:col-start-9 md:pt-16">
-            <div className="border-l border-white/[0.08] pl-8">
+            <div className="border-l border-white/[0.04] pl-8">
               <ul className="space-y-3">
                 {t.hero.not.map((line) => (
                   <li

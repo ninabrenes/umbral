@@ -6,22 +6,11 @@ import { nodes } from '@/content/framework/nodes'
 import { NodeIcon } from '@/components/framework/NodeIcon'
 import type { Locale, NodeId } from '@/types'
 
-/* ── Card background colors for variety ── */
-const nodeCardBg: Record<NodeId, string> = {
-  ground: 'bg-teal/40',
-  roots: 'bg-green/40',
-  spore: 'bg-teal/40',
-  weave: 'bg-green/40',
-  fruit: 'bg-teal/40',
-  canopy: 'bg-green/40',
-}
-
-/* ── Bilingual content (trimmed to essentials) ── */
+/* ── Bilingual content ── */
 const content = {
   en: {
     hero: {
       title: 'preparation.\nexperience.\nintegration.',
-      subtitle: 'the network that connects it all.',
       cta: 'Explore the Framework',
     },
     framework: {
@@ -39,7 +28,6 @@ const content = {
   es: {
     hero: {
       title: 'preparación.\nexperiencia.\nintegración.',
-      subtitle: 'la red que lo conecta todo.',
       cta: 'Explorar el Marco',
     },
     framework: {
@@ -59,6 +47,17 @@ const content = {
 /* ── Art images for bento grid ── */
 const bentoArt = [artImages.cosmicNebula, artImages.psychedelicSwirls]
 
+/* ── Node card variant assignments for visual variety ── */
+type CardVariant = 'massive-serif' | 'icon-centered'
+const nodeVariants: Record<NodeId, { variant: CardVariant; bg: string }> = {
+  ground:  { variant: 'massive-serif',  bg: 'bg-teal' },
+  roots:   { variant: 'icon-centered',  bg: 'bg-green' },
+  spore:   { variant: 'massive-serif',  bg: 'bg-teal' },
+  weave:   { variant: 'icon-centered',  bg: 'bg-green' },
+  fruit:   { variant: 'massive-serif',  bg: 'bg-forest' },
+  canopy:  { variant: 'icon-centered',  bg: 'bg-deep' },
+}
+
 export default async function Home({
   params,
 }: {
@@ -68,38 +67,38 @@ export default async function Home({
   setRequestLocale(locale)
   const t = content[locale as Locale]
 
+  /* Split nodes by variant for rendering */
+  const massiveSerifNodes = nodes.filter((n) => nodeVariants[n.id].variant === 'massive-serif')
+  const iconCenteredNodes = nodes.filter((n) => nodeVariants[n.id].variant === 'icon-centered')
+
   return (
     <>
-      {/* ── HERO (full viewport, dark, immersive) ── */}
-      <section className="relative min-h-[100dvh] flex items-center bg-deep overflow-hidden">
-        {/* Video background */}
+      {/* ── HERO ── */}
+      <section className="relative min-h-[100dvh] flex items-end bg-deep overflow-hidden">
+        {/* Video background — more visible */}
         <div className="absolute inset-0">
           <video
             autoPlay
             muted
             loop
             playsInline
-            className="absolute inset-0 w-full h-full object-cover opacity-30"
+            className="absolute inset-0 w-full h-full object-cover opacity-40"
           >
             <source src="/images/art/hero-video.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-gradient-to-b from-onyx/40 via-transparent to-onyx/70" />
+          {/* Subtle gradient — just enough for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-t from-deep/90 via-deep/30 to-transparent" />
         </div>
 
-        {/* Content */}
-        <div className="relative z-10 mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 w-full py-32 md:py-40">
+        {/* Content — anchored to bottom for editorial weight */}
+        <div className="relative z-10 mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 w-full pb-24 md:pb-32 pt-48">
           <ScrollReveal>
-            <h1 className="font-serif text-[clamp(3.5rem,10vw,8rem)] font-light leading-[0.95] tracking-[-0.03em] whitespace-pre-line text-white">
+            <h1 className="font-serif text-[clamp(4rem,12vw,10rem)] font-light leading-[0.9] tracking-[-0.04em] whitespace-pre-line text-white">
               {t.hero.title}
             </h1>
           </ScrollReveal>
-          <ScrollReveal delay={0.15}>
-            <p className="mt-10 text-xl md:text-2xl text-cloud font-light max-w-[28ch]">
-              {t.hero.subtitle}
-            </p>
-          </ScrollReveal>
           <ScrollReveal delay={0.3}>
-            <div className="mt-16">
+            <div className="mt-20">
               <a
                 href={`/${locale}/framework`}
                 className="inline-flex items-center justify-center px-8 py-4 text-sm font-sans font-medium tracking-wide bg-mint text-deep rounded-[var(--radius-pill)] transition-opacity duration-200 hover:opacity-90"
@@ -120,11 +119,12 @@ export default async function Home({
             </p>
           </ScrollReveal>
 
-          {/* Bento grid: varied card types for asymmetry */}
+          {/* Asymmetric bento: art + varied node cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
-            {/* Image card — cosmic nebula (tall, spans 2 cols + 2 rows) */}
+
+            {/* Art card 1 — tall, spans 2 cols + 2 rows, rounded */}
             <ScrollReveal className="md:col-span-2 md:row-span-2">
-              <div className="relative overflow-hidden rounded-2xl h-full min-h-[320px] md:min-h-[420px]">
+              <div className="relative overflow-hidden rounded-2xl h-full min-h-[400px] md:min-h-[520px]">
                 <Image
                   src={bentoArt[0].src}
                   alt={bentoArt[0].alt[locale as Locale]}
@@ -132,66 +132,47 @@ export default async function Home({
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 66vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-onyx/80 via-transparent to-transparent" />
-                <div className="absolute bottom-0 left-0 p-6">
-                  <p className="text-cloud/60 text-xs uppercase tracking-[0.15em] font-sans">
+                <div className="absolute inset-0 bg-gradient-to-t from-onyx/70 via-transparent to-transparent" />
+                <div className="absolute bottom-0 left-0 p-8">
+                  <p className="text-cloud/50 text-xs uppercase tracking-[0.15em] font-sans">
                     {locale === 'es' ? 'La Red Micelial' : 'The Mycelial Network'}
                   </p>
                 </div>
               </div>
             </ScrollReveal>
 
-            {/* Node: Ground */}
-            <ScrollReveal delay={0.08}>
-              <div className="p-1.5 rounded-[1.75rem] bg-white/[0.03] border border-white/[0.05] h-full">
+            {/* Massive serif nodes — just the name, big type, solid bg */}
+            {massiveSerifNodes.slice(0, 2).map((node, i) => (
+              <ScrollReveal key={node.id} delay={0.08 + i * 0.08}>
                 <a
-                  href={`/${locale}/framework/${nodes[0].id}`}
-                  className={`group flex flex-col justify-between rounded-[calc(1.75rem-0.375rem)] p-8 min-h-[200px] h-full transition-colors duration-300 shadow-[inset_0_1px_1px_rgba(255,255,255,0.08)] ${nodeCardBg[nodes[0].id]}`}
+                  href={`/${locale}/framework/${node.id}`}
+                  className={`group flex items-end rounded-2xl p-8 min-h-[200px] h-full transition-colors duration-200 hover:opacity-90 ${nodeVariants[node.id].bg}`}
                 >
-                  <NodeIcon nodeId={nodes[0].id} size={28} useNodeColor weight="duotone" />
-                  <div>
-                    <h3 className="text-cloud font-serif text-xl md:text-2xl">{nodes[0].name[locale as Locale]}</h3>
-                    <p className="text-cloud/60 text-sm mt-1">{nodes[0].tagline[locale as Locale]}</p>
-                  </div>
+                  <h3 className="font-serif text-4xl md:text-5xl font-light leading-[1] tracking-[-0.02em] text-cloud/90">
+                    {node.name[locale as Locale]}
+                  </h3>
                 </a>
-              </div>
-            </ScrollReveal>
+              </ScrollReveal>
+            ))}
 
-            {/* Node: Roots */}
-            <ScrollReveal delay={0.16}>
-              <div className="p-1.5 rounded-[1.75rem] bg-white/[0.03] border border-white/[0.05] h-full">
+            {/* Icon-centered nodes — large icon, name below, solid bg */}
+            {iconCenteredNodes.slice(0, 2).map((node, i) => (
+              <ScrollReveal key={node.id} delay={0.24 + i * 0.08}>
                 <a
-                  href={`/${locale}/framework/${nodes[1].id}`}
-                  className={`group flex flex-col justify-between rounded-[calc(1.75rem-0.375rem)] p-8 min-h-[200px] h-full transition-colors duration-300 shadow-[inset_0_1px_1px_rgba(255,255,255,0.08)] ${nodeCardBg[nodes[1].id]}`}
+                  href={`/${locale}/framework/${node.id}`}
+                  className={`group flex flex-col items-center justify-center gap-6 rounded-2xl p-8 min-h-[200px] h-full text-center transition-colors duration-200 hover:opacity-90 ${nodeVariants[node.id].bg}`}
                 >
-                  <NodeIcon nodeId={nodes[1].id} size={28} useNodeColor weight="duotone" />
-                  <div>
-                    <h3 className="text-cloud font-serif text-xl md:text-2xl">{nodes[1].name[locale as Locale]}</h3>
-                    <p className="text-cloud/60 text-sm mt-1">{nodes[1].tagline[locale as Locale]}</p>
-                  </div>
+                  <NodeIcon nodeId={node.id} size={48} useNodeColor weight="duotone" />
+                  <h3 className="font-serif text-xl text-cloud/80">
+                    {node.name[locale as Locale]}
+                  </h3>
                 </a>
-              </div>
-            </ScrollReveal>
+              </ScrollReveal>
+            ))}
 
-            {/* Node: Spore */}
-            <ScrollReveal delay={0.24}>
-              <div className="p-1.5 rounded-[1.75rem] bg-white/[0.03] border border-white/[0.05] h-full">
-                <a
-                  href={`/${locale}/framework/${nodes[2].id}`}
-                  className={`group flex flex-col justify-between rounded-[calc(1.75rem-0.375rem)] p-8 min-h-[200px] h-full transition-colors duration-300 shadow-[inset_0_1px_1px_rgba(255,255,255,0.08)] ${nodeCardBg[nodes[2].id]}`}
-                >
-                  <NodeIcon nodeId={nodes[2].id} size={28} useNodeColor weight="duotone" />
-                  <div>
-                    <h3 className="text-cloud font-serif text-xl md:text-2xl">{nodes[2].name[locale as Locale]}</h3>
-                    <p className="text-cloud/60 text-sm mt-1">{nodes[2].tagline[locale as Locale]}</p>
-                  </div>
-                </a>
-              </div>
-            </ScrollReveal>
-
-            {/* Image card — psychedelic swirls (tall, spans 2 cols + 2 rows) */}
+            {/* Art card 2 — sharp corners for variety, spans 2 cols + 2 rows */}
             <ScrollReveal className="md:col-span-2 md:row-span-2">
-              <div className="relative overflow-hidden rounded-2xl h-full min-h-[320px] md:min-h-[420px]">
+              <div className="relative overflow-hidden h-full min-h-[400px] md:min-h-[520px]">
                 <Image
                   src={bentoArt[1].src}
                   alt={bentoArt[1].alt[locale as Locale]}
@@ -199,106 +180,96 @@ export default async function Home({
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 66vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-onyx/80 via-transparent to-transparent" />
-                <div className="absolute bottom-0 left-0 p-6">
-                  <p className="text-cloud/60 text-xs uppercase tracking-[0.15em] font-sans">
+                <div className="absolute inset-0 bg-gradient-to-t from-onyx/70 via-transparent to-transparent" />
+                <div className="absolute bottom-0 left-0 p-8">
+                  <p className="text-cloud/50 text-xs uppercase tracking-[0.15em] font-sans">
                     {locale === 'es' ? 'Preparación e Integración' : 'Preparation & Integration'}
                   </p>
                 </div>
               </div>
             </ScrollReveal>
 
-            {/* Node: Weave */}
-            <ScrollReveal delay={0.32}>
-              <div className="p-1.5 rounded-[1.75rem] bg-white/[0.03] border border-white/[0.05] h-full">
+            {/* Remaining massive serif node */}
+            {massiveSerifNodes.slice(2).map((node, i) => (
+              <ScrollReveal key={node.id} delay={0.4 + i * 0.08}>
                 <a
-                  href={`/${locale}/framework/${nodes[3].id}`}
-                  className={`group flex flex-col justify-between rounded-[calc(1.75rem-0.375rem)] p-8 min-h-[200px] h-full transition-colors duration-300 shadow-[inset_0_1px_1px_rgba(255,255,255,0.08)] ${nodeCardBg[nodes[3].id]}`}
+                  href={`/${locale}/framework/${node.id}`}
+                  className={`group flex items-end rounded-2xl p-8 min-h-[200px] h-full transition-colors duration-200 hover:opacity-90 ${nodeVariants[node.id].bg}`}
                 >
-                  <NodeIcon nodeId={nodes[3].id} size={28} useNodeColor weight="duotone" />
-                  <div>
-                    <h3 className="text-cloud font-serif text-xl md:text-2xl">{nodes[3].name[locale as Locale]}</h3>
-                    <p className="text-cloud/60 text-sm mt-1">{nodes[3].tagline[locale as Locale]}</p>
-                  </div>
+                  <h3 className="font-serif text-4xl md:text-5xl font-light leading-[1] tracking-[-0.02em] text-cloud/90">
+                    {node.name[locale as Locale]}
+                  </h3>
                 </a>
-              </div>
-            </ScrollReveal>
+              </ScrollReveal>
+            ))}
 
-            {/* Node: Fruit */}
-            <ScrollReveal delay={0.40}>
-              <div className="p-1.5 rounded-[1.75rem] bg-white/[0.03] border border-white/[0.05] h-full">
+            {/* Remaining icon-centered node */}
+            {iconCenteredNodes.slice(2).map((node, i) => (
+              <ScrollReveal key={node.id} delay={0.48 + i * 0.08}>
                 <a
-                  href={`/${locale}/framework/${nodes[4].id}`}
-                  className={`group flex flex-col justify-between rounded-[calc(1.75rem-0.375rem)] p-8 min-h-[200px] h-full transition-colors duration-300 shadow-[inset_0_1px_1px_rgba(255,255,255,0.08)] ${nodeCardBg[nodes[4].id]}`}
+                  href={`/${locale}/framework/${node.id}`}
+                  className={`group flex flex-col items-center justify-center gap-6 rounded-2xl p-8 min-h-[200px] h-full text-center transition-colors duration-200 hover:opacity-90 ${nodeVariants[node.id].bg}`}
                 >
-                  <NodeIcon nodeId={nodes[4].id} size={28} useNodeColor weight="duotone" />
-                  <div>
-                    <h3 className="text-cloud font-serif text-xl md:text-2xl">{nodes[4].name[locale as Locale]}</h3>
-                    <p className="text-cloud/60 text-sm mt-1">{nodes[4].tagline[locale as Locale]}</p>
-                  </div>
+                  <NodeIcon nodeId={node.id} size={48} useNodeColor weight="duotone" />
+                  <h3 className="font-serif text-xl text-cloud/80">
+                    {node.name[locale as Locale]}
+                  </h3>
                 </a>
-              </div>
-            </ScrollReveal>
-
-            {/* Node: Canopy */}
-            <ScrollReveal delay={0.48}>
-              <div className="p-1.5 rounded-[1.75rem] bg-white/[0.03] border border-white/[0.05] h-full">
-                <a
-                  href={`/${locale}/framework/${nodes[5].id}`}
-                  className={`group flex flex-col justify-between rounded-[calc(1.75rem-0.375rem)] p-8 min-h-[200px] h-full transition-colors duration-300 shadow-[inset_0_1px_1px_rgba(255,255,255,0.08)] ${nodeCardBg[nodes[5].id]}`}
-                >
-                  <NodeIcon nodeId={nodes[5].id} size={28} useNodeColor weight="duotone" />
-                  <div>
-                    <h3 className="text-cloud font-serif text-xl md:text-2xl">{nodes[5].name[locale as Locale]}</h3>
-                    <p className="text-cloud/60 text-sm mt-1">{nodes[5].tagline[locale as Locale]}</p>
-                  </div>
-                </a>
-              </div>
-            </ScrollReveal>
+              </ScrollReveal>
+            ))}
 
           </div>
         </div>
       </section>
 
-      {/* ── PHILOSOPHY — full-bleed art background ── */}
-      <section className="relative min-h-[60vh] flex items-center overflow-hidden">
+      {/* ── WATERMARK — massive type moment ── */}
+      <section className="bg-deep py-16 md:py-24 overflow-hidden">
+        <div className="relative">
+          <p className="font-serif text-[clamp(6rem,14vw,16rem)] font-light leading-[0.85] tracking-[-0.04em] text-cloud/[0.04] text-center select-none" aria-hidden="true">
+            umbral
+          </p>
+        </div>
+      </section>
+
+      {/* ── PHILOSOPHY — full-bleed showstopper ── */}
+      <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
         <Image
           src={artImages.handsReaching.src}
           alt={artImages.handsReaching.alt[locale as Locale]}
           fill
-          className="object-cover opacity-30"
+          className="object-cover opacity-40"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-deep/60 to-onyx/80" />
-        <div className="relative z-10 mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 w-full py-32 md:py-48">
+        <div className="absolute inset-0 bg-deep/50" />
+        <div className="relative z-10 px-6 md:px-12 lg:px-20">
           <ScrollReveal>
-            <div className="max-w-[900px] mx-auto text-center">
-              <p className="font-serif text-3xl md:text-5xl lg:text-7xl font-light leading-[1.1] tracking-[-0.02em] text-white">
-                {t.philosophy.line}
-              </p>
-            </div>
+            <p className="font-serif italic text-[clamp(2rem,5vw,5rem)] font-light leading-[1.1] tracking-[-0.02em] text-white text-center max-w-[18ch] mx-auto">
+              {t.philosophy.line}
+            </p>
           </ScrollReveal>
         </div>
       </section>
 
-      {/* ── PORTAL CTA — elevated teal surface ── */}
-      <section className="bg-teal py-32 md:py-48 px-6 md:px-12 lg:px-20">
-        <div className="mx-auto max-w-[800px]">
+      {/* ── PORTAL CTA — no card, just content on solid bg ── */}
+      <section className="bg-teal py-32 md:py-40 px-6 md:px-12 lg:px-20">
+        <div className="mx-auto max-w-[1400px]">
           <ScrollReveal>
-            <div className="backdrop-blur-xl border border-white/[0.08] bg-white/[0.04] rounded-3xl px-10 py-16 md:px-16 md:py-20 text-center">
-              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-light leading-[1.1] tracking-[-0.02em] text-white mb-6">
-                {t.cta.heading}
-              </h2>
-              <p className="text-lg text-cloud/60 font-light mb-12 max-w-[40ch] mx-auto">
-                {t.cta.subtitle}
-              </p>
-              <a
-                href={`/${locale}/portal`}
-                className="inline-flex items-center justify-center px-8 py-4 text-sm font-sans font-medium tracking-wide bg-mint text-deep rounded-[var(--radius-pill)] transition-opacity duration-200 hover:opacity-90"
-              >
-                {t.cta.button}
-              </a>
-            </div>
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-light leading-[1.1] tracking-[-0.02em] text-white mb-6">
+              {t.cta.heading}
+            </h2>
+          </ScrollReveal>
+          <ScrollReveal delay={0.1}>
+            <p className="text-lg text-cloud/60 font-light mb-12 max-w-[40ch]">
+              {t.cta.subtitle}
+            </p>
+          </ScrollReveal>
+          <ScrollReveal delay={0.2}>
+            <a
+              href={`/${locale}/portal`}
+              className="inline-flex items-center justify-center px-8 py-4 text-sm font-sans font-medium tracking-wide bg-mint text-deep rounded-[var(--radius-pill)] transition-opacity duration-200 hover:opacity-90"
+            >
+              {t.cta.button}
+            </a>
           </ScrollReveal>
         </div>
       </section>

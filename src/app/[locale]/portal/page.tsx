@@ -166,23 +166,22 @@ export default async function PortalPage({
             {t.features.map((feature, i) => {
               const FeatureIcon = featureIcons[i]
               const isWide = i === 0 || i === 3
+              const cardBgs = ['bg-forest', 'bg-teal/30', 'bg-green/30', 'bg-teal/30'] as const
               return (
                 <ScrollReveal key={i} variant="fade-up" delay={i * 0.1} className={isWide ? 'md:col-span-2' : ''}>
-                  <div className="p-1.5 rounded-[1.75rem] bg-white/[0.03] border border-white/[0.05] h-full">
-                    <div className="rounded-[calc(1.75rem-0.375rem)] bg-teal/30 p-8 shadow-[inset_0_1px_1px_rgba(255,255,255,0.08)] h-full">
-                      <FeatureIcon size={32} weight="duotone" className="text-sage mb-6" />
-                      <div className="flex items-baseline gap-4 mb-4">
-                        <span className="text-xs text-cloud/20 font-sans tabular-nums">
-                          {String(i + 1).padStart(2, '0')}
-                        </span>
-                        <h3 className="font-serif text-2xl md:text-3xl font-light tracking-[-0.01em] text-white">
-                          {feature.title}
-                        </h3>
-                      </div>
-                      <p className="text-cloud/40 font-light leading-relaxed pl-10 max-w-[45ch]">
-                        {feature.description}
-                      </p>
+                  <div className={`rounded-2xl ${cardBgs[i]} p-8 h-full`}>
+                    <FeatureIcon size={32} weight="duotone" className="text-sage mb-6" />
+                    <div className="flex items-baseline gap-4 mb-4">
+                      <span className="text-xs text-cloud/20 font-sans tabular-nums">
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+                      <h3 className="font-serif text-2xl md:text-3xl font-light tracking-[-0.01em] text-white">
+                        {feature.title}
+                      </h3>
                     </div>
+                    <p className="text-cloud/40 font-light leading-relaxed pl-10 max-w-[45ch]">
+                      {feature.description}
+                    </p>
                   </div>
                 </ScrollReveal>
               )
@@ -217,7 +216,7 @@ export default async function PortalPage({
                   name="email"
                   required
                   placeholder={t.cta.placeholder}
-                  className="flex-1 bg-white/[0.06] border border-white/[0.1] rounded-xl px-5 py-4 text-sm text-cloud placeholder:text-cloud/30 font-light focus:outline-none focus:border-mint/50 focus:ring-2 focus:ring-mint/20 transition-colors"
+                  className="flex-1 bg-forest border border-white/[0.04] rounded-xl px-5 py-4 text-sm text-cloud placeholder:text-cloud/30 font-light focus:outline-none focus:border-mint/50 focus:ring-2 focus:ring-mint/20 transition-colors"
                 />
                 <button
                   type="submit"

@@ -189,9 +189,9 @@ const severityConfig: Record<
     badgeText: 'text-sky-300',
   },
   unknown: {
-    border: 'border-white/[0.08]',
-    bg: 'bg-white/[0.03]',
-    badge: 'bg-white/[0.08]',
+    border: 'border-white/[0.04]',
+    bg: 'bg-forest',
+    badge: 'bg-teal/30',
     badgeText: 'text-cloud/60',
   },
 }
@@ -247,7 +247,7 @@ export default async function SafetyPage({
                   <a
                     key={resource.contact}
                     href={resource.href}
-                    className="block rounded-lg border border-white/10 bg-crisis-bg/80 backdrop-blur-sm p-6 md:p-8 transition-colors duration-200 hover:bg-crisis-text/[0.08] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-crisis-accent"
+                    className="block rounded-lg border border-white/10 bg-crisis-bg/80 p-6 md:p-8 transition-colors duration-200 hover:bg-crisis-text/[0.08] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-crisis-accent"
                   >
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                       <div className="flex items-start gap-4">
@@ -302,7 +302,7 @@ export default async function SafetyPage({
             return (
               <ScrollReveal key={item.id} variant="fade-up" delay={index * 0.05}>
                 <div
-                  className={`rounded-2xl border ${style.border} ${style.bg} backdrop-blur-xl p-6 md:p-8`}
+                  className={`rounded-2xl border ${style.border} ${style.bg} p-6 md:p-8`}
                 >
                   <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
                     <div className="md:col-span-4">

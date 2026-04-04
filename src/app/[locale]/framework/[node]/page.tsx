@@ -181,7 +181,7 @@ export default async function NodePage({
           <div className="max-w-3xl mx-auto text-center">
             {quotes.map((quote, i) => (
               <blockquote key={i} className={i > 0 ? 'mt-16' : ''}>
-                <div className="bg-white/[0.04] backdrop-blur-xl border border-white/[0.08] rounded-2xl p-8 md:p-12">
+                <div className="bg-teal/40 border border-white/[0.04] rounded-2xl p-8 md:p-12">
                   <p className="font-serif text-2xl md:text-3xl lg:text-4xl font-light leading-[1.3] tracking-[-0.01em] italic text-cloud/70">
                     &ldquo;{quote.text}&rdquo;
                   </p>
