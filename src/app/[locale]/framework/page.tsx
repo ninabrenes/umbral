@@ -210,7 +210,7 @@ export default async function FrameworkPage({
               </p>
             </ScrollReveal>
             <ScrollReveal variant="fade-up" delay={0.1}>
-              <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light leading-[1.05] tracking-[-0.03em] whitespace-pre-line text-white">
+              <h1 className="font-serif text-[clamp(3.5rem,10vw,8rem)] font-light leading-[1.05] tracking-[-0.03em] whitespace-pre-line text-white">
                 {t.hero.title}
               </h1>
             </ScrollReveal>

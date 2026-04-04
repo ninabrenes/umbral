@@ -5,28 +5,28 @@ const phases = [
     id: 'receive',
     label: { en: 'Receive', es: 'Recibir' },
     quality: { en: 'feminine', es: 'femenino' },
-    question: { en: 'what is here?', es: '\u00bfqu\u00e9 hay aqu\u00ed?' },
+    question: { en: 'what is here?', es: '¿qué hay aquí?' },
   },
   {
     id: 'recognize',
     label: { en: 'Recognize', es: 'Reconocer' },
     quality: { en: 'balance', es: 'equilibrio' },
-    question: { en: 'what does this mean?', es: '\u00bfqu\u00e9 significa esto?' },
+    question: { en: 'what does this mean?', es: '¿qué significa esto?' },
   },
   {
     id: 'return',
     label: { en: 'Return', es: 'Retornar' },
     quality: { en: 'masculine', es: 'masculino' },
-    question: { en: 'what will I do with this?', es: '\u00bfqu\u00e9 har\u00e9 con esto?' },
+    question: { en: 'what will I do with this?', es: '¿qué haré con esto?' },
   },
 ] as const
 
-const CIRCLE_R = 52
-const SPACING = 220
-const START_X = 80
-const CENTER_Y = 120
-const VIEWBOX_W = 700
-const VIEWBOX_H = 260
+const CIRCLE_R = 64
+const SPACING = 250
+const START_X = 100
+const CENTER_Y = 140
+const VIEWBOX_W = 800
+const VIEWBOX_H = 300
 
 // sage-toned colors for the three phases
 const phaseColors = [
@@ -43,7 +43,7 @@ export function ProcessDiagram({ locale }: ProcessDiagramProps) {
   return (
     <svg
       viewBox={`0 0 ${VIEWBOX_W} ${VIEWBOX_H}`}
-      className="w-full max-w-[700px] h-auto"
+      className="w-full max-w-[800px] h-auto"
       role="img"
       aria-label={
         locale === 'en'
@@ -51,38 +51,54 @@ export function ProcessDiagram({ locale }: ProcessDiagramProps) {
           : 'Proceso: Recibir, Reconocer, Retornar'
       }
     >
+      <defs>
+        {/* Gradient arrows between phases */}
+        {[0, 1].map((i) => (
+          <linearGradient
+            key={`arrow-grad-${i}`}
+            id={`arrow-grad-${i}`}
+            x1="0%"
+            y1="0%"
+            x2="100%"
+            y2="0%"
+          >
+            <stop offset="0%" stopColor={phaseColors[i]} stopOpacity={0.5} />
+            <stop offset="100%" stopColor={phaseColors[i + 1]} stopOpacity={0.5} />
+          </linearGradient>
+        ))}
+      </defs>
+
       {/* ── connecting arrows ── */}
       {[0, 1].map((i) => {
-        const x1 = START_X + i * SPACING + CIRCLE_R + 8
-        const x2 = START_X + (i + 1) * SPACING - CIRCLE_R - 8
+        const x1 = START_X + i * SPACING + CIRCLE_R + 12
+        const x2 = START_X + (i + 1) * SPACING - CIRCLE_R - 12
         const midX = (x1 + x2) / 2
 
         return (
           <g key={`arrow-${i}`}>
-            {/* line */}
+            {/* line with gradient stroke */}
             <line
               x1={x1}
               y1={CENTER_Y}
-              x2={x2 - 6}
+              x2={x2 - 8}
               y2={CENTER_Y}
-              stroke="oklch(0.45 0.03 150)"
-              strokeWidth={1.2}
-              strokeOpacity={0.3}
-              strokeDasharray="6 4"
+              stroke={`url(#arrow-grad-${i})`}
+              strokeWidth={1.8}
+              strokeDasharray="8 5"
             />
             {/* arrowhead */}
             <polygon
-              points={`${x2 - 6},${CENTER_Y - 4} ${x2},${CENTER_Y} ${x2 - 6},${CENTER_Y + 4}`}
-              fill="oklch(0.45 0.03 150)"
-              fillOpacity={0.3}
+              points={`${x2 - 10},${CENTER_Y - 5} ${x2},${CENTER_Y} ${x2 - 10},${CENTER_Y + 5}`}
+              fill={phaseColors[i + 1]}
+              fillOpacity={0.5}
             />
             {/* decorative dot at midpoint */}
             <circle
               cx={midX}
               cy={CENTER_Y}
-              r={2}
-              fill="oklch(0.45 0.03 150)"
-              fillOpacity={0.2}
+              r={2.5}
+              fill={phaseColors[i]}
+              fillOpacity={0.3}
             />
           </g>
         )
@@ -95,37 +111,48 @@ export function ProcessDiagram({ locale }: ProcessDiagramProps) {
 
         return (
           <g key={phase.id}>
+            {/* subtle outer glow ring */}
+            <circle
+              cx={cx}
+              cy={CENTER_Y}
+              r={CIRCLE_R + 8}
+              fill="none"
+              stroke={color}
+              strokeWidth={0.5}
+              strokeOpacity={0.12}
+            />
+
             {/* outer circle */}
             <circle
               cx={cx}
               cy={CENTER_Y}
               r={CIRCLE_R}
               fill={color}
-              fillOpacity={0.06}
+              fillOpacity={0.08}
               stroke={color}
-              strokeWidth={1.2}
-              strokeOpacity={0.3}
+              strokeWidth={1.5}
+              strokeOpacity={0.35}
             />
 
             {/* inner ring */}
             <circle
               cx={cx}
               cy={CENTER_Y}
-              r={CIRCLE_R - 10}
+              r={CIRCLE_R - 12}
               fill="none"
               stroke={color}
-              strokeWidth={0.6}
-              strokeOpacity={0.15}
+              strokeWidth={0.7}
+              strokeOpacity={0.18}
             />
 
             {/* phase label */}
             <text
               x={cx}
-              y={CENTER_Y - 4}
+              y={CENTER_Y - 6}
               textAnchor="middle"
               dominantBaseline="middle"
               fill={color}
-              fontSize={15}
+              fontSize={17}
               fontFamily="var(--font-serif), Georgia, serif"
               fontWeight={400}
               fontStyle="italic"
@@ -136,14 +163,14 @@ export function ProcessDiagram({ locale }: ProcessDiagramProps) {
             {/* quality label below name */}
             <text
               x={cx}
-              y={CENTER_Y + 14}
+              y={CENTER_Y + 16}
               textAnchor="middle"
               dominantBaseline="middle"
-              fill="oklch(0.45 0.02 150)"
+              fill="oklch(0.50 0.02 150)"
               fontSize={10}
               fontFamily="var(--font-sans), system-ui, sans-serif"
               fontWeight={300}
-              letterSpacing="0.1em"
+              letterSpacing="0.12em"
               style={{ textTransform: 'uppercase' }}
             >
               {phase.quality[locale]}
@@ -152,11 +179,11 @@ export function ProcessDiagram({ locale }: ProcessDiagramProps) {
             {/* guiding question below circle */}
             <text
               x={cx}
-              y={CENTER_Y + CIRCLE_R + 22}
+              y={CENTER_Y + CIRCLE_R + 26}
               textAnchor="middle"
               dominantBaseline="middle"
-              fill="oklch(0.40 0.02 150)"
-              fontSize={12}
+              fill="oklch(0.45 0.02 150)"
+              fontSize={13}
               fontFamily="var(--font-sans), system-ui, sans-serif"
               fontWeight={300}
               fontStyle="italic"

@@ -89,7 +89,7 @@ export default async function Home({
         {/* Content */}
         <div className="relative z-10 mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 w-full py-32 md:py-40">
           <ScrollReveal>
-            <h1 className="font-serif text-[clamp(4rem,12vw,9rem)] font-light leading-[0.95] tracking-[-0.03em] whitespace-pre-line text-white">
+            <h1 className="font-serif text-[clamp(3.5rem,10vw,8rem)] font-light leading-[0.95] tracking-[-0.03em] whitespace-pre-line text-white">
               {t.hero.title}
             </h1>
           </ScrollReveal>
@@ -150,7 +150,7 @@ export default async function Home({
                 >
                   <NodeIcon nodeId={nodes[0].id} size={28} useNodeColor weight="duotone" />
                   <div>
-                    <h3 className="text-cloud font-serif text-xl">{nodes[0].name[locale as Locale]}</h3>
+                    <h3 className="text-cloud font-serif text-xl md:text-2xl">{nodes[0].name[locale as Locale]}</h3>
                     <p className="text-cloud/60 text-sm mt-1">{nodes[0].tagline[locale as Locale]}</p>
                   </div>
                 </a>
@@ -166,7 +166,7 @@ export default async function Home({
                 >
                   <NodeIcon nodeId={nodes[1].id} size={28} useNodeColor weight="duotone" />
                   <div>
-                    <h3 className="text-cloud font-serif text-xl">{nodes[1].name[locale as Locale]}</h3>
+                    <h3 className="text-cloud font-serif text-xl md:text-2xl">{nodes[1].name[locale as Locale]}</h3>
                     <p className="text-cloud/60 text-sm mt-1">{nodes[1].tagline[locale as Locale]}</p>
                   </div>
                 </a>
@@ -182,7 +182,7 @@ export default async function Home({
                 >
                   <NodeIcon nodeId={nodes[2].id} size={28} useNodeColor weight="duotone" />
                   <div>
-                    <h3 className="text-cloud font-serif text-xl">{nodes[2].name[locale as Locale]}</h3>
+                    <h3 className="text-cloud font-serif text-xl md:text-2xl">{nodes[2].name[locale as Locale]}</h3>
                     <p className="text-cloud/60 text-sm mt-1">{nodes[2].tagline[locale as Locale]}</p>
                   </div>
                 </a>
@@ -217,7 +217,7 @@ export default async function Home({
                 >
                   <NodeIcon nodeId={nodes[3].id} size={28} useNodeColor weight="duotone" />
                   <div>
-                    <h3 className="text-cloud font-serif text-xl">{nodes[3].name[locale as Locale]}</h3>
+                    <h3 className="text-cloud font-serif text-xl md:text-2xl">{nodes[3].name[locale as Locale]}</h3>
                     <p className="text-cloud/60 text-sm mt-1">{nodes[3].tagline[locale as Locale]}</p>
                   </div>
                 </a>
@@ -233,7 +233,7 @@ export default async function Home({
                 >
                   <NodeIcon nodeId={nodes[4].id} size={28} useNodeColor weight="duotone" />
                   <div>
-                    <h3 className="text-cloud font-serif text-xl">{nodes[4].name[locale as Locale]}</h3>
+                    <h3 className="text-cloud font-serif text-xl md:text-2xl">{nodes[4].name[locale as Locale]}</h3>
                     <p className="text-cloud/60 text-sm mt-1">{nodes[4].tagline[locale as Locale]}</p>
                   </div>
                 </a>
@@ -249,7 +249,7 @@ export default async function Home({
                 >
                   <NodeIcon nodeId={nodes[5].id} size={28} useNodeColor weight="duotone" />
                   <div>
-                    <h3 className="text-cloud font-serif text-xl">{nodes[5].name[locale as Locale]}</h3>
+                    <h3 className="text-cloud font-serif text-xl md:text-2xl">{nodes[5].name[locale as Locale]}</h3>
                     <p className="text-cloud/60 text-sm mt-1">{nodes[5].tagline[locale as Locale]}</p>
                   </div>
                 </a>
@@ -273,7 +273,7 @@ export default async function Home({
         <div className="relative z-10 mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 w-full py-32 md:py-48">
           <ScrollReveal>
             <div className="max-w-[900px] mx-auto text-center">
-              <p className="font-serif text-3xl md:text-5xl lg:text-6xl font-light leading-[1.1] tracking-[-0.02em] text-white">
+              <p className="font-serif text-3xl md:text-5xl lg:text-7xl font-light leading-[1.1] tracking-[-0.02em] text-white">
                 {t.philosophy.line}
               </p>
             </div>

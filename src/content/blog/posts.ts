@@ -4,6 +4,9 @@ export interface BlogMeta {
   description: { en: string; es: string }
   date: string
   category: string
+  readingTime: number
+  featured?: boolean
+  image?: string
 }
 
 export const posts: BlogMeta[] = [
@@ -19,6 +22,9 @@ export const posts: BlogMeta[] = [
     },
     date: '2026-03-15',
     category: 'integration',
+    readingTime: 9,
+    featured: true,
+    image: '/images/art/psychedelic-eye.jpg',
   },
   {
     slug: 'the-science-of-psilocybin',
@@ -32,6 +38,9 @@ export const posts: BlogMeta[] = [
     },
     date: '2026-03-22',
     category: 'science',
+    readingTime: 11,
+    featured: true,
+    image: '/images/art/cosmic-nebula.jpg',
   },
   {
     slug: 'preparing-for-your-first-experience',
@@ -45,6 +54,9 @@ export const posts: BlogMeta[] = [
     },
     date: '2026-03-29',
     category: 'preparation',
+    readingTime: 10,
+    featured: true,
+    image: '/images/art/radiant-silhouette.jpg',
   },
   {
     slug: 'set-and-setting-what-the-research-says',
@@ -58,6 +70,7 @@ export const posts: BlogMeta[] = [
     },
     date: '2026-04-05',
     category: 'science',
+    readingTime: 8,
   },
   {
     slug: 'difficult-experiences-are-not-bad-trips',
@@ -71,6 +84,7 @@ export const posts: BlogMeta[] = [
     },
     date: '2026-04-12',
     category: 'integration',
+    readingTime: 7,
   },
   {
     slug: 'medications-and-psychedelics-what-you-need-to-know',
@@ -84,6 +98,7 @@ export const posts: BlogMeta[] = [
     },
     date: '2026-04-19',
     category: 'safety',
+    readingTime: 12,
   },
   {
     slug: 'the-mycelial-network-a-framework-for-integration',
@@ -97,6 +112,7 @@ export const posts: BlogMeta[] = [
     },
     date: '2026-04-26',
     category: 'framework',
+    readingTime: 10,
   },
   {
     slug: 'indigenous-roots-of-psychedelic-healing',
@@ -110,6 +126,7 @@ export const posts: BlogMeta[] = [
     },
     date: '2026-05-03',
     category: 'culture',
+    readingTime: 9,
   },
 ]
 
@@ -119,4 +136,16 @@ export function getPostBySlug(slug: string): BlogMeta | undefined {
 
 export function getAllSlugs(): string[] {
   return posts.map((post) => post.slug)
+}
+
+export function getCategories(): string[] {
+  return [...new Set(posts.map((post) => post.category))]
+}
+
+export function getRelatedPosts(slug: string, count: number = 2): BlogMeta[] {
+  const post = getPostBySlug(slug)
+  if (!post) return []
+  const sameCat = posts.filter((p) => p.slug !== slug && p.category === post.category)
+  const others = posts.filter((p) => p.slug !== slug && p.category !== post.category)
+  return [...sameCat, ...others].slice(0, count)
 }

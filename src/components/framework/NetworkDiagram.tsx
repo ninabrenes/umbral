@@ -21,8 +21,7 @@ const nodeNames: Record<NodeId, { en: string; es: string }> = {
   canopy: { en: 'Canopy', es: 'Dosel' },
 }
 
-// SVG path data for each Phosphor icon (duotone style, simplified)
-// These are minimal representations for use inside the SVG diagram
+// SVG path data for each icon (updated: fruit=compass, canopy=sun horizon)
 const nodeIconPaths: Record<NodeId, { primary: string; secondary: string }> = {
   ground: {
     // Mountains
@@ -45,32 +44,32 @@ const nodeIconPaths: Record<NodeId, { primary: string; secondary: string }> = {
     secondary: 'M-8 -4 A2 2 0 1 0 -4 -4 M8 -4 A2 2 0 1 0 4 -4',
   },
   fruit: {
-    // Target / crosshair
-    primary: 'M0 -9 A9 9 0 1 0 0 9 A9 9 0 1 0 0 -9 M0 -5 A5 5 0 1 0 0 5 A5 5 0 1 0 0 -5',
-    secondary: 'M0 -2 A2 2 0 1 0 0 2 A2 2 0 1 0 0 -2',
+    // Compass — circle with directional lines
+    primary: 'M0 -9 A9 9 0 1 0 0 9 A9 9 0 1 0 0 -9',
+    secondary: 'M0 -6 L2 -1 L0 6 L-2 -1 Z M-6 0 L-1 -2 L6 0 L-1 2 Z',
   },
   canopy: {
-    // Sparkle / four-pointed star
-    primary: 'M0 -10 C1 -4 4 -1 10 0 C4 1 1 4 0 10 C-1 4 -4 1 -10 0 C-4 -1 -1 -4 0 -10 Z',
-    secondary: '',
+    // Sun horizon — semicircle with rays rising
+    primary: 'M-10 4 L10 4 M-8 4 A8 8 0 0 1 8 4',
+    secondary: 'M0 -4 L0 -8 M-5.5 -2.5 L-7.5 -5.5 M5.5 -2.5 L7.5 -5.5 M-3 -3.5 L-4 -7 M3 -3.5 L4 -7',
   },
 }
 
 // Hexagonal layout: 6 nodes arranged around center
-// viewBox is 600x500, center at (300, 240)
+// viewBox is 600x540, center at (300, 255)
 const nodePositions: Record<NodeId, { x: number; y: number }> = {
-  canopy: { x: 300, y: 60 },    // top center
-  spore: { x: 510, y: 135 },    // top right
-  weave: { x: 510, y: 345 },    // bottom right
-  ground: { x: 300, y: 420 },   // bottom center
-  roots: { x: 90, y: 345 },     // bottom left
-  fruit: { x: 90, y: 135 },     // top left
+  canopy: { x: 300, y: 70 },
+  spore: { x: 510, y: 150 },
+  weave: { x: 510, y: 360 },
+  ground: { x: 300, y: 440 },
+  roots: { x: 90, y: 360 },
+  fruit: { x: 90, y: 150 },
 }
 
-const CIRCLE_RADIUS = 42
-const CIRCLE_RADIUS_ACTIVE = 48
+const CIRCLE_RADIUS = 50
+const CIRCLE_RADIUS_ACTIVE = 58
 
-// Generate connections between nodes (hexagonal edges + some cross-connections)
+// Generate connections between nodes (hexagonal edges + cross-connections)
 function getConnections(): Array<{ from: NodeId; to: NodeId }> {
   return [
     // hexagonal edges
@@ -95,7 +94,6 @@ function getCurvedPath(
 ): string {
   const mx = (x1 + x2) / 2
   const my = (y1 + y2) / 2
-  // offset the control point perpendicular to the line for organic feel
   const dx = x2 - x1
   const dy = y2 - y1
   const len = Math.sqrt(dx * dx + dy * dy)
@@ -103,6 +101,11 @@ function getCurvedPath(
   const cx = mx + (-dy / len) * offsetAmount
   const cy = my + (dx / len) * offsetAmount
   return `M ${x1} ${y1} Q ${cx} ${cy} ${x2} ${y2}`
+}
+
+let gradientIdCounter = 0
+function useGradientId(prefix: string): string {
+  return `${prefix}-${++gradientIdCounter}`
 }
 
 interface NetworkDiagramProps {
@@ -130,18 +133,15 @@ export function NetworkDiagram({ locale }: NetworkDiagramProps) {
   const isConnectionActive = useCallback(
     (from: NodeId, to: NodeId): boolean => {
       if (!activeNode) return false
-      return (
-        from === activeNode ||
-        to === activeNode
-      )
+      return from === activeNode || to === activeNode
     },
     [activeNode],
   )
 
   return (
     <svg
-      viewBox="0 0 600 500"
-      className="w-full max-w-[600px] h-auto"
+      viewBox="0 0 600 540"
+      className="w-full max-w-[640px] h-auto min-h-[500px]"
       role="img"
       aria-label={
         locale === 'en'
@@ -150,6 +150,54 @@ export function NetworkDiagram({ locale }: NetworkDiagramProps) {
       }
       onMouseLeave={() => setActiveNode(null)}
     >
+      <defs>
+        {/* Gradient definitions for connection lines */}
+        {connections.map(({ from, to }) => {
+          const p1 = nodePositions[from]
+          const p2 = nodePositions[to]
+          return (
+            <linearGradient
+              key={`grad-${from}-${to}`}
+              id={`grad-${from}-${to}`}
+              x1={p1.x}
+              y1={p1.y}
+              x2={p2.x}
+              y2={p2.y}
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop offset="0%" stopColor={nodeColors[from]} />
+              <stop offset="100%" stopColor={nodeColors[to]} />
+            </linearGradient>
+          )
+        })}
+
+        {/* Glow filter for active node */}
+        <filter id="node-glow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
+
+      {/* CSS animation for pulsing glow */}
+      <style>{`
+        @keyframes pulse-glow {
+          0%, 100% { opacity: 0.2; }
+          50% { opacity: 0.45; }
+        }
+        .node-pulse {
+          animation: pulse-glow 2.4s ease-in-out infinite;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .node-pulse {
+            animation: none;
+            opacity: 0.3;
+          }
+        }
+      `}</style>
+
       {/* ── connections ── */}
       {connections.map(({ from, to }) => {
         const p1 = nodePositions[from]
@@ -162,10 +210,10 @@ export function NetworkDiagram({ locale }: NetworkDiagramProps) {
             key={`${from}-${to}`}
             d={getCurvedPath(p1.x, p1.y, p2.x, p2.y)}
             fill="none"
-            stroke={active ? nodeColors[activeNode!] : 'oklch(0.45 0.03 150)'}
-            strokeWidth={active ? 2 : 1}
-            opacity={dimmed ? 0.06 : active ? 0.55 : 0.18}
-            style={{ transition: 'stroke 0.2s, stroke-width 0.2s, opacity 0.2s' }}
+            stroke={active ? `url(#grad-${from}-${to})` : 'oklch(0.45 0.03 150)'}
+            strokeWidth={active ? 2.5 : 1.2}
+            opacity={dimmed ? 0.05 : active ? 0.6 : 0.15}
+            style={{ transition: 'stroke 0.4s cubic-bezier(0.32, 0.72, 0, 1), stroke-width 0.4s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.4s cubic-bezier(0.32, 0.72, 0, 1)' }}
           />
         )
       })}
@@ -192,11 +240,24 @@ export function NetworkDiagram({ locale }: NetworkDiagramProps) {
             <circle
               cx={pos.x}
               cy={pos.y}
-              r={CIRCLE_RADIUS_ACTIVE + 8}
+              r={CIRCLE_RADIUS_ACTIVE + 12}
               fill="transparent"
             />
 
-            {/* glow ring on active */}
+            {/* pulsing glow ring on active */}
+            {isActive && (
+              <circle
+                className="node-pulse"
+                cx={pos.x}
+                cy={pos.y}
+                r={radius + 12}
+                fill="none"
+                stroke={color}
+                strokeWidth={1.5}
+              />
+            )}
+
+            {/* outer glow ring on active */}
             {isActive && (
               <circle
                 cx={pos.x}
@@ -205,8 +266,8 @@ export function NetworkDiagram({ locale }: NetworkDiagramProps) {
                 fill="none"
                 stroke={color}
                 strokeWidth={1}
-                opacity={0.25}
-                style={{ transition: 'r 0.2s, opacity 0.2s' }}
+                opacity={0.3}
+                style={{ transition: 'r 0.4s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.4s cubic-bezier(0.32, 0.72, 0, 1)' }}
               />
             )}
 
@@ -216,24 +277,24 @@ export function NetworkDiagram({ locale }: NetworkDiagramProps) {
               cy={pos.y}
               r={radius}
               fill={color}
-              fillOpacity={isActive ? 0.15 : 0.08}
+              fillOpacity={isActive ? 0.18 : 0.08}
               stroke={color}
-              strokeWidth={isActive ? 1.8 : 1.2}
-              strokeOpacity={dimmed ? 0.15 : isActive ? 0.7 : 0.35}
-              style={{ transition: 'r 0.2s, fill-opacity 0.2s, stroke-width 0.2s, stroke-opacity 0.2s' }}
+              strokeWidth={isActive ? 2 : 1.2}
+              strokeOpacity={dimmed ? 0.12 : isActive ? 0.75 : 0.3}
+              style={{ transition: 'r 0.4s cubic-bezier(0.32, 0.72, 0, 1), fill-opacity 0.4s cubic-bezier(0.32, 0.72, 0, 1), stroke-width 0.4s cubic-bezier(0.32, 0.72, 0, 1), stroke-opacity 0.4s cubic-bezier(0.32, 0.72, 0, 1)' }}
             />
 
             {/* icon paths */}
             <g
-              transform={`translate(${pos.x}, ${pos.y})`}
-              opacity={dimmed ? 0.3 : 1}
-              style={{ transition: 'opacity 0.2s' }}
+              transform={`translate(${pos.x}, ${pos.y}) scale(${isActive ? 1.15 : 1})`}
+              opacity={dimmed ? 0.25 : 1}
+              style={{ transition: 'opacity 0.4s cubic-bezier(0.32, 0.72, 0, 1), transform 0.4s cubic-bezier(0.32, 0.72, 0, 1)' }}
             >
               {icon.secondary && (
                 <path
                   d={icon.secondary}
                   fill={color}
-                  fillOpacity={0.3}
+                  fillOpacity={0.35}
                   stroke="none"
                 />
               )}
@@ -241,7 +302,7 @@ export function NetworkDiagram({ locale }: NetworkDiagramProps) {
                 d={icon.primary}
                 fill="none"
                 stroke={color}
-                strokeWidth={1.4}
+                strokeWidth={1.6}
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
@@ -250,14 +311,15 @@ export function NetworkDiagram({ locale }: NetworkDiagramProps) {
             {/* label */}
             <text
               x={pos.x}
-              y={pos.y + CIRCLE_RADIUS_ACTIVE + 20}
+              y={pos.y + CIRCLE_RADIUS_ACTIVE + 24}
               textAnchor="middle"
-              fill={isActive ? color : 'oklch(0.45 0.02 150)'}
-              fontSize={isActive ? 14 : 13}
+              fill={isActive ? color : 'oklch(0.55 0.02 150)'}
+              fontSize={isActive ? 15 : 14}
               fontFamily="var(--font-sans), system-ui, sans-serif"
               fontWeight={isActive ? 500 : 400}
-              opacity={dimmed ? 0.35 : 1}
-              style={{ transition: 'fill 0.2s, font-size 0.2s, opacity 0.2s' }}
+              letterSpacing="0.02em"
+              opacity={dimmed ? 0.3 : 1}
+              style={{ transition: 'fill 0.4s cubic-bezier(0.32, 0.72, 0, 1), font-size 0.4s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.4s cubic-bezier(0.32, 0.72, 0, 1)' }}
             >
               {name}
             </text>

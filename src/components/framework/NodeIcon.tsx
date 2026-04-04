@@ -1,4 +1,4 @@
-import { Mountains, Plant, Eye, UsersThree, Target, Sparkle } from '@phosphor-icons/react/dist/ssr'
+import { Mountains, Plant, Eye, UsersThree, Compass, SunHorizon } from '@phosphor-icons/react/dist/ssr'
 import type { NodeId } from '@/types'
 import type { Icon } from '@phosphor-icons/react/dist/lib/types'
 
@@ -7,8 +7,8 @@ const nodeIcons: Record<NodeId, Icon> = {
   roots: Plant,
   spore: Eye,
   weave: UsersThree,
-  fruit: Target,
-  canopy: Sparkle,
+  fruit: Compass,
+  canopy: SunHorizon,
 }
 
 const nodeColorClasses: Record<NodeId, string> = {
