@@ -1,9 +1,7 @@
 import { setRequestLocale } from 'next-intl/server'
-import Image from 'next/image'
-import { Button } from '@/components/ui/Button'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { ParallaxImage } from '@/components/ui/ParallaxImage'
-import { pageImages, artImages } from '@/content/framework/images'
+import { pageImages } from '@/content/framework/images'
 import { Path, LockKey, ChartLine, MusicNotes } from '@phosphor-icons/react/dist/ssr'
 import type { Locale } from '@/types'
 
@@ -11,11 +9,6 @@ const featureIcons = [Path, LockKey, ChartLine, MusicNotes] as const
 
 const content = {
   en: {
-    transition: {
-      label: 'From light into dark',
-      heading: 'you are crossing a threshold.',
-      body: 'The public side is education. The portal is something else entirely. A private space for inner work.',
-    },
     hero: {
       label: 'Coming soon',
       heading: 'the portal\nis being built.',
@@ -51,11 +44,6 @@ const content = {
     },
   },
   es: {
-    transition: {
-      label: 'De la luz a la oscuridad',
-      heading: 'estás cruzando un umbral.',
-      body: 'El lado público es educación. El portal es algo completamente diferente. Un espacio privado para el trabajo interior.',
-    },
     hero: {
       label: 'Próximamente',
       heading: 'el portal\nse está construyendo.',
@@ -103,31 +91,7 @@ export default async function PortalPage({
 
   return (
     <>
-      {/* ── TRANSITION ── */}
-      <section className="relative py-[var(--space-section)] bg-forest">
-        <div className="mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-            <div className="md:col-span-5">
-              <p className="text-xs tracking-[0.2em] uppercase text-cloud/60 mb-4 font-sans">
-                {t.transition.label}
-              </p>
-              <h2 className="font-serif text-3xl md:text-4xl font-light leading-[1.1] tracking-[-0.02em] text-white">
-                {t.transition.heading}
-              </h2>
-            </div>
-            <div className="md:col-span-6 md:col-start-7">
-              <p className="text-lg text-cloud/60 font-light leading-relaxed">
-                {t.transition.body}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* gradient fade deeper into dark */}
-      <div className="relative h-[240px]" style={{ background: 'linear-gradient(to bottom, var(--color-forest) 0%, var(--color-deep) 100%)' }} />
-
-      {/* ── HERO: dark portal aesthetic ── */}
+      {/* ── 1. HERO (bg-deep with parallax) ── */}
       <section className="relative bg-deep text-cloud min-h-[80dvh] flex items-center overflow-hidden">
         <div className="absolute inset-0">
           <ParallaxImage
@@ -139,24 +103,21 @@ export default async function PortalPage({
           />
         </div>
         <div className="relative z-10 mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 py-32 md:py-40 w-full">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-            <div className="md:col-span-8 lg:col-span-7">
-              <p className="text-xs tracking-[0.2em] uppercase text-cloud/40 mb-8 font-sans">
-                {t.hero.label}
-              </p>
-              <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light leading-[1.05] tracking-[-0.03em] whitespace-pre-line text-white">
-                {t.hero.heading}
-              </h1>
-              <p className="mt-8 text-xl md:text-2xl text-cloud/50 font-light leading-relaxed max-w-[50ch]">
-                {t.hero.body}
-              </p>
-            </div>
-            <div className="hidden md:block md:col-span-4 lg:col-span-5" />
+          <div className="md:max-w-[60%]">
+            <p className="text-xs tracking-[0.2em] uppercase text-cloud/40 mb-8 font-sans">
+              {t.hero.label}
+            </p>
+            <h1 className="font-serif text-4xl md:text-5xl font-light leading-[1.05] tracking-[-0.03em] whitespace-pre-line text-white">
+              {t.hero.heading}
+            </h1>
+            <p className="mt-8 text-xl md:text-2xl text-cloud/50 font-light leading-relaxed max-w-[50ch]">
+              {t.hero.body}
+            </p>
           </div>
         </div>
       </section>
 
-      {/* ── FEATURES ── */}
+      {/* ── 2. FEATURES (bg-deep, 2x2 grid) ── */}
       <section className="bg-deep text-cloud">
         <div className="mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 py-[var(--space-section-lg)]">
           <p className="text-xs tracking-[0.2em] uppercase text-cloud/30 mb-16 md:mb-24 font-sans">
@@ -165,11 +126,9 @@ export default async function PortalPage({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {t.features.map((feature, i) => {
               const FeatureIcon = featureIcons[i]
-              const isWide = i === 0 || i === 3
-              const cardBgs = ['bg-forest', 'bg-teal/30', 'bg-green/30', 'bg-teal/30'] as const
               return (
-                <ScrollReveal key={i} variant="fade-up" delay={i * 0.1} className={isWide ? 'md:col-span-2' : ''}>
-                  <div className={`rounded-2xl ${cardBgs[i]} p-8 h-full`}>
+                <ScrollReveal key={i} variant="fade-up" delay={i * 0.1}>
+                  <div className="rounded-2xl bg-forest p-8 h-full">
                     <FeatureIcon size={32} weight="duotone" className="text-sage mb-6" />
                     <div className="flex items-baseline gap-4 mb-4">
                       <span className="text-xs text-cloud/20 font-sans tabular-nums">
@@ -190,19 +149,10 @@ export default async function PortalPage({
         </div>
       </section>
 
-      {/* ── ART BREAK ── */}
-      <ParallaxImage
-        src={artImages.ascendingFigures.src}
-        alt={artImages.ascendingFigures.alt[locale as Locale]}
-        className="h-[35vh]"
-        speed={0.08}
-        overlay="bg-deep/40"
-      />
-
-      {/* ── WAITLIST CTA ── */}
+      {/* ── 3. WAITLIST (bg-deep) ── */}
       <section className="bg-deep text-cloud border-t border-white/[0.06]">
-        <div className="mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 py-[var(--space-section-lg)]">
-          <ScrollReveal variant="scale">
+        <div className="mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 py-[var(--space-section)]">
+          <ScrollReveal variant="fade-up">
             <div className="max-w-xl">
               <h2 className="font-serif text-4xl md:text-5xl font-light leading-[1.1] tracking-[-0.02em] text-white mb-6">
                 {t.cta.heading}

@@ -83,6 +83,7 @@ export default async function BlogPost({
     <>
       <ReadingProgress />
 
+      {/* ── 1. HEADER ── */}
       <Section spacing="lg">
         <div className="max-w-[720px]">
           {/* back link */}
@@ -122,7 +123,7 @@ export default async function BlogPost({
           </div>
 
           {/* title */}
-          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light leading-[1.1] tracking-[-0.02em] mb-8 text-white">
+          <h1 className="font-serif text-3xl md:text-4xl font-light leading-[1.1] tracking-[-0.02em] mb-8 text-white">
             {post.title[locale as Locale]}
           </h1>
 
@@ -146,14 +147,7 @@ export default async function BlogPost({
             </div>
           )}
 
-          {/* decorative separator */}
-          <div className="flex items-center gap-3 mb-16">
-            <div className="w-12 h-px bg-white/[0.1]" />
-            <div className="w-1.5 h-1.5 rounded-full bg-sage/30" />
-            <div className="w-8 h-px bg-white/[0.06]" />
-          </div>
-
-          {/* article body */}
+          {/* ── 2. ARTICLE BODY ── */}
           {article ? (
             <div className="space-y-16">
               {article.sections.map((section, i) => (
@@ -185,14 +179,14 @@ export default async function BlogPost({
             </div>
           )}
 
-          {/* share section */}
-          <div className="mt-20 pt-12 border-t border-white/[0.06]">
+          {/* share */}
+          <div className="mt-16 pt-10 border-t border-white/[0.06]">
             <CopyLinkButton label={t.share} copiedLabel={t.copied} />
           </div>
         </div>
       </Section>
 
-      {/* related posts */}
+      {/* ── 3. RELATED POSTS ── */}
       {related.length > 0 && (
         <Section spacing="lg" dark>
           <div className="max-w-[720px]">

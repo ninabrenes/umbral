@@ -1,21 +1,15 @@
 import { setRequestLocale } from 'next-intl/server'
 import { Section } from '@/components/ui/Section'
 import { SectionHeader } from '@/components/ui/SectionHeader'
-import { Callout } from '@/components/ui/Callout'
 import { Button } from '@/components/ui/Button'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { ParallaxImage } from '@/components/ui/ParallaxImage'
-import { pageImages, artImages } from '@/content/framework/images'
+import { pageImages } from '@/content/framework/images'
 import {
   X,
   Check,
   GithubLogo,
   GitBranch,
-  ShieldCheck,
-  LockKey,
-  EyeSlash,
-  Export,
-  Code,
   HandsPraying,
   HandHeart,
   Scales,
@@ -46,14 +40,10 @@ const content = {
       body: 'Beneath every forest, mycelium connects the trees. Nutrients flow. Signals pass between organisms separated by hundreds of meters.',
       body2: 'Six nodes, each a domain of human experience, connected the way mycelium connects a forest. When one shifts, the others respond.',
     },
-    callout: {
-      quote: 'Tools for vulnerable experiences must be transparent in their construction.',
-    },
     openSource: {
       label: 'Open Source',
       heading: 'Transparency as trust.',
       body: 'MIT-licensed and community-built. Every line of code is public. Every design decision is auditable.',
-      body2: 'Developer, designer, researcher, translator, or someone who has walked this path? The repository is open.',
       cta: 'View on GitHub',
     },
     reciprocity: {
@@ -77,33 +67,6 @@ const content = {
       },
       closing: 'Words on a page are insufficient. But silence is worse. We commit to directing resources toward the communities who have carried this knowledge.',
       cta: 'Indigenous Reciprocity Initiative',
-    },
-    privacy: {
-      label: 'Privacy',
-      heading: 'Your data is yours. Period.',
-      body: 'Designed so using Umbral never puts you at risk.',
-      points: [
-        {
-          title: 'Zero PII linked to substance use',
-          desc: 'No account connects your identity to substance-related data.',
-        },
-        {
-          title: 'End-to-end encrypted journals',
-          desc: 'Encrypted before leaving your device. We cannot read them.',
-        },
-        {
-          title: 'No behavioral analytics',
-          desc: 'We do not track which substances you explore or how you use the tool.',
-        },
-        {
-          title: 'Export and delete at any time',
-          desc: 'Your data belongs to you. Download or destroy it whenever you choose.',
-        },
-        {
-          title: 'Open-source encryption',
-          desc: 'Every encryption implementation is auditable. Trust is verified, not promised.',
-        },
-      ],
     },
     contribute: {
       label: 'Contribute',
@@ -132,14 +95,10 @@ const content = {
       body: 'Debajo de cada bosque, el micelio conecta los árboles. Los nutrientes fluyen. Las señales pasan entre organismos separados por cientos de metros.',
       body2: 'Seis nodos, cada uno un dominio de la experiencia humana, conectados como el micelio conecta un bosque. Cuando uno cambia, los otros responden.',
     },
-    callout: {
-      quote: 'Las herramientas para experiencias vulnerables deben ser transparentes en su construccion.',
-    },
     openSource: {
       label: 'Código Abierto',
       heading: 'Transparencia como confianza.',
       body: 'Licencia MIT, construido por la comunidad. Cada línea de código es pública. Cada decisión de diseño es auditable.',
-      body2: 'Desarrollador, diseñador, investigador, traductor, o alguien que ha recorrido este camino? El repositorio está abierto.',
       cta: 'Ver en GitHub',
     },
     reciprocity: {
@@ -164,33 +123,6 @@ const content = {
       closing: 'Las palabras en una página son insuficientes. Pero el silencio es peor. Nos comprometemos a dirigir recursos hacia las comunidades que han custodiado este conocimiento.',
       cta: 'Iniciativa de Reciprocidad Indígena',
     },
-    privacy: {
-      label: 'Privacidad',
-      heading: 'Tus datos son tuyos. Punto.',
-      body: 'Diseñado para que usar Umbral nunca te ponga en riesgo.',
-      points: [
-        {
-          title: 'Cero PII vinculada al uso de sustancias',
-          desc: 'Ninguna cuenta conecta tu identidad con datos de sustancias.',
-        },
-        {
-          title: 'Diarios cifrados de extremo a extremo',
-          desc: 'Cifrados antes de salir de tu dispositivo. No podemos leerlos.',
-        },
-        {
-          title: 'Sin analítica de comportamiento',
-          desc: 'No rastreamos qué sustancias exploras ni cómo usas la herramienta.',
-        },
-        {
-          title: 'Exporta y elimina en cualquier momento',
-          desc: 'Tus datos te pertenecen. Descárgalos o elimínalos cuando quieras.',
-        },
-        {
-          title: 'Cifrado de código abierto',
-          desc: 'Cada implementación es auditable. La confianza se verifica, no se promete.',
-        },
-      ],
-    },
     contribute: {
       label: 'Contribuir',
       heading: 'Construye con nosotros.',
@@ -201,8 +133,6 @@ const content = {
     },
   },
 }
-
-const privacyIcons = [ShieldCheck, LockKey, EyeSlash, Export, Code] as const
 
 const principleIcons = [HandsPraying, HandHeart, Scales, Compass, Gavel, Bandaids, TreeEvergreen, Handshake] as const
 
@@ -217,14 +147,14 @@ export default async function AboutPage({
 
   return (
     <>
-      {/* ── HERO ── */}
+      {/* ── 1. HERO (bg-deep) ── */}
       <Section spacing="none" className="min-h-[80dvh] flex items-center bg-deep">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-start py-32 md:py-40">
           <div className="md:col-span-7 lg:col-span-6">
             <p className="text-xs tracking-[0.2em] uppercase text-cloud/60 mb-8 font-sans">
               {t.hero.label}
             </p>
-            <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl font-light leading-[1.05] tracking-[-0.03em] text-white">
+            <h1 className="font-serif text-4xl md:text-5xl font-light leading-[1.05] tracking-[-0.03em] text-white">
               {t.hero.heading}
             </h1>
             <p className="mt-10 md:mt-14 text-lg md:text-xl text-cloud/60 font-light leading-relaxed max-w-[50ch]">
@@ -253,7 +183,7 @@ export default async function AboutPage({
         </div>
       </Section>
 
-      {/* ── MYCELIAL NETWORK ── */}
+      {/* ── 2. THE FRAMEWORK (bg-forest) ── */}
       <Section spacing="lg" className="bg-forest">
         <ScrollReveal variant="scale">
           <ParallaxImage
@@ -270,7 +200,7 @@ export default async function AboutPage({
               <p className="text-xs tracking-[0.2em] uppercase text-cloud/60 mb-4 font-sans">
                 {t.mycelial.label}
               </p>
-              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light leading-[1.1] tracking-[-0.02em] text-white">
+              <h2 className="font-serif text-3xl md:text-4xl font-light leading-[1.1] tracking-[-0.02em] text-white">
                 {t.mycelial.heading}
               </h2>
             </div>
@@ -286,17 +216,11 @@ export default async function AboutPage({
         </ScrollReveal>
       </Section>
 
-      {/* ── CALLOUT ── */}
-      <section>
-        <ScrollReveal variant="scale">
-          <Callout quote={t.callout.quote} />
-        </ScrollReveal>
-      </section>
-
-      {/* ── OPEN SOURCE ── */}
-      <Section spacing="lg" className="bg-teal">
-        <ScrollReveal variant="slide-left">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
+      {/* ── 3. OPEN SOURCE + RECIPROCITY (bg-deep) ── */}
+      <Section spacing="lg" className="bg-deep text-cloud">
+        <ScrollReveal variant="fade-up">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-8">
+            {/* left: open source */}
             <div className="md:col-span-5">
               <div className="flex items-center gap-4 mb-6">
                 <GithubLogo size={28} weight="duotone" className="text-cloud/30" />
@@ -306,13 +230,8 @@ export default async function AboutPage({
                 label={t.openSource.label}
                 heading={t.openSource.heading}
               />
-            </div>
-            <div className="md:col-span-6 md:col-start-7">
-              <p className="text-lg text-cloud/60 font-light leading-relaxed mb-6">
+              <p className="text-lg text-cloud/60 font-light leading-relaxed mb-10">
                 {t.openSource.body}
-              </p>
-              <p className="text-lg text-cloud/80 font-light leading-relaxed mb-10">
-                {t.openSource.body2}
               </p>
               <Button
                 variant="secondary"
@@ -322,69 +241,43 @@ export default async function AboutPage({
                 {t.openSource.cta}
               </Button>
             </div>
-          </div>
-        </ScrollReveal>
-      </Section>
 
-      {/* ── INDIGENOUS RECIPROCITY ── */}
-      <Section spacing="lg" className="bg-deep text-cloud">
-        <ScrollReveal variant="fade-in">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
-            {/* Left column: heading and intro */}
-            <div className="md:col-span-5">
+            {/* right: reciprocity */}
+            <div className="md:col-span-6 md:col-start-7">
               <p className="text-xs tracking-[0.2em] uppercase text-gold/80 mb-4 font-sans">
                 {t.reciprocity.label}
               </p>
-              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light leading-[1.1] tracking-[-0.02em] text-white">
+              <h3 className="font-serif text-3xl md:text-4xl font-light leading-[1.1] tracking-[-0.02em] text-white mb-6">
                 {t.reciprocity.heading}
-              </h2>
-              <p className="mt-8 text-lg text-cloud/70 font-light leading-relaxed">
+              </h3>
+              <p className="text-base text-cloud/70 font-light leading-relaxed mb-6">
                 {t.reciprocity.intro}
               </p>
-            </div>
-
-            {/* Right column: body, principles, closing */}
-            <div className="md:col-span-6 md:col-start-7">
-              <p className="text-lg text-cloud/70 font-light leading-relaxed mb-16">
+              <p className="text-base text-cloud/70 font-light leading-relaxed mb-10">
                 {t.reciprocity.body}
               </p>
 
-              {/* The 8 Principles */}
-              <div className="mb-16">
-                <h3 className="font-serif text-2xl md:text-3xl font-light leading-[1.2] tracking-[-0.01em] text-white mb-3">
+              {/* compact 8 principles list */}
+              <div className="mb-10">
+                <p className="text-xs tracking-[0.15em] uppercase text-gold/60 mb-4 font-sans">
                   {t.reciprocity.principles.heading}
-                </h3>
-                <p className="text-sm text-cloud/50 font-light leading-relaxed mb-10">
-                  {t.reciprocity.principles.intro}
                 </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-10">
+                <div className="grid grid-cols-2 gap-x-8 gap-y-3">
                   {t.reciprocity.principles.items.map((principle, i) => {
                     const PrincipleIcon = principleIcons[i]
                     return (
-                      <ScrollReveal key={principle.name} variant="fade-up" delay={i * 0.05}>
-                        <div className="relative">
-                          <span className="absolute -top-3 -left-1 font-serif text-5xl font-light text-gold/[0.08] leading-none select-none" aria-hidden="true">
-                            {String(i + 1).padStart(2, '0')}
-                          </span>
-                          <div className="relative pt-4">
-                            <div className="flex items-center gap-2.5 mb-2">
-                              <PrincipleIcon size={16} weight="duotone" className="text-gold/40" />
-                              <p className="text-sm tracking-[0.15em] uppercase text-gold font-sans">
-                                {principle.name}
-                              </p>
-                            </div>
-                            <p className="text-sm text-cloud/60 font-light leading-relaxed">
-                              {principle.desc}
-                            </p>
-                          </div>
-                        </div>
-                      </ScrollReveal>
+                      <div key={principle.name} className="flex items-center gap-2">
+                        <PrincipleIcon size={14} weight="duotone" className="text-gold/40 shrink-0" />
+                        <span className="text-sm text-cloud/60 font-light">
+                          {principle.name}
+                        </span>
+                      </div>
                     )
                   })}
                 </div>
               </div>
 
-              <p className="text-lg text-cloud/70 font-light leading-relaxed mb-10">
+              <p className="text-sm text-cloud/50 font-light leading-relaxed mb-6">
                 {t.reciprocity.closing}
               </p>
 
@@ -404,55 +297,7 @@ export default async function AboutPage({
         </ScrollReveal>
       </Section>
 
-      {/* ── PRIVACY ── */}
-      <Section spacing="lg" className="bg-forest">
-        <ScrollReveal variant="slide-right">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
-            <div className="md:col-span-5">
-              <SectionHeader
-                label={t.privacy.label}
-                heading={t.privacy.heading}
-              />
-              <p className="text-lg text-cloud/60 font-light leading-relaxed max-w-[45ch]">
-                {t.privacy.body}
-              </p>
-            </div>
-            <div className="md:col-span-6 md:col-start-7">
-              <ul className="space-y-10">
-                {t.privacy.points.map((point, i) => {
-                  const Icon = privacyIcons[i]
-                  return (
-                    <li key={point.title} className="flex gap-5">
-                      <div className="shrink-0 mt-1">
-                        <Icon size={24} weight="duotone" className="text-sage" />
-                      </div>
-                      <div>
-                        <h3 className="font-serif text-xl md:text-2xl font-light leading-[1.2] tracking-[-0.01em] mb-2 text-white">
-                          {point.title}
-                        </h3>
-                        <p className="text-base text-cloud/60 font-light leading-relaxed max-w-[50ch]">
-                          {point.desc}
-                        </p>
-                      </div>
-                    </li>
-                  )
-                })}
-              </ul>
-            </div>
-          </div>
-        </ScrollReveal>
-      </Section>
-
-      {/* ── ART BREAK ── */}
-      <ParallaxImage
-        src={artImages.handsReaching.src}
-        alt={artImages.handsReaching.alt[locale as Locale]}
-        className="h-[40vh]"
-        speed={0.1}
-        overlay="bg-deep/50"
-      />
-
-      {/* ── CONTRIBUTE ── */}
+      {/* ── 4. BUILD WITH US (bg-teal) ── */}
       <Section spacing="lg" className="bg-teal text-cloud">
         <ScrollReveal variant="fade-up">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 items-center">
@@ -460,7 +305,7 @@ export default async function AboutPage({
               <p className="text-xs tracking-[0.2em] uppercase text-gold/80 mb-4 font-sans">
                 {t.contribute.label}
               </p>
-              <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light leading-[1.05] tracking-[-0.03em] text-white">
+              <h2 className="font-serif text-3xl md:text-4xl font-light leading-[1.05] tracking-[-0.03em] text-white">
                 {t.contribute.heading}
               </h2>
               <p className="mt-8 text-lg text-cloud/60 font-light leading-relaxed max-w-[50ch]">

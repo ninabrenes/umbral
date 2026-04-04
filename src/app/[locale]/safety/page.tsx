@@ -2,10 +2,8 @@ import { setRequestLocale } from 'next-intl/server'
 import { Section } from '@/components/ui/Section'
 import { SectionHeader } from '@/components/ui/SectionHeader'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
-import { ParallaxImage } from '@/components/ui/ParallaxImage'
 import { crisisResources } from '@/content/safety/crisis-resources'
 import { contraindications } from '@/content/safety/contraindications'
-import { artImages } from '@/content/framework/images'
 import {
   Warning,
   WarningCircle,
@@ -13,7 +11,6 @@ import {
   Question,
   Phone,
   ChatText,
-  Lifebuoy,
   Heartbeat,
   Armchair,
   House,
@@ -88,12 +85,9 @@ const content = {
       ],
     },
     disclaimers: {
-      label: 'Legal notice',
-      heading: 'Important disclaimers',
       items: [
         'This tool does not encourage, condone, or facilitate illegal activities. It exists as an educational and harm reduction resource.',
         'Umbral does not provide medical care, psychiatric diagnosis, or therapeutic treatment.',
-        'Information drawn from published research and established harm reduction practices. Not exhaustive.',
         'You are solely responsible for your decisions. Consult healthcare professionals before changing medications or treatment plans.',
         'Laws vary by jurisdiction. It is your responsibility to understand and comply with local laws.',
       ],
@@ -153,12 +147,9 @@ const content = {
       ],
     },
     disclaimers: {
-      label: 'Aviso legal',
-      heading: 'Descargos de responsabilidad',
       items: [
         'Esta herramienta no fomenta, aprueba ni facilita actividades ilegales. Existe como recurso educativo y de reducción de daños.',
         'Umbral no proporciona atención médica, diagnóstico psiquiátrico ni tratamiento terapéutico.',
-        'Información de investigaciones publicadas y prácticas establecidas de reducción de daños. No exhaustiva.',
         'Eres el único responsable de tus decisiones. Consulta profesionales antes de hacer cambios en medicamentos o tratamiento.',
         'Las leyes varían según la jurisdicción. Es tu responsabilidad conocer y cumplir las leyes locales.',
       ],
@@ -207,14 +198,14 @@ export default async function SafetyPage({
 
   return (
     <>
-      {/* ── HERO ── */}
+      {/* ── 1. HERO + CRISIS (bg-deep into crisis) ── */}
       <Section spacing="lg" className="bg-deep">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pt-24 md:pt-32">
           <div className="md:col-span-8 lg:col-span-7">
             <p className="text-xs tracking-[0.2em] uppercase text-cloud/60 mb-8 font-sans">
               {t.hero.label}
             </p>
-            <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl font-light leading-[1.05] tracking-[-0.03em] text-white">
+            <h1 className="font-serif text-4xl md:text-5xl font-light leading-[1.05] tracking-[-0.03em] text-white">
               {t.hero.title}
             </h1>
             <p className="mt-8 text-lg md:text-xl text-cloud/60 font-light leading-relaxed max-w-[55ch]">
@@ -222,74 +213,65 @@ export default async function SafetyPage({
             </p>
           </div>
         </div>
-      </Section>
 
-      {/* ── CRISIS RESOURCES — NO ANIMATION (instant render) ── */}
-      <Section spacing="lg" className="bg-crisis-bg">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-          <div className="md:col-span-4">
-            <p className="text-xs tracking-[0.2em] uppercase text-crisis-accent mb-4 font-sans">
-              {t.crisis.label}
-            </p>
-            <h2 className="font-serif text-4xl md:text-5xl font-light leading-[1.1] tracking-[-0.02em] text-crisis-text">
-              {t.crisis.heading}
-            </h2>
-            <p className="mt-5 text-lg text-crisis-text/70 font-light leading-relaxed">
-              {t.crisis.subtitle}
-            </p>
-          </div>
-          <div className="md:col-span-7 md:col-start-6">
-            <div className="space-y-4">
-              {crisisResources.map((resource) => {
-                const isText = resource.href.startsWith('sms:')
-                const CrisisIcon = isText ? ChatText : Phone
-                return (
-                  <a
-                    key={resource.contact}
-                    href={resource.href}
-                    className="block rounded-lg border border-white/10 bg-crisis-bg/80 p-6 md:p-8 transition-colors duration-200 hover:bg-crisis-text/[0.08] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-crisis-accent"
-                  >
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                      <div className="flex items-start gap-4">
-                        <div className="shrink-0 mt-0.5 flex items-center justify-center w-10 h-10 rounded-full bg-crisis-accent/15">
-                          <CrisisIcon size={20} weight="duotone" className="text-crisis-accent" />
+        {/* crisis resources — inline, no animation (instant render) */}
+        <div className="mt-20 md:mt-28 pt-16 border-t border-white/[0.06]">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+            <div className="md:col-span-4">
+              <p className="text-xs tracking-[0.2em] uppercase text-crisis-accent mb-4 font-sans">
+                {t.crisis.label}
+              </p>
+              <h2 className="font-serif text-3xl md:text-4xl font-light leading-[1.1] tracking-[-0.02em] text-crisis-text">
+                {t.crisis.heading}
+              </h2>
+              <p className="mt-4 text-base text-crisis-text/70 font-light leading-relaxed">
+                {t.crisis.subtitle}
+              </p>
+            </div>
+            <div className="md:col-span-7 md:col-start-6">
+              <div className="space-y-4">
+                {crisisResources.map((resource) => {
+                  const isText = resource.href.startsWith('sms:')
+                  const CrisisIcon = isText ? ChatText : Phone
+                  return (
+                    <a
+                      key={resource.contact}
+                      href={resource.href}
+                      className="block rounded-lg border border-white/10 bg-white/[0.03] p-6 transition-colors duration-200 hover:bg-white/[0.06] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-crisis-accent"
+                    >
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                        <div className="flex items-start gap-4">
+                          <div className="shrink-0 mt-0.5 flex items-center justify-center w-10 h-10 rounded-full bg-crisis-accent/15">
+                            <CrisisIcon size={20} weight="duotone" className="text-crisis-accent" />
+                          </div>
+                          <div>
+                            <h3 className="font-serif text-xl font-light text-white">
+                              {resource.name[locale as Locale]}
+                            </h3>
+                            <p className="mt-1 text-sm text-cloud/50 font-light">
+                              {resource.description[locale as Locale]}
+                            </p>
+                          </div>
                         </div>
-                        <div>
-                          <h3 className="font-serif text-xl md:text-2xl font-light text-crisis-text">
-                            {resource.name[locale as Locale]}
-                          </h3>
-                          <p className="mt-1 text-sm text-crisis-text/60 font-light">
-                            {resource.description[locale as Locale]}
-                          </p>
+                        <div className="shrink-0 flex items-center gap-3 min-h-[44px] min-w-[44px]">
+                          <span className="text-xs tracking-[0.15em] uppercase text-cloud/40">
+                            {isText ? t.crisis.textLabel : t.crisis.callLabel}
+                          </span>
+                          <span className="font-serif text-2xl font-light text-crisis-accent tracking-tight">
+                            {resource.contact}
+                          </span>
                         </div>
                       </div>
-                      <div className="shrink-0 flex items-center gap-3 min-h-[44px] min-w-[44px]">
-                        <span className="text-xs tracking-[0.15em] uppercase text-crisis-text/40">
-                          {isText ? t.crisis.textLabel : t.crisis.callLabel}
-                        </span>
-                        <span className="font-serif text-2xl md:text-3xl font-light text-crisis-accent tracking-tight">
-                          {resource.contact}
-                        </span>
-                      </div>
-                    </div>
-                  </a>
-                )
-              })}
+                    </a>
+                  )
+                })}
+              </div>
             </div>
           </div>
         </div>
       </Section>
 
-      {/* ── ART IMAGE BREAK ── */}
-      <ParallaxImage
-        src={artImages.cosmicNebula.src}
-        alt={artImages.cosmicNebula.alt[locale as Locale]}
-        className="h-[35vh]"
-        speed={0.08}
-        overlay="bg-deep/60"
-      />
-
-      {/* ── CONTRAINDICATIONS ── */}
+      {/* ── 2. CONTRAINDICATIONS (bg-forest) ── */}
       <Section spacing="lg" className="bg-forest">
         <SectionHeader
           label={t.contraindications.label}
@@ -345,71 +327,61 @@ export default async function SafetyPage({
         </div>
       </Section>
 
-      {/* ── HARM REDUCTION PRINCIPLES ── */}
-      <ScrollReveal variant="fade-in">
-        <Section spacing="lg" className="bg-teal">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
-            <div className="md:col-span-4">
-              <p className="text-xs tracking-[0.2em] uppercase text-cloud/60 mb-4 font-sans">
-                {t.harmReduction.label}
-              </p>
-              <h2 className="font-serif text-4xl md:text-5xl font-light leading-[1.1] tracking-[-0.02em] text-white">
-                {t.harmReduction.heading}
-              </h2>
-              <p className="mt-5 text-lg text-cloud/60 font-light leading-relaxed">
-                {t.harmReduction.subtitle}
-              </p>
-            </div>
-            <div className="md:col-span-7 md:col-start-6">
-              <div className="space-y-10">
-                {t.harmReduction.principles.map((principle, index) => {
-                  const PrincipleIcon = harmReductionIcons[index]
-                  return (
-                    <ScrollReveal key={principle.title} variant="slide-left" delay={index * 0.08}>
-                      <div className="flex items-start gap-4">
-                        <div className="shrink-0 mt-1">
-                          <PrincipleIcon size={28} weight="duotone" className="text-sage" />
-                        </div>
-                        <div>
-                          <h3 className="font-serif text-2xl font-light leading-tight mb-3 text-white">
-                            {principle.title}
-                          </h3>
-                          <p className="text-base text-cloud/60 font-light leading-relaxed max-w-[50ch]">
-                            {principle.body}
-                          </p>
-                        </div>
-                      </div>
-                    </ScrollReveal>
-                  )
-                })}
-              </div>
-            </div>
-          </div>
-        </Section>
-      </ScrollReveal>
-
-      {/* ── DISCLAIMERS ── */}
-      <Section spacing="lg" className="bg-deep">
+      {/* ── 3. HARM REDUCTION PRINCIPLES + DISCLAIMERS (bg-teal) ── */}
+      <Section spacing="lg" className="bg-teal">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
-          <div className="md:col-span-4">
-            <Shield size={32} weight="duotone" className="text-cloud/60 mb-5" />
+          {/* left: principles */}
+          <div className="md:col-span-7">
             <p className="text-xs tracking-[0.2em] uppercase text-cloud/60 mb-4 font-sans">
-              {t.disclaimers.label}
+              {t.harmReduction.label}
             </p>
-            <h2 className="font-serif text-3xl md:text-4xl font-light leading-[1.1] tracking-[-0.02em] text-white">
-              {t.disclaimers.heading}
+            <h2 className="font-serif text-4xl md:text-5xl font-light leading-[1.1] tracking-[-0.02em] text-white mb-4">
+              {t.harmReduction.heading}
             </h2>
+            <p className="text-base text-cloud/60 font-light leading-relaxed mb-12">
+              {t.harmReduction.subtitle}
+            </p>
+            <div className="space-y-10">
+              {t.harmReduction.principles.map((principle, index) => {
+                const PrincipleIcon = harmReductionIcons[index]
+                return (
+                  <ScrollReveal key={principle.title} variant="fade-up" delay={index * 0.08}>
+                    <div className="flex items-start gap-4">
+                      <div className="shrink-0 mt-1">
+                        <PrincipleIcon size={28} weight="duotone" className="text-sage" />
+                      </div>
+                      <div>
+                        <h3 className="font-serif text-2xl font-light leading-tight mb-3 text-white">
+                          {principle.title}
+                        </h3>
+                        <p className="text-base text-cloud/60 font-light leading-relaxed max-w-[50ch]">
+                          {principle.body}
+                        </p>
+                      </div>
+                    </div>
+                  </ScrollReveal>
+                )
+              })}
+            </div>
           </div>
-          <div className="md:col-span-7 md:col-start-6">
-            <div className="space-y-6">
-              {t.disclaimers.items.map((item, i) => (
-                <p
-                  key={i}
-                  className="text-sm text-cloud/60 font-light leading-relaxed"
-                >
-                  {item}
-                </p>
-              ))}
+
+          {/* right: disclaimers */}
+          <div className="md:col-span-4 md:col-start-9">
+            <div className="border-l border-white/[0.06] pl-8">
+              <Shield size={28} weight="duotone" className="text-cloud/40 mb-4" />
+              <p className="text-xs tracking-[0.2em] uppercase text-cloud/40 mb-6 font-sans">
+                {locale === 'es' ? 'Aviso legal' : 'Legal notice'}
+              </p>
+              <div className="space-y-5">
+                {t.disclaimers.items.map((item, i) => (
+                  <p
+                    key={i}
+                    className="text-sm text-cloud/50 font-light leading-relaxed"
+                  >
+                    {item}
+                  </p>
+                ))}
+              </div>
             </div>
           </div>
         </div>

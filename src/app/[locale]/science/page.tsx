@@ -1,13 +1,10 @@
 import { setRequestLocale } from 'next-intl/server'
 import { Section } from '@/components/ui/Section'
-import { SectionHeader } from '@/components/ui/SectionHeader'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
-import { ParallaxImage } from '@/components/ui/ParallaxImage'
 import { CountUp } from '@/components/ui/CountUp'
 import { LibraryShelf } from '@/components/science/LibraryShelf'
 import { ResearchCard } from '@/components/science/ResearchCard'
 import { papers, organizations, books } from '@/content/framework/sources-expanded'
-import { artImages } from '@/content/framework/images'
 import {
   BookOpenText,
   Buildings,
@@ -29,7 +26,7 @@ import {
   Pill,
 } from '@phosphor-icons/react/dist/ssr'
 import type { Locale } from '@/types'
-import type { Paper, Book, Organization } from '@/content/framework/sources-expanded'
+import type { Paper, Organization } from '@/content/framework/sources-expanded'
 
 /* ── category system ── */
 
@@ -126,21 +123,6 @@ const content = {
         },
       ],
     },
-    research: {
-      label: 'Full paper library',
-      heading: 'the papers behind the framework',
-      subtitle: 'Every peer-reviewed study that informed the Mycelial Network model. Grouped by research domain.',
-    },
-    orgs: {
-      label: 'Organizations',
-      heading: 'leading the field',
-      subtitle: 'The institutions, nonprofits, and projects advancing psychedelic science, education, and harm reduction worldwide.',
-    },
-    books: {
-      label: 'Essential reading',
-      heading: 'books that shaped this work',
-      subtitle: 'The books that informed our framework. From clinical science to contemplative practice to indigenous wisdom.',
-    },
   },
   es: {
     hero: {
@@ -193,21 +175,6 @@ const content = {
           citation: 'Lyons & Carhart-Harris, 2018; Kettner et al., 2019',
         },
       ],
-    },
-    research: {
-      label: 'Biblioteca completa',
-      heading: 'los estudios detras del marco',
-      subtitle: 'Cada estudio revisado por pares que informo el modelo de la Red Micelial. Agrupados por dominio de investigacion.',
-    },
-    orgs: {
-      label: 'Organizaciones',
-      heading: 'liderando el campo',
-      subtitle: 'Las instituciones, organizaciones sin fines de lucro y proyectos que avanzan la ciencia psicodelica, la educacion y la reduccion de danos en todo el mundo.',
-    },
-    books: {
-      label: 'Lectura esencial',
-      heading: 'libros que dieron forma a este trabajo',
-      subtitle: 'Los libros que informaron nuestro marco. Desde ciencia clinica hasta practica contemplativa y sabiduria indigena.',
     },
   },
 }
@@ -275,44 +242,6 @@ function ThemeIcon({ icon }: { icon: string }) {
   )
 }
 
-/* ── sub-components ── */
-
-function OrgCard({
-  org,
-  locale,
-}: {
-  org: Organization
-  locale: Locale
-}) {
-  const focusLabel = orgFocusLabels[org.focus]?.[locale] ?? org.focus
-
-  return (
-    <a
-      href={org.url}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="block bg-teal/30 rounded-2xl p-8 md:p-10 transition-opacity duration-200 hover:opacity-80 h-full"
-    >
-      <div className="flex items-start justify-between mb-6">
-        <h3 className="font-serif text-lg md:text-xl font-light leading-[1.2] tracking-[-0.01em] text-cloud flex-1 pr-4">
-          {org.name}
-        </h3>
-        <ArrowSquareOut size={18} weight="bold" className="text-cloud/30 shrink-0" />
-      </div>
-
-      <div className="mb-4">
-        <span className="bg-teal/50 text-sage text-xs px-3 py-1 rounded-full font-sans">
-          {focusLabel}
-        </span>
-      </div>
-
-      <p className="text-sm text-cloud/60 font-sans font-light leading-relaxed">
-        {org.description[locale]}
-      </p>
-    </a>
-  )
-}
-
 /* ── page ── */
 
 export default async function SciencePage({
@@ -328,11 +257,11 @@ export default async function SciencePage({
 
   return (
     <>
-      {/* ── HERO (bg-deep) ── */}
+      {/* ── 1. HERO (bg-deep) ── */}
       <Section spacing="none" className="min-h-[70dvh] flex items-center bg-deep">
         <div className="py-32 md:py-40">
           <ScrollReveal variant="fade-up">
-            <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light leading-[1.05] tracking-[-0.03em] text-white max-w-[14ch]">
+            <h1 className="font-serif text-4xl md:text-5xl font-light leading-[1.05] tracking-[-0.03em] text-white max-w-[14ch]">
               {t.hero.title}
             </h1>
           </ScrollReveal>
@@ -398,7 +327,7 @@ export default async function SciencePage({
         </div>
       </Section>
 
-      {/* ── KEY RESEARCH THEMES (bg-forest) ── */}
+      {/* ── 2. KEY RESEARCH THEMES (bg-forest) ── */}
       <Section spacing="lg" className="bg-forest">
         <ScrollReveal variant="fade-up">
           <p className="text-xs tracking-[0.2em] uppercase text-cloud/60 mb-16 md:mb-24 font-sans">
@@ -430,16 +359,7 @@ export default async function SciencePage({
         </div>
       </Section>
 
-      {/* ── ART BREAK ── */}
-      <ParallaxImage
-        src={artImages.radiantSilhouette.src}
-        alt={artImages.radiantSilhouette.alt[locale as Locale]}
-        className="h-[50vh]"
-        speed={0.1}
-        overlay="bg-deep/60"
-      />
-
-      {/* ── THE LIBRARY (bg-onyx) ── */}
+      {/* ── 3. THE LIBRARY (bg-onyx) — papers, books, and organizations as shelves ── */}
       <section id="library" className="bg-onyx py-20 md:py-28 px-6 md:px-12 lg:px-20">
         <div className="mx-auto max-w-[1400px]">
           <ScrollReveal variant="fade-up">
@@ -504,28 +424,40 @@ export default async function SciencePage({
               ))}
             </LibraryShelf>
           </ScrollReveal>
+
+          {/* organizations shelf */}
+          <ScrollReveal variant="fade-up">
+            <LibraryShelf
+              title={locale === 'es' ? 'Organizaciones' : 'Organizations'}
+              icon={<Buildings size={20} weight="duotone" className="text-mint" />}
+              count={organizations.length}
+            >
+              {organizations.map((org) => (
+                <a
+                  key={org.id}
+                  href={org.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block bg-teal/30 rounded-xl p-6 transition-opacity duration-200 hover:opacity-80"
+                >
+                  <div className="flex items-start justify-between mb-3">
+                    <h4 className="font-serif text-lg font-light leading-[1.2] text-cloud flex-1 pr-4">
+                      {org.name}
+                    </h4>
+                    <ArrowSquareOut size={16} weight="bold" className="text-cloud/30 shrink-0" />
+                  </div>
+                  <span className="inline-block bg-teal/50 text-sage text-xs px-2.5 py-0.5 rounded-full font-sans mb-3">
+                    {orgFocusLabels[org.focus]?.[locale as Locale] ?? org.focus}
+                  </span>
+                  <p className="text-sm text-cloud/60 font-sans font-light leading-relaxed">
+                    {org.description[locale as Locale]}
+                  </p>
+                </a>
+              ))}
+            </LibraryShelf>
+          </ScrollReveal>
         </div>
       </section>
-
-      {/* ── ORGANIZATIONS (bg-forest) ── */}
-      <Section spacing="lg" className="bg-forest">
-        <ScrollReveal variant="fade-up">
-          <SectionHeader
-            label={t.orgs.label}
-            heading={t.orgs.heading}
-            subtitle={t.orgs.subtitle}
-          />
-        </ScrollReveal>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {organizations.map((org, i) => (
-            <ScrollReveal key={org.id} variant="fade-up" delay={i * 0.05}>
-              <OrgCard org={org} locale={locale as Locale} />
-            </ScrollReveal>
-          ))}
-        </div>
-      </Section>
-
     </>
   )
 }

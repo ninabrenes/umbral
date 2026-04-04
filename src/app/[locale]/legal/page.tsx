@@ -28,21 +28,13 @@ const content = {
       subtitle:
         'Legal status differs dramatically across jurisdictions and is changing rapidly. Educational overview only.',
     },
-    disclaimer: {
-      heading: 'Important disclaimer',
-      body: 'Umbral does not encourage or facilitate illegal activities. Laws change. Enforcement varies. Always verify current status in your jurisdiction.',
-      emphasis:
-        'This is not legal advice. Consult a qualified attorney in your jurisdiction.',
-    },
+    disclaimer:
+      'This is not legal advice. Umbral does not encourage or facilitate illegal activities. Laws change. Enforcement varies. Always verify current status in your jurisdiction through official sources or qualified legal counsel.',
     jurisdictions: {
       label: 'By jurisdiction',
       heading: 'A changing map.',
       subtitle:
         'Selected jurisdictions with notable legal frameworks. Not exhaustive. Last reviewed: early 2026.',
-    },
-    footer: {
-      heading: 'Verify before you act.',
-      body: 'Laws change frequently. Always verify through official government sources or qualified legal counsel.',
     },
   },
   es: {
@@ -52,21 +44,13 @@ const content = {
       subtitle:
         'El estado legal difiere dramáticamente entre jurisdicciones y cambia rápidamente. Solo con fines educativos.',
     },
-    disclaimer: {
-      heading: 'Aviso importante',
-      body: 'Umbral no fomenta ni facilita actividades ilegales. Las leyes cambian. La aplicación varía. Siempre verifica el estado actual en tu jurisdicción.',
-      emphasis:
-        'Esto no es asesoramiento legal. Consulta a un abogado calificado en tu jurisdicción.',
-    },
+    disclaimer:
+      'Esto no es asesoramiento legal. Umbral no fomenta ni facilita actividades ilegales. Las leyes cambian. La aplicación varía. Siempre verifica el estado actual en tu jurisdicción a través de fuentes oficiales o asesoría legal calificada.',
     jurisdictions: {
       label: 'Por jurisdicción',
       heading: 'Un mapa cambiante.',
       subtitle:
         'Jurisdicciones seleccionadas con marcos legales notables. No exhaustiva. Última revisión: principios de 2026.',
-    },
-    footer: {
-      heading: 'Verifica antes de actuar.',
-      body: 'Las leyes cambian con frecuencia. Verifica a través de fuentes gubernamentales oficiales o asesoría legal calificada.',
     },
   },
 }
@@ -83,45 +67,34 @@ export default async function LegalPage({
 
   return (
     <>
-      {/* ── HERO ── */}
-      <Section spacing="none" className="min-h-[70dvh] flex items-center">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center py-32 md:py-40">
-          <div className="md:col-span-7 lg:col-span-6">
-            <p className="text-xs tracking-[0.2em] uppercase text-cloud/60 mb-8 font-sans">
-              {t.hero.label}
-            </p>
-            <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl font-light leading-[1.05] tracking-[-0.03em] whitespace-pre-line text-white">
-              {t.hero.heading}
-            </h1>
-            <p className="mt-8 text-xl text-cloud/60 font-light leading-relaxed max-w-[50ch]">
-              {t.hero.subtitle}
-            </p>
-          </div>
-          <div className="hidden md:block md:col-span-5 lg:col-span-6" />
-        </div>
-      </Section>
-
-      {/* ── DISCLAIMER ── */}
-      <Section spacing="default" className="bg-forest">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-          <div className="md:col-span-4">
-            <h2 className="font-serif text-3xl md:text-4xl font-light leading-[1.1] tracking-[-0.02em] text-white">
-              {t.disclaimer.heading}
-            </h2>
-          </div>
-          <div className="md:col-span-7 md:col-start-6">
-            <p className="text-lg text-cloud/70 font-light leading-relaxed mb-6">
-              {t.disclaimer.body}
-            </p>
-            <p className="text-base text-white font-normal leading-relaxed border-l-2 border-moss pl-5">
-              {t.disclaimer.emphasis}
-            </p>
+      {/* ── 1. HERO + DISCLAIMER ── */}
+      <Section spacing="none" className="min-h-[60dvh] flex items-center">
+        <div className="py-32 md:py-40">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+            <div className="md:col-span-7 lg:col-span-6">
+              <p className="text-xs tracking-[0.2em] uppercase text-cloud/60 mb-8 font-sans">
+                {t.hero.label}
+              </p>
+              <h1 className="font-serif text-4xl md:text-5xl font-light leading-[1.05] tracking-[-0.03em] whitespace-pre-line text-white">
+                {t.hero.heading}
+              </h1>
+              <p className="mt-8 text-xl text-cloud/60 font-light leading-relaxed max-w-[50ch]">
+                {t.hero.subtitle}
+              </p>
+            </div>
+            <div className="md:col-span-4 md:col-start-9 md:pt-16">
+              <div className="border-l-2 border-moss pl-6">
+                <p className="text-base text-cloud/70 font-light leading-relaxed">
+                  {t.disclaimer}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </Section>
 
-      {/* ── JURISDICTIONS ── */}
-      <Section spacing="lg">
+      {/* ── 2. JURISDICTIONS ── */}
+      <Section spacing="lg" className="bg-forest">
         <SectionHeader
           label={t.jurisdictions.label}
           heading={t.jurisdictions.heading}
@@ -152,18 +125,6 @@ export default async function LegalPage({
               </div>
             </div>
           ))}
-        </div>
-      </Section>
-
-      {/* ── FOOTER DISCLAIMER ── */}
-      <Section spacing="lg" className="bg-forest">
-        <div className="max-w-2xl">
-          <h2 className="font-serif text-3xl md:text-4xl font-light leading-[1.1] tracking-[-0.02em] mb-6 text-white">
-            {t.footer.heading}
-          </h2>
-          <p className="text-lg text-cloud/70 font-light leading-relaxed">
-            {t.footer.body}
-          </p>
         </div>
       </Section>
     </>

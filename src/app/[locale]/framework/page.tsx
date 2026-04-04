@@ -1,15 +1,9 @@
 import { setRequestLocale } from 'next-intl/server'
 import { Section } from '@/components/ui/Section'
 import { SectionHeader } from '@/components/ui/SectionHeader'
-import { Callout } from '@/components/ui/Callout'
-import { Button } from '@/components/ui/Button'
 import { HorizontalNodes } from '@/components/framework/HorizontalNodes'
-import { StickyProcess } from '@/components/framework/StickyProcess'
-import { NetworkDiagram } from '@/components/framework/NetworkDiagram'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
-import { ParallaxImage } from '@/components/ui/ParallaxImage'
 import { nodes } from '@/content/framework/nodes'
-import { pageImages } from '@/content/framework/images'
 import type { Locale } from '@/types'
 
 const content = {
@@ -19,16 +13,12 @@ const content = {
       title: 'The Mycelial\nNetwork',
       subtitle:
         'Below the surface, a vast mycelial network connects every tree in the forest. Sharing nutrients, sending signals, supporting the weakest members.',
-      body: 'Psychedelic integration works the same way. Body, mind, relationships, values, nature, meaning. Not separate containers. Nodes in a living network. When one shifts, all shift.',
     },
     nodes: {
       label: 'The Six Nodes',
       heading: 'Each node is a concentration of integration work.',
       subtitle:
         'Like trees in a forest, each has its own character, but none exists without the others.',
-    },
-    callout: {
-      quote: 'Nothing in the forest thrives alone.',
     },
     process: {
       label: 'The Process Layer',
@@ -38,30 +28,21 @@ const content = {
       phases: [
         {
           name: 'Receive',
-          polarity: 'feminine',
           question: 'What is here?',
           description:
             'Be with what arose. Don\u2019t analyze or fix. Feel it in your body. Let it be present without needing to understand.',
-          practices:
-            'Raw journaling, body scanning, somatic processing, nature immersion, sitting in silence.',
         },
         {
           name: 'Recognize',
-          polarity: 'balance',
           question: 'What does this mean?',
           description:
             'Name what you see. Connect to patterns. Understand with the whole self, not the intellect alone.',
-          practices:
-            'Reflective journaling, IFS parts dialogue, pattern identification, integration therapy.',
         },
         {
           name: 'Return',
-          polarity: 'masculine',
           question: 'What will I do with this?',
           description:
             'Bring it back. Commit. Act. Change something in your daily life. Without return, insights remain beautiful but inert.',
-          practices:
-            'Behavioral commitments, values alignment, lifestyle changes, relational repair, service.',
         },
       ],
     },
@@ -93,12 +74,6 @@ const content = {
         },
       ],
     },
-    cta: {
-      heading: 'Explore each node.',
-      subtitle:
-        'Dive deeper into the six domains of integration.',
-      button: 'Begin with Ground',
-    },
   },
   es: {
     hero: {
@@ -106,16 +81,12 @@ const content = {
       title: 'La Red\nMicelial',
       subtitle:
         'Debajo de la superficie, una vasta red micelial conecta cada arbol del bosque. Compartiendo nutrientes, enviando senales, apoyando a los mas debiles.',
-      body: 'La integracion psicodelica funciona igual. Cuerpo, mente, relaciones, valores, naturaleza, significado. No contenedores separados. Nodos en una red viviente. Cuando uno cambia, todos cambian.',
     },
     nodes: {
       label: 'Los Seis Nodos',
       heading: 'Cada nodo es una concentracion de trabajo de integracion.',
       subtitle:
         'Como arboles en un bosque, cada uno tiene su propio caracter, pero ninguno existe sin los otros.',
-    },
-    callout: {
-      quote: 'Nada en el bosque prospera solo.',
     },
     process: {
       label: 'La Capa de Proceso',
@@ -125,30 +96,21 @@ const content = {
       phases: [
         {
           name: 'Recibir',
-          polarity: 'femenino',
           question: 'Que hay aqui?',
           description:
             'Estar con lo que surgio. No analizar. No arreglar. Sentirlo en el cuerpo. Dejar que este presente sin necesidad de entender.',
-          practices:
-            'Escritura libre, escaneo corporal, procesamiento somatico, inmersion en la naturaleza, silencio.',
         },
         {
           name: 'Reconocer',
-          polarity: 'equilibrio',
           question: 'Que significa esto?',
           description:
             'Nombrar lo que ves. Conectar con patrones. Entender con todo el ser, no solo con el intelecto.',
-          practices:
-            'Escritura reflexiva, dialogo de partes IFS, identificacion de patrones, terapia de integracion.',
         },
         {
           name: 'Retornar',
-          polarity: 'masculino',
           question: 'Que hare con esto?',
           description:
             'Traerlo de vuelta. Comprometerse. Actuar. Cambiar algo en la vida diaria. Sin el retorno, las ideas son hermosas pero inertes.',
-          practices:
-            'Compromisos de comportamiento, alineacion de valores, cambios de estilo de vida, reparacion relacional, servicio.',
         },
       ],
     },
@@ -180,12 +142,6 @@ const content = {
         },
       ],
     },
-    cta: {
-      heading: 'Explora cada nodo.',
-      subtitle:
-        'Profundiza en los seis dominios de integracion.',
-      button: 'Comenzar con Tierra',
-    },
   },
 }
 
@@ -201,43 +157,19 @@ export default async function FrameworkPage({
   return (
     <>
       {/* ── HERO ── */}
-      <Section spacing="none" className="min-h-[85dvh] flex items-center bg-deep">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center py-32">
-          <div className="md:col-span-7 lg:col-span-6">
-            <ScrollReveal variant="fade-in">
-              <p className="text-xs tracking-[0.2em] uppercase text-cloud/60 mb-8 font-sans">
-                {t.hero.label}
-              </p>
-            </ScrollReveal>
-            <ScrollReveal variant="fade-up" delay={0.1}>
-              <h1 className="font-serif text-[clamp(3.5rem,10vw,8rem)] font-light leading-[1.05] tracking-[-0.03em] whitespace-pre-line text-white">
-                {t.hero.title}
-              </h1>
-            </ScrollReveal>
-            <ScrollReveal variant="fade-up" delay={0.25}>
-              <p className="mt-8 text-xl md:text-2xl text-cloud font-light leading-relaxed max-w-[50ch]">
-                {t.hero.subtitle}
-              </p>
-            </ScrollReveal>
-          </div>
-          <div className="md:col-span-5 lg:col-span-5 lg:col-start-8">
-            <ScrollReveal variant="fade-up" delay={0.35}>
-              <p className="text-lg text-cloud font-light leading-relaxed">
-                {t.hero.body}
-              </p>
-            </ScrollReveal>
-          </div>
+      <Section spacing="none" className="min-h-[70dvh] flex items-center bg-deep">
+        <div className="py-32 max-w-3xl">
+          <p className="text-xs tracking-[0.2em] uppercase text-cloud/60 mb-8 font-sans">
+            {t.hero.label}
+          </p>
+          <h1 className="font-serif text-4xl md:text-5xl font-light leading-[1.05] tracking-[-0.03em] whitespace-pre-line text-white">
+            {t.hero.title}
+          </h1>
+          <p className="mt-8 text-xl md:text-2xl text-cloud font-light leading-relaxed max-w-[50ch]">
+            {t.hero.subtitle}
+          </p>
         </div>
       </Section>
-
-      {/* ── FRAMEWORK IMAGE (parallax) ── */}
-      <ParallaxImage
-        src={pageImages.framework.src}
-        alt={pageImages.framework.alt[locale as Locale]}
-        className="h-[50vh] md:h-[60vh]"
-        speed={0.12}
-        overlay="bg-deep/50"
-      />
 
       {/* ── SIX NODES ── */}
       <Section spacing="lg" className="bg-forest">
@@ -249,27 +181,10 @@ export default async function FrameworkPage({
           />
         </ScrollReveal>
 
-        {/* Network diagram — visual centerpiece */}
-        <div className="py-8 md:py-12">
-          <div className="bg-forest rounded-2xl p-8 md:p-12">
-            <ScrollReveal variant="scale" className="flex justify-center w-full">
-              <NetworkDiagram locale={locale as Locale} />
-            </ScrollReveal>
-          </div>
-        </div>
-
-        {/* Horizontal scroll carousel */}
         <ScrollReveal variant="fade-up">
           <HorizontalNodes nodes={nodes} locale={locale as Locale} />
         </ScrollReveal>
       </Section>
-
-      {/* ── CALLOUT ── */}
-      <section>
-        <ScrollReveal variant="scale">
-          <Callout quote={t.callout.quote} />
-        </ScrollReveal>
-      </section>
 
       {/* ── PROCESS LAYER ── */}
       <Section spacing="lg" className="bg-teal">
@@ -281,8 +196,25 @@ export default async function FrameworkPage({
           />
         </ScrollReveal>
 
-        <div className="pt-16 md:pt-24">
-          <StickyProcess locale={locale as Locale} />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 pt-16">
+          {t.process.phases.map((phase, i) => (
+            <ScrollReveal key={phase.name} variant="fade-up" delay={i * 0.1}>
+              <div>
+                <p className="text-xs tracking-[0.2em] uppercase text-cloud/40 font-sans mb-3">
+                  {String(i + 1).padStart(2, '0')}
+                </p>
+                <h3 className="font-serif text-3xl md:text-4xl font-light tracking-[-0.02em] text-white mb-4">
+                  {phase.name}
+                </h3>
+                <p className="font-serif italic text-lg text-cloud/70 mb-4">
+                  {phase.question}
+                </p>
+                <p className="text-cloud font-light leading-relaxed">
+                  {phase.description}
+                </p>
+              </div>
+            </ScrollReveal>
+          ))}
         </div>
       </Section>
 
@@ -294,7 +226,7 @@ export default async function FrameworkPage({
               <p className="text-xs tracking-[0.2em] uppercase text-cloud/60 mb-4 font-sans">
                 {t.cornerstones.label}
               </p>
-              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light leading-[1.1] tracking-[-0.02em] text-white">
+              <h2 className="font-serif text-3xl md:text-4xl font-light leading-[1.1] tracking-[-0.02em] text-white">
                 {t.cornerstones.heading}
               </h2>
               <p className="mt-5 text-lg text-cloud font-light leading-relaxed max-w-[40ch]">
@@ -320,19 +252,6 @@ export default async function FrameworkPage({
                 ))}
               </div>
             </div>
-          </div>
-        </ScrollReveal>
-      </Section>
-
-      {/* ── CTA ── */}
-      <Section spacing="lg" className="bg-forest">
-        <ScrollReveal variant="fade-up">
-          <div className="max-w-2xl">
-            <SectionHeader
-              heading={t.cta.heading}
-              subtitle={t.cta.subtitle}
-            />
-            <Button href={`/${locale}/framework/ground`}>{t.cta.button}</Button>
           </div>
         </ScrollReveal>
       </Section>
