@@ -3,9 +3,9 @@ import { Section } from '@/components/ui/Section'
 import { SectionHeader } from '@/components/ui/SectionHeader'
 import { Callout } from '@/components/ui/Callout'
 import { Button } from '@/components/ui/Button'
-import { InteractiveNode } from '@/components/framework/InteractiveNode'
+import { HorizontalNodes } from '@/components/framework/HorizontalNodes'
+import { StickyProcess } from '@/components/framework/StickyProcess'
 import { NetworkDiagram } from '@/components/framework/NetworkDiagram'
-import { ProcessDiagram } from '@/components/framework/ProcessDiagram'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { ParallaxImage } from '@/components/ui/ParallaxImage'
 import { nodes } from '@/content/framework/nodes'
@@ -256,22 +256,10 @@ export default async function FrameworkPage({
           </ScrollReveal>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {nodes.map((node, i) => (
-            <ScrollReveal
-              key={node.id}
-              variant="fade-up"
-              delay={i * 0.08}
-            >
-              <InteractiveNode
-                node={node}
-                locale={locale as Locale}
-                index={i}
-                href={`/${locale}/framework/${node.id}`}
-              />
-            </ScrollReveal>
-          ))}
-        </div>
+        {/* Horizontal scroll carousel */}
+        <ScrollReveal variant="fade-up">
+          <HorizontalNodes nodes={nodes} locale={locale as Locale} />
+        </ScrollReveal>
       </Section>
 
       {/* ── CALLOUT ── */}
@@ -291,45 +279,8 @@ export default async function FrameworkPage({
           />
         </ScrollReveal>
 
-        {/* Process diagram — visual centerpiece */}
-        <div className="py-16 md:py-24">
-          <ScrollReveal variant="scale" className="flex justify-center w-full">
-            <ProcessDiagram locale={locale as Locale} />
-          </ScrollReveal>
-        </div>
-
-        <div className="space-y-24 md:space-y-32">
-          {t.process.phases.map((phase, i) => (
-            <ScrollReveal key={phase.name} variant="fade-up" delay={i * 0.1}>
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-start">
-                {/* Left: big number + name + question */}
-                <div className="md:col-span-5 lg:col-span-4">
-                  <span className="block font-sans text-7xl md:text-8xl lg:text-9xl font-light text-white/[0.05] leading-none tabular-nums">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <h3 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light tracking-[-0.02em] leading-[1.1] -mt-4 md:-mt-6 text-white">
-                    {phase.name}
-                  </h3>
-                  <p className="text-xs tracking-[0.2em] uppercase text-sage mt-4 font-sans">
-                    {phase.polarity}
-                  </p>
-                  <p className="font-serif text-2xl md:text-3xl italic text-sage mt-8 leading-[1.3]">
-                    &ldquo;{phase.question}&rdquo;
-                  </p>
-                </div>
-
-                {/* Right: description + practices */}
-                <div className="md:col-span-6 md:col-start-7">
-                  <p className="text-lg text-cloud font-light leading-relaxed mb-8">
-                    {phase.description}
-                  </p>
-                  <p className="text-sm text-cloud/60 font-light leading-relaxed">
-                    {phase.practices}
-                  </p>
-                </div>
-              </div>
-            </ScrollReveal>
-          ))}
+        <div className="pt-16 md:pt-24">
+          <StickyProcess locale={locale as Locale} />
         </div>
       </Section>
 

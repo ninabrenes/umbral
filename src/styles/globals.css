@@ -112,6 +112,31 @@ body::after {
   transition-timing-function: cubic-bezier(0.32, 0.72, 0, 1);
 }
 
+/* ── SCROLLBAR HIDE ── */
+.scrollbar-none::-webkit-scrollbar { display: none; }
+.scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ── LIBRARY TITLE GRADIENT ── */
+@keyframes library-shimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.library-title {
+  background: linear-gradient(
+    90deg,
+    var(--color-cloud) 0%,
+    var(--color-sage) 40%,
+    var(--color-mint) 60%,
+    var(--color-cloud) 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: library-shimmer 6s ease-in-out infinite;
+}
+
 /* ── REDUCED MOTION ── */
 @media (prefers-reduced-motion: reduce) {
   *,

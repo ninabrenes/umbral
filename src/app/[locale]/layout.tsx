@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation'
 import { routing } from '@/i18n/routing'
 import { serif, sans } from '@/lib/fonts'
 import { Nav } from '@/components/layout/Nav'
+import { SideDock } from '@/components/layout/SideDock'
 import { Footer } from '@/components/layout/Footer'
 import { LenisProvider } from '@/components/layout/LenisProvider'
 import { CrisisBar } from '@/components/ui/CrisisBar'
@@ -43,6 +44,7 @@ export default async function LocaleLayout({
         <NextIntlClientProvider messages={messages}>
           <LenisProvider>
             <Nav locale={locale as Locale} />
+            <SideDock />
             <main className="pt-20">{children}</main>
             <Footer locale={locale as Locale} />
             <CrisisBar locale={locale as Locale} />

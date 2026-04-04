@@ -4,6 +4,8 @@ import { SectionHeader } from '@/components/ui/SectionHeader'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { ParallaxImage } from '@/components/ui/ParallaxImage'
 import { CountUp } from '@/components/ui/CountUp'
+import { LibraryShelf } from '@/components/science/LibraryShelf'
+import { ResearchCard } from '@/components/science/ResearchCard'
 import { papers, organizations, books } from '@/content/framework/sources-expanded'
 import { artImages } from '@/content/framework/images'
 import {
@@ -18,6 +20,13 @@ import {
   ShieldCheck,
   Scales,
   ArrowSquareOut,
+  Flask,
+  HandHeart,
+  TreeEvergreen,
+  Sparkle,
+  Gavel,
+  Timer,
+  Pill,
 } from '@phosphor-icons/react/dist/ssr'
 import type { Locale } from '@/types'
 import type { Paper, Book, Organization } from '@/content/framework/sources-expanded'
@@ -53,14 +62,6 @@ const categoryOrder = [
   'indigenous-ethics',
   'long-term-outcomes',
 ]
-
-const bookCategoryLabels: Record<string, { en: string; es: string }> = {
-  science: { en: 'Science', es: 'Ciencia' },
-  integration: { en: 'Integration', es: 'Integracion' },
-  contemplative: { en: 'Contemplative', es: 'Contemplativo' },
-  practice: { en: 'Practice', es: 'Practica' },
-  indigenous: { en: 'Indigenous', es: 'Indigena' },
-}
 
 const orgFocusLabels: Record<string, { en: string; es: string }> = {
   research: { en: 'Research', es: 'Investigacion' },
@@ -234,6 +235,28 @@ function getUniqueCategories(allPapers: Paper[]): number {
   return new Set(allPapers.map((p) => p.category)).size
 }
 
+/* ── shelf icons per category ── */
+
+function shelfIcon(category: string): React.ReactNode {
+  const size = 20
+  const weight = 'duotone' as const
+  const iconMap: Record<string, React.ReactNode> = {
+    'psilocybin-clinical': <Pill size={size} weight={weight} className="text-sage" />,
+    neuroscience: <Brain size={size} weight={weight} className="text-node-canopy" />,
+    'mdma-therapy': <Heartbeat size={size} weight={weight} className="text-sage" />,
+    'integration-frameworks': <CompassIcon size={size} weight={weight} className="text-node-roots" />,
+    'music-psychedelics': <MusicNotes size={size} weight={weight} className="text-node-fruit" />,
+    safety: <ShieldCheck size={size} weight={weight} className="text-node-weave" />,
+    'mystical-experience': <Sparkle size={size} weight={weight} className="text-node-spore" />,
+    'nature-relatedness': <TreeEvergreen size={size} weight={weight} className="text-node-roots" />,
+    'set-and-setting': <Flask size={size} weight={weight} className="text-node-roots" />,
+    'harm-reduction': <HandHeart size={size} weight={weight} className="text-node-weave" />,
+    'indigenous-ethics': <Gavel size={size} weight={weight} className="text-node-spore" />,
+    'long-term-outcomes': <Timer size={size} weight={weight} className="text-node-canopy" />,
+  }
+  return iconMap[category] ?? <BookOpenText size={size} weight={weight} className="text-sage" />
+}
+
 /* ── theme icons ── */
 
 function ThemeIcon({ icon }: { icon: string }) {
@@ -253,73 +276,6 @@ function ThemeIcon({ icon }: { icon: string }) {
 }
 
 /* ── sub-components ── */
-
-function CategoryBadge({ label }: { label: string }) {
-  return (
-    <span className="bg-teal/50 text-sage text-[10px] tracking-[0.15em] uppercase px-3 py-1 rounded-full font-sans">
-      {label}
-    </span>
-  )
-}
-
-function PaperEntry({
-  paper,
-  locale,
-  index,
-}: {
-  paper: Paper
-  locale: Locale
-  index: number
-}) {
-  const catLabel = categoryLabels[paper.category]?.[locale] ?? paper.category
-
-  return (
-    <ScrollReveal variant="fade-up" delay={index * 0.04}>
-      <li className="group py-8 md:py-10 border-b border-white/[0.06] last:border-b-0">
-        <a
-          href={paper.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="block transition-opacity duration-200 hover:opacity-70"
-        >
-          {/* badges row */}
-          <div className="flex items-center gap-3 mb-4">
-            <CategoryBadge label={catLabel} />
-            <span className="text-cloud/40 text-[10px] tracking-[0.15em] uppercase px-3 py-1 rounded-full border border-white/[0.08] font-sans">
-              {paper.year}
-            </span>
-          </div>
-
-          {/* title */}
-          <p className="font-serif text-lg md:text-xl font-light leading-[1.3] tracking-[-0.01em] text-cloud">
-            {paper.title}
-          </p>
-
-          {/* authors */}
-          <p className="mt-2 text-sm text-cloud/60 font-sans font-light">
-            {paper.authors}
-          </p>
-
-          {/* journal */}
-          <p className="mt-1 text-sm text-sage font-sans italic">
-            {paper.journal}
-          </p>
-
-          {/* bilingual summary */}
-          <p className="mt-3 text-cloud/70 text-sm font-sans font-light leading-relaxed max-w-[65ch]">
-            {paper.summary[locale]}
-          </p>
-
-          {/* link indicator */}
-          <div className="mt-4 flex items-center gap-2 text-sage text-xs tracking-[0.15em] uppercase font-sans">
-            <span>PubMed</span>
-            <ArrowSquareOut size={14} weight="bold" className="text-sage" />
-          </div>
-        </a>
-      </li>
-    </ScrollReveal>
-  )
-}
 
 function OrgCard({
   org,
@@ -354,33 +310,6 @@ function OrgCard({
         {org.description[locale]}
       </p>
     </a>
-  )
-}
-
-function BookCard({ book, locale }: { book: Book; locale: Locale }) {
-  const catLabel = bookCategoryLabels[book.category]?.[locale] ?? book.category
-
-  return (
-    <div className="bg-white/[0.04] rounded-2xl p-8 md:p-10 border border-white/[0.06] h-full">
-      <div className="flex items-start justify-between mb-4">
-        <CategoryBadge label={catLabel} />
-        <span className="text-cloud/40 text-[10px] tracking-[0.15em] uppercase font-sans">
-          {book.year}
-        </span>
-      </div>
-
-      <h3 className="font-serif text-lg md:text-xl font-light leading-[1.3] tracking-[-0.01em] text-cloud">
-        {book.title}
-      </h3>
-
-      <p className="mt-2 text-sm text-sage font-sans">
-        {book.author}
-      </p>
-
-      <p className="mt-3 text-sm text-cloud/60 font-sans font-light leading-relaxed">
-        {book.description[locale]}
-      </p>
-    </div>
   )
 }
 
@@ -510,46 +439,73 @@ export default async function SciencePage({
         overlay="bg-deep/60"
       />
 
-      {/* ── FULL PAPER LIBRARY (bg-onyx) ── */}
-      <Section spacing="lg" className="bg-onyx">
-        <ScrollReveal variant="fade-up">
-          <SectionHeader
-            label={t.research.label}
-            heading={t.research.heading}
-            subtitle={t.research.subtitle}
-          />
-        </ScrollReveal>
+      {/* ── THE LIBRARY (bg-onyx) ── */}
+      <section id="library" className="bg-onyx py-20 md:py-28 px-6 md:px-12 lg:px-20">
+        <div className="mx-auto max-w-[1400px]">
+          <ScrollReveal variant="fade-up">
+            <h2 className="library-title font-serif text-3xl md:text-4xl lg:text-5xl font-light mb-4">
+              {locale === 'es' ? 'La Biblioteca' : 'The Library'}
+            </h2>
+          </ScrollReveal>
+          <ScrollReveal variant="fade-up" delay={0.1}>
+            <p className="text-cloud/60 font-sans font-light mb-16 md:mb-20 max-w-[55ch]">
+              {locale === 'es'
+                ? `${papers.length} articulos publicados, ${books.length} libros y ${organizations.length} organizaciones que fundamentan este marco.`
+                : `${papers.length} published papers, ${books.length} books, and ${organizations.length} organizations that ground this framework.`}
+            </p>
+          </ScrollReveal>
 
-        <div className="space-y-16 md:space-y-20">
-          {grouped.map((group) => (
-            <div key={group.category}>
-              {/* category header */}
-              <ScrollReveal variant="slide-right">
-                <div className="flex items-center gap-4 mb-8 pb-4 border-b border-white/[0.08]">
-                  <h3 className="font-serif text-2xl text-white mt-0 mb-0">
-                    {categoryLabels[group.category]?.[locale as Locale] ?? group.category}
-                  </h3>
-                  <span className="text-cloud/30 text-sm font-sans">
-                    {group.papers.length}
-                  </span>
-                </div>
+          {/* paper shelves by category */}
+          {grouped.map((group) => {
+            const catLabel = categoryLabels[group.category]?.[locale as Locale] ?? group.category
+            const catIcon = shelfIcon(group.category)
+            return (
+              <ScrollReveal key={group.category} variant="fade-up">
+                <LibraryShelf
+                  title={catLabel}
+                  icon={catIcon}
+                  count={group.papers.length}
+                >
+                  {group.papers.map((paper) => (
+                    <ResearchCard
+                      key={paper.id}
+                      title={paper.title}
+                      author={paper.authors}
+                      year={paper.year}
+                      type="paper"
+                      category={paper.category}
+                      url={paper.url}
+                      journal={paper.journal}
+                      summary={paper.summary[locale as Locale]}
+                    />
+                  ))}
+                </LibraryShelf>
               </ScrollReveal>
+            )
+          })}
 
-              {/* papers in category */}
-              <ul>
-                {group.papers.map((paper, index) => (
-                  <PaperEntry
-                    key={paper.id}
-                    paper={paper}
-                    locale={locale as Locale}
-                    index={index}
-                  />
-                ))}
-              </ul>
-            </div>
-          ))}
+          {/* books shelf */}
+          <ScrollReveal variant="fade-up">
+            <LibraryShelf
+              title={locale === 'es' ? 'Libros' : 'Books'}
+              icon={<BookOpenText size={20} weight="duotone" className="text-mint" />}
+              count={books.length}
+            >
+              {books.map((book) => (
+                <ResearchCard
+                  key={book.id}
+                  title={book.title}
+                  author={book.author}
+                  year={book.year}
+                  type="book"
+                  category={book.category}
+                  summary={book.description[locale as Locale]}
+                />
+              ))}
+            </LibraryShelf>
+          </ScrollReveal>
         </div>
-      </Section>
+      </section>
 
       {/* ── ORGANIZATIONS (bg-forest) ── */}
       <Section spacing="lg" className="bg-forest">
@@ -570,24 +526,6 @@ export default async function SciencePage({
         </div>
       </Section>
 
-      {/* ── BOOKS (bg-teal) ── */}
-      <Section spacing="lg" className="bg-teal">
-        <ScrollReveal variant="fade-in">
-          <SectionHeader
-            label={t.books.label}
-            heading={t.books.heading}
-            subtitle={t.books.subtitle}
-          />
-        </ScrollReveal>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {books.map((book, i) => (
-            <ScrollReveal key={book.id} variant="fade-up" delay={i * 0.05}>
-              <BookCard book={book} locale={locale as Locale} />
-            </ScrollReveal>
-          ))}
-        </div>
-      </Section>
     </>
   )
 }
