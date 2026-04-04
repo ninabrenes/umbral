@@ -5,8 +5,8 @@ export const legalJurisdictions: LegalJurisdiction[] = [
     country: 'United States',
     status: 'gray-area',
     notes: {
-      en: 'Federal Schedule I. Oregon legalized psilocybin therapy (Measure 109). Colorado decriminalized psilocybin and other natural psychedelics. Several cities have deprioritized enforcement. MDMA therapy under FDA review.',
-      es: 'Clasificación federal Schedule I. Oregón legalizó la terapia con psilocibina (Medida 109). Colorado despenalizó la psilocibina y otros psicodélicos naturales. Varias ciudades han reducido la prioridad de aplicación. Terapia con MDMA bajo revisión de la FDA.',
+      en: 'Federal Schedule I. Oregon legalized psilocybin therapy (Measure 109, services began 2023). Colorado passed the Natural Medicine Health Act (2022), establishing regulated access to psilocybin and other natural psychedelics. Several cities have deprioritized enforcement. FDA declined the Lykos Therapeutics MDMA therapy application in August 2024, citing study design concerns.',
+      es: 'Clasificación federal Schedule I. Oregón legalizó la terapia con psilocibina (Medida 109, servicios desde 2023). Colorado aprobó la Ley de Medicina Natural (2022), estableciendo acceso regulado a la psilocibina y otros psicodélicos naturales. Varias ciudades han reducido la prioridad de aplicación. La FDA rechazó la solicitud de terapia con MDMA de Lykos Therapeutics en agosto de 2024, citando preocupaciones sobre el diseño del estudio.',
     },
   },
   {
@@ -87,6 +87,14 @@ export const legalJurisdictions: LegalJurisdiction[] = [
     notes: {
       en: 'Personal use and private consumption are not criminalized. Smart shops sell psilocybin truffles and related products. Public consumption and sale can be penalized. Ayahuasca retreats operate in legal ambiguity.',
       es: 'El uso personal y el consumo privado no están penalizados. Las smart shops venden trufas de psilocibina y productos relacionados. El consumo público y la venta pueden ser sancionados. Los retiros de ayahuasca operan en ambigüedad legal.',
+    },
+  },
+  {
+    country: 'Switzerland',
+    status: 'medical',
+    notes: {
+      en: 'Compassionate use exemptions allow licensed physicians to administer psilocybin, MDMA, and LSD to patients who have not responded to conventional treatments. Switzerland has a growing number of therapists offering psychedelic-assisted therapy under these exemptions. Research is active at the University of Basel and University of Zurich.',
+      es: 'Las exenciones de uso compasivo permiten a médicos licenciados administrar psilocibina, MDMA y LSD a pacientes que no han respondido a tratamientos convencionales. Suiza tiene un número creciente de terapeutas que ofrecen terapia asistida con psicodélicos bajo estas exenciones. La investigación está activa en la Universidad de Basilea y la Universidad de Zúrich.',
     },
   },
   {

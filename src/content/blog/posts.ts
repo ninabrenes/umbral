@@ -46,6 +46,71 @@ export const posts: BlogMeta[] = [
     date: '2026-03-29',
     category: 'preparation',
   },
+  {
+    slug: 'set-and-setting-what-the-research-says',
+    title: {
+      en: 'Set and setting: what the research actually says',
+      es: 'Set y setting: lo que dice realmente la investigación',
+    },
+    description: {
+      en: 'Your mindset and environment shape the experience more than the substance itself. A review of the evidence on how preparation, intention, music, and physical space determine outcomes.',
+      es: 'Tu estado mental y tu entorno moldean la experiencia más que la sustancia misma. Una revisión de la evidencia sobre cómo la preparación, la intención, la música y el espacio físico determinan los resultados.',
+    },
+    date: '2026-04-05',
+    category: 'science',
+  },
+  {
+    slug: 'difficult-experiences-are-not-bad-trips',
+    title: {
+      en: 'Difficult experiences are not bad trips',
+      es: 'Las experiencias difíciles no son malos viajes',
+    },
+    description: {
+      en: 'The most therapeutically valuable psychedelic experiences are often the most challenging. Understanding the difference between difficult and harmful, and why running from discomfort can mean missing the point.',
+      es: 'Las experiencias psicodélicas más terapéuticamente valiosas suelen ser las más desafiantes. Entender la diferencia entre difícil y dañino, y por qué huir de la incomodidad puede significar perder lo esencial.',
+    },
+    date: '2026-04-12',
+    category: 'integration',
+  },
+  {
+    slug: 'medications-and-psychedelics-what-you-need-to-know',
+    title: {
+      en: 'Medications and psychedelics: what you need to know',
+      es: 'Medicamentos y psicodélicos: lo que necesitas saber',
+    },
+    description: {
+      en: 'SSRIs, lithium, MAOIs, tramadol. Some medication interactions are uncomfortable. Others are dangerous. An evidence-based overview of what the research shows about combining psychiatric medications with psychedelics.',
+      es: 'ISRS, litio, IMAOs, tramadol. Algunas interacciones con medicamentos son incómodas. Otras son peligrosas. Una revisión basada en evidencia sobre lo que muestra la investigación acerca de combinar medicamentos psiquiátricos con psicodélicos.',
+    },
+    date: '2026-04-19',
+    category: 'safety',
+  },
+  {
+    slug: 'the-mycelial-network-a-framework-for-integration',
+    title: {
+      en: 'The Mycelial Network: a framework for integration',
+      es: 'La Red Micelial: un marco para la integración',
+    },
+    description: {
+      en: 'Integration is not a checklist. It is tending a living network. Introducing the six nodes of the Mycelial Network framework and how they connect body, mind, nature, relationships, values, and meaning.',
+      es: 'La integración no es una lista de tareas. Es cuidar una red viva. Presentamos los seis nodos del marco de la Red Micelial y cómo conectan cuerpo, mente, naturaleza, relaciones, valores y sentido.',
+    },
+    date: '2026-04-26',
+    category: 'framework',
+  },
+  {
+    slug: 'indigenous-roots-of-psychedelic-healing',
+    title: {
+      en: 'The indigenous roots of psychedelic healing',
+      es: 'Las raíces indígenas de la sanación psicodélica',
+    },
+    description: {
+      en: 'Before clinical trials, there were centuries of ceremony. From Mazatec veladas to Shipibo icaros, the traditions that modern psychedelic therapy draws from, and what reciprocity looks like in practice.',
+      es: 'Antes de los ensayos clínicos, hubo siglos de ceremonia. Desde las veladas Mazatecas hasta los ícaros Shipibo, las tradiciones de las que se nutre la terapia psicodélica moderna y cómo se ve la reciprocidad en la práctica.',
+    },
+    date: '2026-05-03',
+    category: 'culture',
+  },
 ]
 
 export function getPostBySlug(slug: string): BlogMeta | undefined {

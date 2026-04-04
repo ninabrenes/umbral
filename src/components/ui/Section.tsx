@@ -7,8 +7,8 @@ interface SectionProps extends ComponentProps<'section'> {
 }
 
 const spacingMap = {
-  default: 'py-[var(--space-section)]',
-  lg: 'py-[var(--space-section-lg)]',
+  default: 'py-24 md:py-32',
+  lg: 'py-32 md:py-40',
   none: '',
 }
 

@@ -8,12 +8,12 @@ import type { Locale, NodeId } from '@/types'
 
 /* ── Card background colors for variety ── */
 const nodeCardBg: Record<NodeId, string> = {
-  ground: 'bg-teal/50 hover:bg-teal',
-  roots: 'bg-green/50 hover:bg-green',
-  spore: 'bg-teal/50 hover:bg-teal',
-  weave: 'bg-green/50 hover:bg-green',
-  fruit: 'bg-teal/50 hover:bg-teal',
-  canopy: 'bg-green/50 hover:bg-green',
+  ground: 'bg-teal/40',
+  roots: 'bg-green/40',
+  spore: 'bg-teal/40',
+  weave: 'bg-green/40',
+  fruit: 'bg-teal/40',
+  canopy: 'bg-green/40',
 }
 
 /* ── Bilingual content (trimmed to essentials) ── */
@@ -79,11 +79,11 @@ export default async function Home({
             muted
             loop
             playsInline
-            className="absolute inset-0 w-full h-full object-cover opacity-15"
+            className="absolute inset-0 w-full h-full object-cover opacity-30"
           >
             <source src="/images/art/hero-video.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-gradient-to-b from-deep/60 via-deep/30 to-deep" />
+          <div className="absolute inset-0 bg-gradient-to-b from-onyx/40 via-transparent to-onyx/70" />
         </div>
 
         {/* Content */}
@@ -143,44 +143,50 @@ export default async function Home({
 
             {/* Node: Ground */}
             <ScrollReveal delay={0.08}>
-              <a
-                href={`/${locale}/framework/${nodes[0].id}`}
-                className={`group flex flex-col justify-between rounded-2xl p-8 min-h-[200px] h-full transition-colors duration-300 ${nodeCardBg[nodes[0].id]}`}
-              >
-                <NodeIcon nodeId={nodes[0].id} size={28} useNodeColor weight="duotone" />
-                <div>
-                  <h3 className="text-cloud font-serif text-xl">{nodes[0].name[locale as Locale]}</h3>
-                  <p className="text-cloud/60 text-sm mt-1">{nodes[0].tagline[locale as Locale]}</p>
-                </div>
-              </a>
+              <div className="p-1.5 rounded-[1.75rem] bg-white/[0.03] border border-white/[0.05] h-full">
+                <a
+                  href={`/${locale}/framework/${nodes[0].id}`}
+                  className={`group flex flex-col justify-between rounded-[calc(1.75rem-0.375rem)] p-8 min-h-[200px] h-full transition-colors duration-300 shadow-[inset_0_1px_1px_rgba(255,255,255,0.08)] ${nodeCardBg[nodes[0].id]}`}
+                >
+                  <NodeIcon nodeId={nodes[0].id} size={28} useNodeColor weight="duotone" />
+                  <div>
+                    <h3 className="text-cloud font-serif text-xl">{nodes[0].name[locale as Locale]}</h3>
+                    <p className="text-cloud/60 text-sm mt-1">{nodes[0].tagline[locale as Locale]}</p>
+                  </div>
+                </a>
+              </div>
             </ScrollReveal>
 
             {/* Node: Roots */}
             <ScrollReveal delay={0.16}>
-              <a
-                href={`/${locale}/framework/${nodes[1].id}`}
-                className={`group flex flex-col justify-between rounded-2xl p-8 min-h-[200px] h-full transition-colors duration-300 ${nodeCardBg[nodes[1].id]}`}
-              >
-                <NodeIcon nodeId={nodes[1].id} size={28} useNodeColor weight="duotone" />
-                <div>
-                  <h3 className="text-cloud font-serif text-xl">{nodes[1].name[locale as Locale]}</h3>
-                  <p className="text-cloud/60 text-sm mt-1">{nodes[1].tagline[locale as Locale]}</p>
-                </div>
-              </a>
+              <div className="p-1.5 rounded-[1.75rem] bg-white/[0.03] border border-white/[0.05] h-full">
+                <a
+                  href={`/${locale}/framework/${nodes[1].id}`}
+                  className={`group flex flex-col justify-between rounded-[calc(1.75rem-0.375rem)] p-8 min-h-[200px] h-full transition-colors duration-300 shadow-[inset_0_1px_1px_rgba(255,255,255,0.08)] ${nodeCardBg[nodes[1].id]}`}
+                >
+                  <NodeIcon nodeId={nodes[1].id} size={28} useNodeColor weight="duotone" />
+                  <div>
+                    <h3 className="text-cloud font-serif text-xl">{nodes[1].name[locale as Locale]}</h3>
+                    <p className="text-cloud/60 text-sm mt-1">{nodes[1].tagline[locale as Locale]}</p>
+                  </div>
+                </a>
+              </div>
             </ScrollReveal>
 
             {/* Node: Spore */}
             <ScrollReveal delay={0.24}>
-              <a
-                href={`/${locale}/framework/${nodes[2].id}`}
-                className={`group flex flex-col justify-between rounded-2xl p-8 min-h-[200px] h-full transition-colors duration-300 ${nodeCardBg[nodes[2].id]}`}
-              >
-                <NodeIcon nodeId={nodes[2].id} size={28} useNodeColor weight="duotone" />
-                <div>
-                  <h3 className="text-cloud font-serif text-xl">{nodes[2].name[locale as Locale]}</h3>
-                  <p className="text-cloud/60 text-sm mt-1">{nodes[2].tagline[locale as Locale]}</p>
-                </div>
-              </a>
+              <div className="p-1.5 rounded-[1.75rem] bg-white/[0.03] border border-white/[0.05] h-full">
+                <a
+                  href={`/${locale}/framework/${nodes[2].id}`}
+                  className={`group flex flex-col justify-between rounded-[calc(1.75rem-0.375rem)] p-8 min-h-[200px] h-full transition-colors duration-300 shadow-[inset_0_1px_1px_rgba(255,255,255,0.08)] ${nodeCardBg[nodes[2].id]}`}
+                >
+                  <NodeIcon nodeId={nodes[2].id} size={28} useNodeColor weight="duotone" />
+                  <div>
+                    <h3 className="text-cloud font-serif text-xl">{nodes[2].name[locale as Locale]}</h3>
+                    <p className="text-cloud/60 text-sm mt-1">{nodes[2].tagline[locale as Locale]}</p>
+                  </div>
+                </a>
+              </div>
             </ScrollReveal>
 
             {/* Image card — psychedelic swirls (tall, spans 2 cols + 2 rows) */}
@@ -204,44 +210,50 @@ export default async function Home({
 
             {/* Node: Weave */}
             <ScrollReveal delay={0.32}>
-              <a
-                href={`/${locale}/framework/${nodes[3].id}`}
-                className={`group flex flex-col justify-between rounded-2xl p-8 min-h-[200px] h-full transition-colors duration-300 ${nodeCardBg[nodes[3].id]}`}
-              >
-                <NodeIcon nodeId={nodes[3].id} size={28} useNodeColor weight="duotone" />
-                <div>
-                  <h3 className="text-cloud font-serif text-xl">{nodes[3].name[locale as Locale]}</h3>
-                  <p className="text-cloud/60 text-sm mt-1">{nodes[3].tagline[locale as Locale]}</p>
-                </div>
-              </a>
+              <div className="p-1.5 rounded-[1.75rem] bg-white/[0.03] border border-white/[0.05] h-full">
+                <a
+                  href={`/${locale}/framework/${nodes[3].id}`}
+                  className={`group flex flex-col justify-between rounded-[calc(1.75rem-0.375rem)] p-8 min-h-[200px] h-full transition-colors duration-300 shadow-[inset_0_1px_1px_rgba(255,255,255,0.08)] ${nodeCardBg[nodes[3].id]}`}
+                >
+                  <NodeIcon nodeId={nodes[3].id} size={28} useNodeColor weight="duotone" />
+                  <div>
+                    <h3 className="text-cloud font-serif text-xl">{nodes[3].name[locale as Locale]}</h3>
+                    <p className="text-cloud/60 text-sm mt-1">{nodes[3].tagline[locale as Locale]}</p>
+                  </div>
+                </a>
+              </div>
             </ScrollReveal>
 
             {/* Node: Fruit */}
             <ScrollReveal delay={0.40}>
-              <a
-                href={`/${locale}/framework/${nodes[4].id}`}
-                className={`group flex flex-col justify-between rounded-2xl p-8 min-h-[200px] h-full transition-colors duration-300 ${nodeCardBg[nodes[4].id]}`}
-              >
-                <NodeIcon nodeId={nodes[4].id} size={28} useNodeColor weight="duotone" />
-                <div>
-                  <h3 className="text-cloud font-serif text-xl">{nodes[4].name[locale as Locale]}</h3>
-                  <p className="text-cloud/60 text-sm mt-1">{nodes[4].tagline[locale as Locale]}</p>
-                </div>
-              </a>
+              <div className="p-1.5 rounded-[1.75rem] bg-white/[0.03] border border-white/[0.05] h-full">
+                <a
+                  href={`/${locale}/framework/${nodes[4].id}`}
+                  className={`group flex flex-col justify-between rounded-[calc(1.75rem-0.375rem)] p-8 min-h-[200px] h-full transition-colors duration-300 shadow-[inset_0_1px_1px_rgba(255,255,255,0.08)] ${nodeCardBg[nodes[4].id]}`}
+                >
+                  <NodeIcon nodeId={nodes[4].id} size={28} useNodeColor weight="duotone" />
+                  <div>
+                    <h3 className="text-cloud font-serif text-xl">{nodes[4].name[locale as Locale]}</h3>
+                    <p className="text-cloud/60 text-sm mt-1">{nodes[4].tagline[locale as Locale]}</p>
+                  </div>
+                </a>
+              </div>
             </ScrollReveal>
 
             {/* Node: Canopy */}
             <ScrollReveal delay={0.48}>
-              <a
-                href={`/${locale}/framework/${nodes[5].id}`}
-                className={`group flex flex-col justify-between rounded-2xl p-8 min-h-[200px] h-full transition-colors duration-300 ${nodeCardBg[nodes[5].id]}`}
-              >
-                <NodeIcon nodeId={nodes[5].id} size={28} useNodeColor weight="duotone" />
-                <div>
-                  <h3 className="text-cloud font-serif text-xl">{nodes[5].name[locale as Locale]}</h3>
-                  <p className="text-cloud/60 text-sm mt-1">{nodes[5].tagline[locale as Locale]}</p>
-                </div>
-              </a>
+              <div className="p-1.5 rounded-[1.75rem] bg-white/[0.03] border border-white/[0.05] h-full">
+                <a
+                  href={`/${locale}/framework/${nodes[5].id}`}
+                  className={`group flex flex-col justify-between rounded-[calc(1.75rem-0.375rem)] p-8 min-h-[200px] h-full transition-colors duration-300 shadow-[inset_0_1px_1px_rgba(255,255,255,0.08)] ${nodeCardBg[nodes[5].id]}`}
+                >
+                  <NodeIcon nodeId={nodes[5].id} size={28} useNodeColor weight="duotone" />
+                  <div>
+                    <h3 className="text-cloud font-serif text-xl">{nodes[5].name[locale as Locale]}</h3>
+                    <p className="text-cloud/60 text-sm mt-1">{nodes[5].tagline[locale as Locale]}</p>
+                  </div>
+                </a>
+              </div>
             </ScrollReveal>
 
           </div>

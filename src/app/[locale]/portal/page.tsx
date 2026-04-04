@@ -162,24 +162,27 @@ export default async function PortalPage({
           <p className="text-xs tracking-[0.2em] uppercase text-cloud/30 mb-16 md:mb-24 font-sans">
             {locale === 'en' ? 'What awaits inside' : 'Lo que espera adentro'}
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-16 md:gap-y-24">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {t.features.map((feature, i) => {
               const FeatureIcon = featureIcons[i]
+              const isWide = i === 0 || i === 3
               return (
-                <ScrollReveal key={i} variant="fade-up" delay={i * 0.1}>
-                  <div className="group bg-white/[0.04] backdrop-blur-xl border border-white/[0.08] rounded-2xl p-8">
-                    <FeatureIcon size={32} weight="duotone" className="text-sage mb-6" />
-                    <div className="flex items-baseline gap-4 mb-4">
-                      <span className="text-xs text-cloud/20 font-sans tabular-nums">
-                        {String(i + 1).padStart(2, '0')}
-                      </span>
-                      <h3 className="font-serif text-2xl md:text-3xl font-light tracking-[-0.01em] text-white">
-                        {feature.title}
-                      </h3>
+                <ScrollReveal key={i} variant="fade-up" delay={i * 0.1} className={isWide ? 'md:col-span-2' : ''}>
+                  <div className="p-1.5 rounded-[1.75rem] bg-white/[0.03] border border-white/[0.05] h-full">
+                    <div className="rounded-[calc(1.75rem-0.375rem)] bg-teal/30 p-8 shadow-[inset_0_1px_1px_rgba(255,255,255,0.08)] h-full">
+                      <FeatureIcon size={32} weight="duotone" className="text-sage mb-6" />
+                      <div className="flex items-baseline gap-4 mb-4">
+                        <span className="text-xs text-cloud/20 font-sans tabular-nums">
+                          {String(i + 1).padStart(2, '0')}
+                        </span>
+                        <h3 className="font-serif text-2xl md:text-3xl font-light tracking-[-0.01em] text-white">
+                          {feature.title}
+                        </h3>
+                      </div>
+                      <p className="text-cloud/40 font-light leading-relaxed pl-10 max-w-[45ch]">
+                        {feature.description}
+                      </p>
                     </div>
-                    <p className="text-cloud/40 font-light leading-relaxed pl-10 max-w-[45ch]">
-                      {feature.description}
-                    </p>
                   </div>
                 </ScrollReveal>
               )

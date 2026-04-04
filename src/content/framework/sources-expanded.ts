@@ -243,7 +243,7 @@ export const papers: Paper[] = [
     category: 'mystical-experience',
   },
   {
-    id: 'barrett-2015',
+    id: 'barrett-2016',
     title: 'The Challenging Experience Questionnaire: characterization of challenging experiences with psilocybin mushrooms',
     authors: 'Barrett, F.S. et al.',
     year: 2016,
@@ -271,7 +271,7 @@ export const papers: Paper[] = [
     category: 'safety',
   },
   {
-    id: 'johnson-2018',
+    id: 'johnson-2019',
     title: 'Classic psychedelics: an integrative review of epidemiology, therapeutics, mystical experience, and brain network function',
     authors: 'Johnson, M.W., Hendricks, P.S., Barrett, F.S. & Griffiths, R.R.',
     year: 2019,
@@ -285,6 +285,19 @@ export const papers: Paper[] = [
   },
 
   // ── neuroscience (REBUS, DMN, neuroplasticity) ──
+  {
+    id: 'carhart-harris-2012',
+    title: 'Neural correlates of the psychedelic state as determined by fMRI studies with psilocybin',
+    authors: 'Carhart-Harris, R.L. et al.',
+    year: 2012,
+    journal: 'Proceedings of the National Academy of Sciences',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/22308440/',
+    summary: {
+      en: 'Landmark neuroimaging study showing that psilocybin decreases activity in the default mode network (DMN), challenging the assumption that psychedelic effects come from increased brain activity and establishing the DMN disruption model.',
+      es: 'Estudio pionero de neuroimagen que muestra que la psilocibina disminuye la actividad en la red de modo predeterminado (DMN), desafiando la suposición de que los efectos psicodélicos provienen de mayor actividad cerebral y estableciendo el modelo de interrupción del DMN.',
+    },
+    category: 'neuroscience',
+  },
   {
     id: 'carhart-harris-2019',
     title: 'REBUS and the Anarchic Brain: toward a unified model of the brain action of psychedelics',

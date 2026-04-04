@@ -97,4 +97,52 @@ export const contraindications: Contraindication[] = [
     },
     sources: [],
   },
+  {
+    id: 'tramadol',
+    name: { en: 'Tramadol', es: 'Tramadol' },
+    risk: {
+      en: 'Seizures and serotonin syndrome',
+      es: 'Convulsiones y síndrome serotoninérgico',
+    },
+    severity: 'critical',
+    action: {
+      en: 'Tramadol lowers seizure threshold and has serotonergic activity. Combining with psychedelics can cause seizures or serotonin syndrome. Consult your prescribing physician.',
+      es: 'El tramadol reduce el umbral convulsivo y tiene actividad serotoninérgica. Combinarlo con psicodélicos puede causar convulsiones o síndrome serotoninérgico. Consulta a tu médico.',
+    },
+    sources: ['https://pubmed.ncbi.nlm.nih.gov/18593735/'],
+  },
+  {
+    id: 'bipolar-disorder',
+    name: {
+      en: 'Bipolar disorder (Type I and II)',
+      es: 'Trastorno bipolar (Tipo I y II)',
+    },
+    risk: {
+      en: 'Manic episodes or psychotic breaks',
+      es: 'Episodios maníacos o brotes psicóticos',
+    },
+    severity: 'critical',
+    action: {
+      en: 'Bipolar disorder, especially Type I, is a strong contraindication for psychedelic use due to risk of triggering manic or psychotic episodes. Most clinical trials exclude participants with bipolar disorder. Consult your psychiatrist.',
+      es: 'El trastorno bipolar, especialmente Tipo I, es una fuerte contraindicación para el uso de psicodélicos debido al riesgo de desencadenar episodios maníacos o psicóticos. La mayoría de los ensayos clínicos excluyen a participantes con trastorno bipolar. Consulta a tu psiquiatra.',
+    },
+    sources: ['https://pubmed.ncbi.nlm.nih.gov/18593735/'],
+  },
+  {
+    id: 'seizure-disorders',
+    name: {
+      en: 'Seizure disorders / Epilepsy',
+      es: 'Trastornos convulsivos / Epilepsia',
+    },
+    risk: {
+      en: 'Lowered seizure threshold',
+      es: 'Umbral convulsivo reducido',
+    },
+    severity: 'high',
+    action: {
+      en: 'Some psychedelics may lower seizure threshold. If you have epilepsy or a seizure disorder, consult your neurologist before any psychedelic experience.',
+      es: 'Algunos psicodélicos pueden reducir el umbral convulsivo. Si tienes epilepsia o un trastorno convulsivo, consulta a tu neurólogo antes de cualquier experiencia psicodélica.',
+    },
+    sources: ['https://pubmed.ncbi.nlm.nih.gov/18593735/'],
+  },
 ]
