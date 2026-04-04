@@ -182,7 +182,7 @@ const severityConfig: Record<
   unknown: {
     border: 'border-white/[0.04]',
     bg: 'bg-forest',
-    badge: 'bg-teal/30',
+    badge: 'bg-teal/50',
     badgeText: 'text-cloud/60',
   },
 }

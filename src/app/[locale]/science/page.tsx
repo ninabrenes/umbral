@@ -338,7 +338,7 @@ export default async function SciencePage({
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           {t.themes.items.map((theme, i) => (
             <ScrollReveal key={theme.heading} variant="fade-up" delay={i * 0.06}>
-              <div className="bg-teal/30 rounded-2xl p-8 md:p-10 flex flex-col justify-between min-h-[280px] h-full">
+              <div className="bg-teal/50 rounded-2xl p-8 md:p-10 flex flex-col justify-between min-h-[280px] h-full">
                 <div className="flex items-start gap-6">
                   <ThemeIcon icon={theme.icon} />
                   <div className="flex-1">
@@ -438,7 +438,7 @@ export default async function SciencePage({
                   href={org.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block bg-teal/30 rounded-xl p-6 transition-opacity duration-200 hover:opacity-80"
+                  className="block bg-teal/50 rounded-xl p-6 transition-opacity duration-200 hover:opacity-80"
                 >
                   <div className="flex items-start justify-between mb-3">
                     <h4 className="font-serif text-lg font-light leading-[1.2] text-cloud flex-1 pr-4">

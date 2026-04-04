@@ -89,7 +89,7 @@ export default async function Home({
               <ScrollReveal key={node.id} delay={i * 0.06}>
                 <a
                   href={`/${locale}/framework/${node.id}`}
-                  className="group flex items-center gap-5 bg-teal/30 hover:bg-teal/50 rounded-xl p-5 transition-colors duration-300"
+                  className="group flex items-center gap-5 bg-teal/50 hover:bg-teal/50 rounded-xl p-5 transition-colors duration-300"
                 >
                   <div className="shrink-0">
                     <NodeIcon nodeId={node.id} size={28} useNodeColor weight="duotone" />

@@ -115,7 +115,7 @@ export function InteractiveNode({ node, locale, index, href }: InteractiveNodePr
               }
         }
         transition={{ duration: 0.2 }}
-        className={`relative bg-teal/30 hover:bg-teal/50 border border-white/[0.04] rounded-2xl ${nodeBorderColors[node.id]} p-6 sm:p-8 transition-colors duration-200`}
+        className={`relative bg-teal/50 hover:bg-teal/50 border border-white/[0.04] rounded-2xl ${nodeBorderColors[node.id]} p-6 sm:p-8 transition-colors duration-200`}
       >
         {/* index number */}
         <span className="absolute top-4 right-5 text-[11px] text-cloud/20 font-sans tabular-nums">
