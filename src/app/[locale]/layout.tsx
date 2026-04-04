@@ -43,7 +43,7 @@ export default async function LocaleLayout({
         <NextIntlClientProvider messages={messages}>
           <LenisProvider>
             <Nav locale={locale as Locale} />
-            <main className="pt-16">{children}</main>
+            <main className="pt-20">{children}</main>
             <Footer locale={locale as Locale} />
             <CrisisBar locale={locale as Locale} />
           </LenisProvider>

@@ -20,48 +20,63 @@ export function Nav({ locale }: NavProps) {
   const otherLabel = locale === 'en' ? 'ES' : 'EN'
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-deep/80 backdrop-blur-xl border-b border-white/[0.08] shadow-[inset_0_-1px_0_rgba(255,255,255,0.05)] transition-all duration-300">
-      <nav className="mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 h-16 flex items-center justify-between">
+    <header className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-5 px-4">
+      <nav className="flex items-center gap-1 px-2 py-2 rounded-full bg-deep/70 backdrop-blur-2xl border border-white/[0.06] shadow-[0_8px_32px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.06)] w-max transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)]">
+        {/* Logo */}
         <Link
           href={`/${locale}`}
-          className="font-serif text-xl font-light tracking-[-0.01em] text-white transition-all duration-300"
+          className="px-4 py-2 font-serif text-lg font-light text-white"
         >
           umbral
         </Link>
 
-        <div className="hidden md:flex items-center gap-8">
+        {/* Divider */}
+        <span className="w-px h-5 bg-white/[0.08]" />
+
+        {/* Links */}
+        <div className="hidden md:flex items-center gap-1">
           {links.map((link) => (
             <ActiveNavLink
               key={link.key}
               href={`/${locale}${link.href}`}
-              className="text-sm text-cloud/70 hover:text-mint transition-colors duration-200 font-sans font-light"
-              activeClassName="text-sm text-mint font-sans font-normal transition-colors duration-200"
+              className="px-3 py-1.5 text-[13px] text-cloud/60 hover:text-cloud rounded-full hover:bg-white/[0.06] transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] font-sans font-light"
+              activeClassName="px-3 py-1.5 text-[13px] text-mint font-sans font-normal bg-white/[0.06] rounded-full"
             >
               {link[locale]}
             </ActiveNavLink>
           ))}
         </div>
 
-        <div className="flex items-center gap-5">
+        {/* Divider */}
+        <span className="hidden md:block w-px h-5 bg-white/[0.08]" />
+
+        {/* Language + CTA */}
+        <div className="hidden md:flex items-center gap-2">
           <Link
             href={`/${otherLocale}`}
-            className="hidden md:inline text-xs tracking-[0.15em] uppercase text-cloud/70 hover:text-mint transition-colors duration-200 font-sans"
+            className="px-2 py-1.5 text-[11px] tracking-[0.12em] uppercase text-cloud/50 hover:text-cloud rounded-full hover:bg-white/[0.06] transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]"
           >
             {otherLabel}
           </Link>
+          {/* Button-in-Button CTA */}
           <Link
             href={`/${locale}/portal`}
-            className="hidden md:inline-flex items-center px-5 py-2 text-xs tracking-[0.1em] uppercase bg-mint text-deep rounded-full hover:bg-mint/90 transition-colors duration-200"
+            className="group flex items-center gap-2 pl-4 pr-1.5 py-1.5 text-[12px] tracking-[0.08em] uppercase bg-mint text-deep rounded-full hover:bg-mint/90 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98]"
           >
             Portal
+            <span className="flex items-center justify-center w-6 h-6 rounded-full bg-deep/15 group-hover:translate-x-0.5 group-hover:-translate-y-px group-hover:scale-105 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]">
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 9L9 1M9 1H3M9 1V7" stroke="currentColor" strokeWidth="1.2"/></svg>
+            </span>
           </Link>
-          <MobileMenu
-            locale={locale}
-            otherLocale={otherLocale}
-            otherLabel={otherLabel}
-            links={links}
-          />
         </div>
+
+        {/* Mobile menu trigger */}
+        <MobileMenu
+          locale={locale}
+          otherLocale={otherLocale}
+          otherLabel={otherLabel}
+          links={links}
+        />
       </nav>
     </header>
   )

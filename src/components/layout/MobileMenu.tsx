@@ -53,7 +53,7 @@ export function MobileMenu({ locale, otherLocale, otherLabel, links }: MobileMen
 
       {open && (
         <div
-          className="fixed inset-0 top-16 z-40 bg-deep/95 backdrop-blur-xl transition-opacity duration-200"
+          className="fixed inset-0 top-[72px] z-40 bg-deep/95 backdrop-blur-xl transition-opacity duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]"
           style={{ opacity: visible ? 1 : 0 }}
         >
           <nav className="px-6 py-8 flex flex-col gap-1">
